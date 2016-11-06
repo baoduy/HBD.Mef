@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/5albws593jcl3h6p)](https://ci.appveyor.com/project/LoreSoft/entityframework-extended)
+[![Build status](https://ci.appveyor.com/api/projects/status/5albws593jcl3h6p)](https://ci.appveyor.com/project/baoduy/hbd-mef)
 ![NuGet Version](https://img.shields.io/nuget/v/HBD.Mef.svg?style=flat-square)
 ![NuGet Version](https://img.shields.io/nuget/dt/HBD.Mef.svg?style=flat-square)
 
