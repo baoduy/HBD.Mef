@@ -1,3 +1,7 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/5albws593jcl3h6p)](https://ci.appveyor.com/project/LoreSoft/entityframework-extended)
+![NuGet Version](https://img.shields.io/nuget/v/HBD.Mef.svg?style=flat-square)
+![NuGet Version](https://img.shields.io/nuget/dt/HBD.Mef.svg?style=flat-square)
+
 # HBD.Mef
 I would like to share the Mef library for Console and Winforms application.
 This library allows creating a Bootstrapper for your allocation and load add-in library at runtime dynamically.
@@ -154,6 +158,12 @@ internal class Program
 }
 ```
 
+# Nuget Package
+>**PM> Install-Package HBD.Mef**
+
+**[Nuget Location Here](https://www.nuget.org/packages/HBD.Mef/)**
+
+# Github
 **[You can download source code if HBD.Mef here](https://github.com/baoduy/HBD.Mef)**
 
 >PS: *Your feedback and contribution are much appreciated.

@@ -1,9 +1,9 @@
-﻿using System.IO;
-using System.Linq;
-using HBD.Framework.IO;
+﻿using HBD.Framework.IO;
 using HBD.Mef.Common;
 using HBD.Mef.Core.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Linq;
 
 namespace HBD.Framework.Shell.Tests
 {
@@ -26,6 +26,7 @@ namespace HBD.Framework.Shell.Tests
         [TestMethod]
         public void SaveConfigTest()
         {
+            System.IO.Directory.CreateDirectory("TestData\\");
             DirectoryEx.DeleteFiles("TestData\\", "Shell.Testing*.*");
 
             var shell = new ShellConfig

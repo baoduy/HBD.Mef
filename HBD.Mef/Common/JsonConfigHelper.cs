@@ -51,7 +51,6 @@ namespace HBD.Mef.Common
             var strVal = JsonConvert.SerializeObject(config, Formatting.Indented);
             //Ensure the folder is created
             // ReSharper disable once AssignNullToNotNullAttribute
-            System.IO.Directory.CreateDirectory(Path.GetDirectoryName(file));
             File.WriteAllText(p, strVal);
         }
     }
