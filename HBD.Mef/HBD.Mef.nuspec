@@ -15,8 +15,8 @@
       The Mef Bootstrapper for WindowForms and Console application.
     </summary>
     <language>en-US</language>
-    <projectUrl>https://nuget.org/packages/HBD.Mef</projectUrl>
-    <iconUrl>http://www.gravatar.com/avatar/ab5364407cf5b1f10ea02750a1927573.jpg?s=24</iconUrl>
+    <projectUrl>https://github.com/baoduy/HBD.Mef</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
     <copyright>Copyright 2016</copyright>

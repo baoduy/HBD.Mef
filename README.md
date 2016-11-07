@@ -1,6 +1,9 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/5albws593jcl3h6p)](https://ci.appveyor.com/project/baoduy/hbd-mef)
-![NuGet Version](https://img.shields.io/nuget/v/HBD.Mef.svg?style=flat-square)
-![NuGet Version](https://img.shields.io/nuget/dt/HBD.Mef.svg?style=flat-square)
+[![License](https://img.shields.io/badge/license-LGPL--2.1-blue.svg)](LICENSE)
+[![NuGet](https://img.shields.io/nuget/v/HBD.Mef.svg?maxAge=2592000)](https://www.nuget.org/packages/HBD.Mef/)
+
+##### Nuget Package:
+>PM> *Install-Package HBD.Mef*
 
 # HBD.Mef
 I would like to share the Mef library for Console and Winforms application.
@@ -8,7 +11,6 @@ This library allows creating a Bootstrapper for your allocation and load add-in 
 
 ## What is Mef
 Mef is short name of Managed Extensibility Framework had been introduced in the .NET Framework 4.0.
-
 If you are working on Prism for WPF you will see the advance of the Mef
 that allow building allow applications to isolate and manage extensions.
 MEF's focus is on discoverability, extensibility, and portability.
@@ -29,11 +31,7 @@ It also lets extension developers easily encapsulate code and avoid fragile hard
 protected override ILoggerFacade CreateLogger() 
     => new TextFileLogger("New Log Location Here");
 ```
-### 3. Console application
-- The HBD.Mef.ConsoleApp.**MefConsoleAppBootstrapper** is a dedicated bootstrapper for **Console application**. The folder **ConsoleApp** maybe split into the separate project in future once it had so many features added.
-### 4. Winforms application
-- The HBD.Mef.WinForms.**MefWinFormBootstrapper** is a dedicated bootstrapper for **Window Forms application** as well. The folder **WinForms** maybe split into the separate project in future once it had so many features added.
-### 5. Shell configuration
+### 3. Shell configuration
 - The **ShellConfig** in HBD.Mef.Core.Configuration had been defined for shell application configuration purpose.
 That allows setting the Title, Logo, Environment Name, Module and Backup folder location as well as the list of external dlls that need to be imported into the Mef when starting the application.
 ```csharp
@@ -63,7 +61,7 @@ public class ShellConfig
         IList<string> ImportedBinaries { get; set; }
 }
 ```
-### 6. Module Configuration.
+### 4. Module Configuration.
 - The **ModuleConfig** in HBD.Mef.Core.Configuration had been defined for Module configuration purpose.
 That allows setting the name, description, AssemplyFiles and Status of the Module.
 ```csharp
@@ -102,10 +100,10 @@ public class ModuleConfig
         public bool IsValid { get; set; } = true;
 }
  ```
-### 7. The helper classes.
+### 5. The helper classes.
 1. The HBD.Mef.Common.**JsonConfigHelper** is a helper class that helps to read json config file into an object and vise versa.
 All loaded config objects will be cached into an internal ConcurrentDictionary for future usage.
-So if you call RadConfig method twice for the same config file. The second call will return the object in the caching dictionary instead of read data from the file again.
+So if you call RadConfig method twice for the same config file. The second call will return the object in the caching dictionary instead of reading data from the file again.
 
 2. The HBD.Mef.**ShellConfigManager** is a helper class that helps to manage the Shell and Modules configuration files.
 - **ShellConfig** property: The Shell.json config file from the StartUp location of the application will be read into this property.
@@ -114,11 +112,19 @@ All changes of the ShellConfig object will be monitored and saved back to the co
 All changes of the ModuleConfig will be saved back to the corresponding config files once method *SaveChanges* had been called.
 - **SaveChanges** method: that will save all changes of the **ShellConfig** and **Modules** back to the corresponding config files.
 - **UndoChanges** method: undo all changes of the **ShellConfig** and **Modules**.
-
+###6 The common objects that exported into Mef
+- ILoggerFacade
+- IModuleCatalog
+- ICompositionService
+- IServiceLocator
+- AggregateCatalog
 ## How to use HBE.Mef
 ### 1. Console Application.
-1. Open visual studio and create new Console application project
-2. Create a new class named Bootstrapper and make it inherited from **HBD.Mef.ConsoleApp.MefConsoleAppBootstrapper** as example below.
+>The **MefConsoleAppBootstrapper** is a dedicated bootstrapper for **Console Application** and a few useful classes had been added into HBD.Mef.ConsoleApp namespace
+>that helps to develops an add-in able console app easier and faster.
+
+1. Open visual studio and create new **Console Application** project
+2. Create a new class named **Bootstrapper** and make it inherited from **HBD.Mef.ConsoleApp.MefConsoleAppBootstrapper** as below.
 ```csharp
 internal class Bootstrapper : MefConsoleAppBootstrapper
 {
@@ -157,17 +163,98 @@ internal class Program
         private static void Main(string[] args) => new Bootstrapper().Run(args);
 }
 ```
+After this your application is ready. you can start to implement you console application logic by using Mef now.
 
-# Nuget Package
->**PM> Install-Package HBD.Mef**
+4. Get instance of Module via name
+The sample code to expose a module named **DemoModule** to Mef as below. The function of this module is writing some text to the log file when it is running.
+```csharp
+[ModuleExport("DemoModule", typeof(DemoModule))]
+[PartCreationPolicy(CreationPolicy.Shared)]
+public class DemoModule : ConsoleModuleBase
+{
+        public override void Initialize()
+        {
+        }
 
-**[Nuget Location Here](https://www.nuget.org/packages/HBD.Mef/)**
+        public override void Run(params string[] args)
+        {
+            //Write to log file.
+            this.Logger.Info($"{this.GetType().Name} had been ran.");
+        }
+}
+``` 
+And then you can get and run that module by below code.
+```csharp
+private void GetModuleByName(string moduleName,string[]args)
+{
+            var moduleInfo =
+                Container.GetExports<IModule, IModuleExport>()
+                    .FirstOrDefault(l => l.Metadata.ModuleName.EqualsIgnoreCase(moduleName));
 
-# Github
-**[You can download source code if HBD.Mef here](https://github.com/baoduy/HBD.Mef)**
+            if (moduleInfo == null)
+                throw new Exception(
+                    $"Module {moduleName} is not found.");
 
->PS: *Your feedback and contribution are much appreciated.
->Please feel free to submit your opinions into github issues management or email to me*
+            (moduleInfo.Value as ConsoleModuleBase).Run(args);
+}
+ 
+``` 
+
+### 2. WinForms Application
+>The **MefWinFormBootstrapper** is a dedicated bootstrapper for **WinForms Application** and a few useful classes had been added into HBD.Mef.WinForms namespace
+>that helps to develops an add-in able Window app easier and faster.
+
+1. Open visual studio and create new **Window Forms Application** project
+2. Create a new class named **Bootstrapper** and make it inherited from **HBD.Mef.WinForms.MefWinFormBootstrapper** as below.
+```csharp
+internal class Bootstrapper : MefWinFormBootstrapper
+{
+        protected override void ConfigureAggregateCatalog()
+        {
+            base.ConfigureAggregateCatalog();
+
+            Logger.Info("Add Bootstrapper Assembly");
+            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
+
+            Logger.Info("Import Shell Binaries");
+            ShellConfigManager.ImportShellBinaries(AggregateCatalog);
+
+            Logger.Info("Import Module Binaries");
+            ShellConfigManager.ImportModuleBinaries(AggregateCatalog);
+        }
+
+        //'FrMain' is your MainForms type.
+        protected override Form CreateMainWindow() => Container.GetExportedValue<FrMain>();
+
+        public override void Run(bool runWithDefaultConfiguration)
+        {
+            try
+            {
+                base.Run(runWithDefaultConfiguration);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
+}
+```
+3. Update the **Program.cs** as below
+```csharp
+[STAThread]
+private static void Main()
+{
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            new Bootstrapper().Run();
+}
+```
+4. Using Mef Container
+In the MainFrom you can import IServiceLocator and get the exported objects from Mef.
+
+>PS: *Hope that this library will help you to develop a plugin-able application faster and easier. Your feedback and contribution are much appreciated.
+>Please feel free to submit your opinions into GitHub issues management or email to me*
 >
 >*Thanks and Regards
 >[hoangbaoduy@gmail.com](mailto:hoangbaoduy@gmail.com)*
