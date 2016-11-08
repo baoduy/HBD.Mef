@@ -165,7 +165,6 @@ internal class Program
 }
 ```
 After this your application is ready. you can start to implement you console application logic by using Mef now.
-
 4. Get instance of Module via name
 The sample code to expose a module named **DemoModule** to Mef as below. The function of this module is writing some text to the log file when it is running.
 ```csharp
