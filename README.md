@@ -22,8 +22,10 @@ It also lets extension developers easily encapsulate code and avoid fragile hard
 [(Click here to read more about Mef).](https://msdn.microsoft.com/en-us/library/dd460648(v=vs.110).aspx)
 
 ## What's supporting by HBD.Mef
+
 ### 1. Bootstrapper 
 - The core bootstrapper is HBD.Core.**MefBootstrapper** contains needed API that allows creating Logger instance, create AggregateCatalog, Composition Container, and Initialize Application.
+
 ### 2. Logging
 - The HBD.Mef.Core.Logging.**TextFileLogger** had been defined as default logger for this bootstrapper by using **log4net** library in Nuget.
 - Default Log file location will be in the **StartUp\Logs\Log.log**. However, you can customize it by overwriting the **CreateLogger()** method and pass the new location as a constructor parameter.
@@ -31,6 +33,7 @@ It also lets extension developers easily encapsulate code and avoid fragile hard
 protected override ILoggerFacade CreateLogger() 
     => new TextFileLogger("New Log Location Here");
 ```
+
 ### 3. Shell configuration
 - The **ShellConfig** in HBD.Mef.Core.Configuration had been defined for shell application configuration purpose.
 That allows setting the Title, Logo, Environment Name, Module and Backup folder location as well as the list of external dlls that need to be imported into the Mef when starting the application.
@@ -61,6 +64,7 @@ public class ShellConfig
         IList<string> ImportedBinaries { get; set; }
 }
 ```
+
 ### 4. Module Configuration.
 - The **ModuleConfig** in HBD.Mef.Core.Configuration had been defined for Module configuration purpose.
 That allows setting the name, description, AssemplyFiles and Status of the Module.
@@ -100,6 +104,7 @@ public class ModuleConfig
         public bool IsValid { get; set; } = true;
 }
  ```
+ 
 ### 5. The helper classes.
 1. The HBD.Mef.Common.**JsonConfigHelper** is a helper class that helps to read json config file into an object and vise versa.
 All loaded config objects will be cached into an internal ConcurrentDictionary for future usage.
@@ -112,7 +117,8 @@ All changes of the ShellConfig object will be monitored and saved back to the co
 All changes of the ModuleConfig will be saved back to the corresponding config files once method *SaveChanges* had been called.
 - **SaveChanges** method: that will save all changes of the **ShellConfig** and **Modules** back to the corresponding config files.
 - **UndoChanges** method: undo all changes of the **ShellConfig** and **Modules**.
-###6 The common objects that exported into Mef
+
+### 6 The common objects that exported into Mef
 - ILoggerFacade
 - IModuleCatalog
 - ICompositionService
@@ -120,6 +126,7 @@ All changes of the ModuleConfig will be saved back to the corresponding config f
 - AggregateCatalog
 
 ## How to use HBE.Mef
+
 ### 1. Console Application.
 >The **MefConsoleAppBootstrapper** is a dedicated bootstrapper for **Console Application** and a few useful classes had been added into HBD.Mef.ConsoleApp namespace
 >that helps to develops an add-in able console app easier and faster.
