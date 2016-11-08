@@ -118,6 +118,7 @@ All changes of the ModuleConfig will be saved back to the corresponding config f
 - ICompositionService
 - IServiceLocator
 - AggregateCatalog
+
 ## How to use HBE.Mef
 ### 1. Console Application.
 >The **MefConsoleAppBootstrapper** is a dedicated bootstrapper for **Console Application** and a few useful classes had been added into HBD.Mef.ConsoleApp namespace
