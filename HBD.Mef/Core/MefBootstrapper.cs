@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using HBD.Mef.Core.Logging;
@@ -6,6 +8,8 @@ using HBD.Mef.Core.Services;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Logging;
 using Prism.Modularity;
+
+#endregion
 
 namespace HBD.Mef.Core
 {
@@ -19,7 +23,7 @@ namespace HBD.Mef.Core
         protected AggregateCatalog AggregateCatalog { get; private set; }
         protected IModuleCatalog ModuleCatalog { get; private set; }
 
-        protected virtual ILoggerFacade CreateLogger() => new TextFileLogger();
+        protected virtual ILoggerFacade CreateLogger() => new Trace2FileLogger();
 
         protected virtual AggregateCatalog CreateAggregateCatalog() => new AggregateCatalog();
 

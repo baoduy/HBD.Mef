@@ -6,6 +6,7 @@
   "ModulePath": "./Modules", //Default folder is Modules
   //The backup folder of module. If it is empty default location will be AppDomain.CurrentDomain.BaseDirectory
   "BackupModulePath": null,
+  "ThemePath": "./Themes",
   // The binaries that will be imported to Mef.
   // If it is just file name then the root folder will be from AppDomain.CurrentDomain.BaseDirectory.
   "ImportedBinaries": null

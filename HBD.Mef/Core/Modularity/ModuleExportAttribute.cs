@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using Prism.Modularity;
+
+#endregion
 
 namespace HBD.Mef.Core.Modularity
 {

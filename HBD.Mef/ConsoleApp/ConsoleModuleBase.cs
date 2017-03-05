@@ -1,20 +1,13 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using Prism.Logging;
-using Prism.Modularity;
-using System.ComponentModel.Composition;
+﻿#region
+
+using HBD.Mef.Core.Modularity;
+
+#endregion
 
 namespace HBD.Mef.ConsoleApp
 {
-    public abstract class ConsoleModuleBase : IModule
+    public abstract class ConsoleModuleBase : ModuleBase
     {
-        [Import]
-        public ILoggerFacade Logger { protected get; set; }
-
-        [Import]
-        public IServiceLocator ContainerService { protected get; set; }
-
-        public abstract void Initialize();
-
         public abstract void Run(params string[] args);
     }
 }

@@ -1,18 +1,24 @@
-﻿using HBD.Mef;
+﻿#region
+
 using HBD.Mef.Common;
-using HBD.Mef.Core.Configuration;
+using HBD.Mef.Shell.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace HBD.MefTests.Common
 {
     [TestClass]
     public class ShellConfigManagerTests
     {
+        private readonly ShellConfigManager<ShellConfig, ModuleConfig> manager =
+            new ShellConfigManager<ShellConfig, ModuleConfig>();
+
         [TestMethod]
         public void LoadModuleFromTest()
         {
-            var module1 = ShellConfigManager.Modules;
-            var module2 = ShellConfigManager.Modules;
+            var module1 = manager.Modules;
+            var module2 = manager.Modules;
 
             Assert.AreEqual(module1, module2);
             Assert.AreEqual(module1.Count, 1);
@@ -25,48 +31,48 @@ namespace HBD.MefTests.Common
         [TestMethod]
         public void SaveChangesTest()
         {
-            var originalTitle = ShellConfigManager.ShellConfig.Title;
-            ShellConfigManager.ShellConfig.Title = "123";
-            ShellConfigManager.Modules[0].IsEnabled = false;
+            var originalTitle = manager.ShellConfig.Title;
+            manager.ShellConfig.Title = "123";
+            manager.Modules[0].IsEnabled = false;
 
-            ShellConfigManager.SaveChanges();
+            manager.SaveChanges();
 
-            Assert.IsTrue(ShellConfigManager.Modules.ChangedItems.Count == 0);
-            Assert.IsTrue(ShellConfigManager.Modules[0].IsEnabled == false);
+            Assert.IsTrue(manager.Modules.ChangedItems.Count == 0);
+            Assert.IsTrue(manager.Modules[0].IsEnabled == false);
 
             var savedShell = JsonConfigHelper.ReadConfig<ShellConfig>("Shell.json");
-            Assert.AreEqual(ShellConfigManager.ShellConfig.Title, savedShell.Title);
+            Assert.AreEqual(manager.ShellConfig.Title, savedShell.Title);
 
             var savedModule = JsonConfigHelper.ReadConfig<ModuleConfig>("Modules\\HBD.App.Demo.Plugin\\Module_Demo.json");
             Assert.IsTrue(savedModule.IsEnabled == false);
 
             //Restore back to original values
-            ShellConfigManager.ShellConfig.Title = originalTitle;
-            ShellConfigManager.Modules[0].IsEnabled = true;
-            ShellConfigManager.SaveChanges();
+            manager.ShellConfig.Title = originalTitle;
+            manager.Modules[0].IsEnabled = true;
+            manager.SaveChanges();
         }
 
         [TestMethod]
         public void UndoChangesTest()
         {
-            var originalTitle = ShellConfigManager.ShellConfig.Title;
-            ShellConfigManager.ShellConfig.Title = "123";
+            var originalTitle = manager.ShellConfig.Title;
+            manager.ShellConfig.Title = "123";
 
-            Assert.AreNotEqual(originalTitle, ShellConfigManager.ShellConfig.Title);
-            ShellConfigManager.UndoChanges();
+            Assert.AreNotEqual(originalTitle, manager.ShellConfig.Title);
+            manager.UndoChanges();
 
-            Assert.AreEqual(originalTitle, ShellConfigManager.ShellConfig.Title);
+            Assert.AreEqual(originalTitle, manager.ShellConfig.Title);
 
-            var module = ShellConfigManager.Modules;
+            var module = manager.Modules;
             Assert.IsTrue(module.Count > 0);
 
             module[0].IsEnabled = false;
-            Assert.IsTrue(ShellConfigManager.Modules.ChangedItems.Count == 1);
+            Assert.IsTrue(manager.Modules.ChangedItems.Count == 1);
 
-            ShellConfigManager.UndoChanges();
-            Assert.IsTrue(ShellConfigManager.Modules.ChangedItems.Count == 0);
+            manager.UndoChanges();
+            Assert.IsTrue(manager.Modules.ChangedItems.Count == 0);
 
-            Assert.IsTrue(ShellConfigManager.Modules[0].IsEnabled);
+            Assert.IsTrue(manager.Modules[0].IsEnabled);
         }
     }
 }

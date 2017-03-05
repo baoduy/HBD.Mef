@@ -1,13 +1,16 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
+#endregion
+
 namespace HBD.Mef.Common
 {
-    public sealed class ListDictionary<TKey, TValue> : IDictionary<TKey, IList<TValue>>,
-        ICollection<KeyValuePair<TKey, IList<TValue>>>, IEnumerable<KeyValuePair<TKey, IList<TValue>>>, IEnumerable
+    public sealed class ListDictionary<TKey, TValue> : IDictionary<TKey, IList<TValue>>
     {
-        private readonly Dictionary<TKey, IList<TValue>> innerValues = new Dictionary<TKey, IList<TValue>>();
+        private readonly Dictionary<TKey, IList<TValue>> _innerValues = new Dictionary<TKey, IList<TValue>>();
 
         /// <summary>
         ///     Gets a shallow copy of all values in all lists.
@@ -18,7 +21,7 @@ namespace HBD.Mef.Common
             get
             {
                 var objList = new List<TValue>();
-                foreach (IEnumerable<TValue> collection in innerValues.Values)
+                foreach (IEnumerable<TValue> collection in _innerValues.Values)
                     objList.AddRange(collection);
                 return objList;
             }
@@ -28,10 +31,7 @@ namespace HBD.Mef.Common
         ///     Gets the list of keys in the dictionary.
         /// </summary>
         /// <value>Collection of keys.</value>
-        public ICollection<TKey> Keys
-        {
-            get { return innerValues.Keys; }
-        }
+        public ICollection<TKey> Keys => _innerValues.Keys;
 
         /// <summary>
         ///     Gets or sets the list associated with the given key. The access always succeeds,
@@ -43,38 +43,30 @@ namespace HBD.Mef.Common
         {
             get
             {
-                if (!innerValues.ContainsKey(key))
-                    innerValues.Add(key, new List<TValue>());
-                return innerValues[key];
+                if (!_innerValues.ContainsKey(key))
+                    _innerValues.Add(key, new List<TValue>());
+                return _innerValues[key];
             }
-            set { innerValues[key] = value; }
+            set { _innerValues[key] = value; }
         }
 
         /// <summary>
         ///     Gets the number of lists in the dictionary.
         /// </summary>
         /// <value>Value indicating the values count.</value>
-        public int Count
-        {
-            get { return innerValues.Count; }
-        }
+        public int Count => _innerValues.Count;
 
-        ICollection<IList<TValue>> IDictionary<TKey, IList<TValue>>.Values
-        {
-            get { return innerValues.Values; }
-        }
+        ICollection<IList<TValue>> IDictionary<TKey, IList<TValue>>.Values => _innerValues.Values;
 
         bool ICollection<KeyValuePair<TKey, IList<TValue>>>.IsReadOnly
-        {
-            get { return ((ICollection<KeyValuePair<TKey, IList<TValue>>>) innerValues).IsReadOnly; }
-        }
+            => ((ICollection<KeyValuePair<TKey, IList<TValue>>>) _innerValues).IsReadOnly;
 
         /// <summary>
         ///     Removes all entries in the dictionary.
         /// </summary>
         public void Clear()
         {
-            innerValues.Clear();
+            _innerValues.Clear();
         }
 
         /// <summary>
@@ -85,8 +77,8 @@ namespace HBD.Mef.Common
         public bool ContainsKey(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException("key");
-            return innerValues.ContainsKey(key);
+                throw new ArgumentNullException(nameof(key));
+            return _innerValues.ContainsKey(key);
         }
 
         /// <summary>
@@ -97,17 +89,17 @@ namespace HBD.Mef.Common
         public bool Remove(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException("key");
-            return innerValues.Remove(key);
+                throw new ArgumentNullException(nameof(key));
+            return _innerValues.Remove(key);
         }
 
         void IDictionary<TKey, IList<TValue>>.Add(TKey key, IList<TValue> value)
         {
             if (key == null)
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             if (value == null)
-                throw new ArgumentNullException("value");
-            innerValues.Add(key, value);
+                throw new ArgumentNullException(nameof(value));
+            _innerValues.Add(key, value);
         }
 
         bool IDictionary<TKey, IList<TValue>>.TryGetValue(TKey key, out IList<TValue> value)
@@ -117,35 +109,21 @@ namespace HBD.Mef.Common
         }
 
         void ICollection<KeyValuePair<TKey, IList<TValue>>>.Add(KeyValuePair<TKey, IList<TValue>> item)
-        {
-            ((ICollection<KeyValuePair<TKey, IList<TValue>>>) innerValues).Add(item);
-        }
+            => ((ICollection<KeyValuePair<TKey, IList<TValue>>>) _innerValues).Add(item);
 
         bool ICollection<KeyValuePair<TKey, IList<TValue>>>.Contains(KeyValuePair<TKey, IList<TValue>> item)
-        {
-            return ((ICollection<KeyValuePair<TKey, IList<TValue>>>) innerValues).Contains(item);
-        }
+            => ((ICollection<KeyValuePair<TKey, IList<TValue>>>) _innerValues).Contains(item);
 
         void ICollection<KeyValuePair<TKey, IList<TValue>>>.CopyTo(KeyValuePair<TKey, IList<TValue>>[] array,
-            int arrayIndex)
-        {
-            ((ICollection<KeyValuePair<TKey, IList<TValue>>>) innerValues).CopyTo(array, arrayIndex);
-        }
+            int arrayIndex) => ((ICollection<KeyValuePair<TKey, IList<TValue>>>) _innerValues).CopyTo(array, arrayIndex);
 
         bool ICollection<KeyValuePair<TKey, IList<TValue>>>.Remove(KeyValuePair<TKey, IList<TValue>> item)
-        {
-            return ((ICollection<KeyValuePair<TKey, IList<TValue>>>) innerValues).Remove(item);
-        }
+            => ((ICollection<KeyValuePair<TKey, IList<TValue>>>) _innerValues).Remove(item);
 
         IEnumerator<KeyValuePair<TKey, IList<TValue>>> IEnumerable<KeyValuePair<TKey, IList<TValue>>>.GetEnumerator()
-        {
-            return innerValues.GetEnumerator();
-        }
+            => _innerValues.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerValues.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _innerValues.GetEnumerator();
 
         /// <summary>
         ///     If a list does not already exist, it will be created automatically.
@@ -154,7 +132,7 @@ namespace HBD.Mef.Common
         public void Add(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             CreateNewList(key);
         }
 
@@ -167,11 +145,11 @@ namespace HBD.Mef.Common
         public void Add(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             if (value == null)
-                throw new ArgumentNullException("value");
-            if (innerValues.ContainsKey(key))
-                innerValues[key].Add(value);
+                throw new ArgumentNullException(nameof(value));
+            if (_innerValues.ContainsKey(key))
+                _innerValues[key].Add(value);
             else
                 CreateNewList(key).Add(value);
         }
@@ -179,7 +157,7 @@ namespace HBD.Mef.Common
         private List<TValue> CreateNewList(TKey key)
         {
             var objList = new List<TValue>();
-            innerValues.Add(key, objList);
+            _innerValues.Add(key, objList);
             return objList;
         }
 
@@ -190,7 +168,7 @@ namespace HBD.Mef.Common
         /// <returns>true if the dictionary contains the value in any list; otherwise, false.</returns>
         public bool ContainsValue(TValue value)
         {
-            foreach (var innerValue in innerValues)
+            foreach (var innerValue in _innerValues)
                 if (innerValue.Value.Contains(value))
                     return true;
             return false;
@@ -235,12 +213,12 @@ namespace HBD.Mef.Common
         public void Remove(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             if (value == null)
-                throw new ArgumentNullException("value");
-            if (!innerValues.ContainsKey(key))
+                throw new ArgumentNullException(nameof(value));
+            if (!_innerValues.ContainsKey(key))
                 return;
-            ((List<TValue>) innerValues[key]).RemoveAll(item => value.Equals(item));
+            ((List<TValue>) _innerValues[key]).RemoveAll(item => value.Equals(item));
         }
 
         /// <summary>
@@ -249,7 +227,7 @@ namespace HBD.Mef.Common
         /// <param name="value">The value to remove.</param>
         public void Remove(TValue value)
         {
-            foreach (var innerValue in innerValues)
+            foreach (var innerValue in _innerValues)
                 Remove(innerValue.Key, value);
         }
     }

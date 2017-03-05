@@ -1,6 +1,12 @@
-﻿using System.Linq;
-using HBD.Mef.Core.Navigation;
+﻿#region
+
+using HBD.Framework;
+using HBD.Mef.Shell;
+using HBD.Mef.Shell.Navigation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
+
+#endregion
 
 namespace HBD.Mef.Core.Tests
 {
@@ -30,13 +36,31 @@ namespace HBD.Mef.Core.Tests
 
             menuSet.Menu("Menu 1")
                 .Children
-                .AddMenu("Sub 1");
+                .Menu("Sub 1");
 
             Assert.IsTrue(menuSet.Menu("Menu 1").Children.Count == 4);
 
             Assert.IsTrue(menuSet.OfType<MenuInfo>().First()
                               .Children.Navigation("Navigation 1")
                               .NavigationParameters.Count == 2);
+        }
+
+        [TestMethod]
+        public void SetIndex_MenuItems_UsingFluentAPI()
+        {
+            var menuSet = new MenuInfoCollection();
+
+            menuSet
+                .Menu("Menu 1")
+                .AndMenu("Menu 2")
+                .AndMenu("Menu 3")
+                .AndMenu("Menu 4");
+
+            menuSet.Menu("Menu 4").DisplayAt(0);
+            menuSet.Menu("Menu 1").DisplayAt(2);
+
+            Assert.AreEqual(menuSet[0].GetValueFromProperty("Title"), "Menu 4");
+            Assert.AreEqual(menuSet[2].GetValueFromProperty("Title"), "Menu 1");
         }
     }
 }

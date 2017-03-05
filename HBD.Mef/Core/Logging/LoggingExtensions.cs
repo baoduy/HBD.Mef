@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Text;
 using Prism.Logging;
+
+#endregion
 
 namespace HBD.Mef.Core.Logging
 {
@@ -38,6 +42,11 @@ namespace HBD.Mef.Core.Logging
         public static void Log(this ILoggerFacade @this, Exception exception)
             => @this?.Log(exception.CreateExceptionString(), Category.Exception, Priority.High);
 
+        /// <summary>
+        ///     NOTE: Debug message won't be written into the file when running on Release mode.
+        /// </summary>
+        /// <param name="this"></param>
+        /// <param name="message"></param>
         public static void Debug(this ILoggerFacade @this, string message)
             => @this?.Log(message, Category.Debug, Priority.Low);
 

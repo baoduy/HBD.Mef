@@ -14,16 +14,16 @@
 </blockquote>
 <h1 id="hbd.mef">HBD.Mef</h1>
 <p>I would like to share the Mef library for Console and Winforms application.
-This library allows creating a Bootstrapper for your allocation and load add-in library at runtime dynamically.</p>
-<h2 id="what-is-mef">What is Mef</h2>
-<p>Mef is short name of Managed Extensibility Framework had been introduced in the .NET Framework 4.0.
+This library allows creating a Bootstrapper for your allocation and loading the extensions modules at runtime dynamically.</p>
+<h2 id="whats-mef">What's Mef?</h2>
+<p><strong>Mef</strong> is short name of <strong>Managed Extensibility Framework</strong> had been introduced in the .NET Framework 4.0.
 If you are working on Prism for WPF you will see the advance of the Mef
 that allow building allow applications to isolate and manage extensions.
 MEF's focus is on discoverability, extensibility, and portability.</p>
-<h2 id="why-mef">Why Mef</h2>
+<h2 id="whys-mef">Why's Mef?</h2>
 <p>The Mef is a library for creating lightweight, extensible applications.
-<strong>It allows application developers to discover and use extensions with no configuration required.</strong>
-It also lets extension developers easily encapsulate code and avoid fragile hard dependencies. MEF not only allows extensions to be reused within applications but across applications as well.
+<strong>It allows application developers to discover and use extensions modules with no configuration required.</strong>
+It also lets extensions modules developers easily encapsulate code and avoid fragile hard dependencies. MEF not only allows extensions to be reused within applications but across applications as well.
 <a href="https://msdn.microsoft.com/en-us/library/dd460648(v=vs.110).aspx">(Click here to read more about Mef).</a></p>
 <h2 id="whats-supporting-by-hbd.mef">What's supporting by HBD.Mef</h2>
 <h3 id="bootstrapper">1. Bootstrapper</h3>
@@ -126,7 +126,7 @@ All changes of the ModuleConfig will be saved back to the corresponding config f
 <li><strong>SaveChanges</strong> method: that will save all changes of the <strong>ShellConfig</strong> and <strong>Modules</strong> back to the corresponding config files.</li>
 <li><strong>UndoChanges</strong> method: undo all changes of the <strong>ShellConfig</strong> and <strong>Modules</strong>.</li>
 </ul>
-<h3 id="the-common-objects-that-exported-into-mef">6 The common objects that exported into Mef</h3>
+<h3 id="the-default-instances-will-be-exported-into-mef">6 The default instances will be exported into Mef</h3>
 <ul>
 <li>ILoggerFacade</li>
 <li>IModuleCatalog</li>
@@ -134,133 +134,24 @@ All changes of the ModuleConfig will be saved back to the corresponding config f
 <li>IServiceLocator</li>
 <li>AggregateCatalog</li>
 </ul>
-<h2 id="how-to-use-hbe.mef">How to use HBE.Mef</h2>
-<h3 id="console-application">1. Console Application.</h3>
-<blockquote>
-<p>The <strong>MefConsoleAppBootstrapper</strong> is a dedicated bootstrapper for <strong>Console Application</strong> and a few useful classes had been added into HBD.Mef.ConsoleApp namespace
-that helps to develops an add-in able console app easier and faster.</p>
-</blockquote>
+<p>if you want to customize these instances you can overwrite the <em>RegisterBootstrapperProvidedTypes</em> method and expose the instances to the container.</p>
+<pre><code class="language-csharp">protected override void RegisterBootstrapperProvidedTypes()
+{
+    Container.ComposeExportedValue(Logger);
+    Container.ComposeExportedValue(ModuleCatalog);
+    Container.ComposeExportedValue(AggregateCatalog);
+    Container.ComposeExportedValue&lt;ICompositionService&gt;(Container);
+    Container.ComposeExportedValue&lt;IServiceLocator&gt;(new MefServiceLocatorAdapter(Container));
+}
+</code></pre>
+<h2 id="how-to-use-hbd.mef">How to use HBD.Mef</h2>
 <ol>
-<li>Open visual studio and create new <strong>Console Application</strong> project</li>
-<li>Create a new class named <strong>Bootstrapper</strong> and make it inherited from <strong>HBD.Mef.ConsoleApp.MefConsoleAppBootstrapper</strong> as below.</li>
-</ol>
-<pre><code class="language-csharp">internal class Bootstrapper : MefConsoleAppBootstrapper
-{
-        protected override void ConfigureAggregateCatalog()
-        {
-            base.ConfigureAggregateCatalog();
-
-            Logger.Info(&quot;Add Bootstrapper Assembly&quot;);
-            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
-
-            Logger.Info(&quot;Import Shell Binaries&quot;);
-            ShellConfigManager.ImportShellBinaries(AggregateCatalog);
-
-            Logger.Info(&quot;Import Module Binaries&quot;);
-            ShellConfigManager.ImportModuleBinaries(AggregateCatalog);
-        }
-
-        public override void Run(params string[] args)
-        {
-            try
-            {
-                base.Run(args);
-                //Implement your app logic here.
-            }
-            catch (Exception ex)
-            {
-                Logger?.Exception(ex);
-            }
-        }
-}
-</code></pre>
-<ol start="3">
-<li>Update the Program.cs to create the above Bootstrapper and execute the Run(args) method as below code.</li>
-</ol>
-<pre><code class="language-csharp">internal class Program
-{
-        private static void Main(string[] args) =&gt; new Bootstrapper().Run(args);
-}
-</code></pre>
-<p>After this your application is ready. you can start to implement you console application logic by using Mef now.</p>
-<ol start="4">
-<li>Get instance of Module via name
-The sample code to expose a module named <strong>DemoModule</strong> to Mef as below. The function of this module is writing some text to the log file when it is running.</li>
-</ol>
-<pre><code class="language-csharp">[ModuleExport(&quot;DemoModule&quot;, typeof(DemoModule))]
-[PartCreationPolicy(CreationPolicy.Shared)]
-public class DemoModule : ConsoleModuleBase
-{
-        public override void Initialize()
-        {
-        }
-
-        public override void Run(params string[] args)
-        {
-            //Write to log file.
-            this.Logger.Info($&quot;{this.GetType().Name} had been ran.&quot;);
-        }
-}
-</code></pre>
-<p>And then you can get and run that module by below code.</p>
-<pre><code class="language-csharp">private void GetModuleByName(string moduleName,string[]args)
-{
-            var moduleInfo =
-                Container.GetExports&lt;IModule, IModuleExport&gt;()
-                    .FirstOrDefault(l =&gt; l.Metadata.ModuleName.EqualsIgnoreCase(moduleName));
-
-            if (moduleInfo == null)
-                throw new Exception(
-                    $&quot;Module {moduleName} is not found.&quot;);
-
-            (moduleInfo.Value as ConsoleModuleBase).Run(args);
-}
- 
-</code></pre>
-<h3 id="winforms-application">2. WinForms Application</h3>
-<blockquote>
-<p>The <strong>MefWinFormBootstrapper</strong> is a dedicated bootstrapper for <strong>WinForms Application</strong> and a few useful classes had been added into HBD.Mef.WinForms namespace
-that helps to develops an add-in able Window app easier and faster.</p>
-</blockquote>
-<ol>
-<li>Open visual studio and create new <strong>Window Forms Application</strong> project</li>
-<li>Create a new class named <strong>Bootstrapper</strong> and make it inherited from <strong>HBD.Mef.WinForms.MefWinFormBootstrapper</strong> as below.</li>
-</ol>
-<pre><code class="language-csharp">internal class Bootstrapper : MefWinFormBootstrapper
-{
-        protected override void ConfigureAggregateCatalog()
-        {
-            base.ConfigureAggregateCatalog();
-
-            Logger.Info(&quot;Add Bootstrapper Assembly&quot;);
-            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
-
-            Logger.Info(&quot;Import Shell Binaries&quot;);
-            ShellConfigManager.ImportShellBinaries(AggregateCatalog);
-
-            Logger.Info(&quot;Import Module Binaries&quot;);
-            ShellConfigManager.ImportModuleBinaries(AggregateCatalog);
-        }
-
-        //'FrMain' is your MainForms type.
-        protected override Form CreateMainWindow() =&gt; Container.GetExportedValue&lt;FrMain&gt;();
-
-        public override void Run(bool runWithDefaultConfiguration)
-        {
-            try
-            {
-                base.Run(runWithDefaultConfiguration);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, &quot;Exception&quot;, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
-            }
-        }
-}
-</code></pre>
-<ol start="3">
-<li>Update the <strong>Program.cs</strong> as below</li>
+<li><p><a href="https://drunkcoding.net/the-workspace-for-console-application">Console Application</a></p>
+</li>
+<li><p><a href="https://drunkcoding.net/the-workspace-for-windowforms/">WinForms Application</a></p>
+</li>
+<li><p>Update the <strong>Program.cs</strong> as below</p>
+</li>
 </ol>
 <pre><code class="language-csharp">[STAThread]
 private static void Main()
@@ -271,18 +162,46 @@ private static void Main()
 }
 </code></pre>
 <ol start="4">
-<li>Using Mef Container
-In the MainFrom you can import IServiceLocator and get the exported objects from Mef. The WinodowForms module should be inherited from HBD.Mef.WinForms.Modularity.<strong>WinFormModuleBase</strong> instead.</li>
+<li>Using Mef Container</li>
 </ol>
-<blockquote>
-<p>PS: <em>Hope that this library will help you to develop a plugin-able application faster and easier.
-Your feedback and contribution are much appreciated.
-Please feel free to submit your opinions on GitHub issues or email to me</em></p>
-</blockquote>
-<p><em>Please feel free to contact me</em></p>
+<p>In the MainFrom you can import <strong>IServiceLocator</strong> and get the exported objects from Mef.</p>
+<pre><code class="language-csharp">public partial class FormBase : Form
+{
+    [Import]
+    public IServiceLocator ContainerService { protected get; set; }
+
+    [Import]
+    public ILoggerFacade Logger { protected get; set; }
+
+    //Load UserControl from Container and load into TabControl by Type
+    private void LoadViews(Type userControlType)
+    {
+        var control = ContainerService.GetInstance(userControlType) as UserControl;
+
+        if (control == null)
+        {
+            var message = $&quot;The control of {userControlType.Name} is not found.&quot;;
+            Logger.Exception(message);
+            this.ShowErrorMessage(message);
+            return;
+        }
+        tabControlManager.Add(control);
+    }
+}
+</code></pre>
+<h3 id="nuget-dependence-libraries">3. Nuget Dependence Libraries</h3>
 <ul>
-<li><em>Email:<a href="mailto:hoangbaoduy@gmail.com">hoangbaoduy@gmail.com</a></em></li>
-<li><em>Website: <a href="http://hbd.com.vn">DrunkCoding</a></em></li>
+<li><a href="https://www.nuget.org/packages/CommonServiceLocator/">CommonServiceLocator</a></li>
+<li><a href="https://www.nuget.org/packages/HBD.Framework/">HBD.Framework</a></li>
+<li><a href="https://www.nuget.org/packages/log4net/">log4net</a></li>
+<li><a href="https://www.nuget.org/packages/Prism.Core">Prism.Core</a></li>
+<li><a href="https://www.nuget.org/packages/Prism.Wpf">Prism.Wpf</a></li>
+</ul>
+<p><em>Thanks for your reading</em></p>
+<ul>
+<li><em><a href="mailto:drunkcoding@outlook">drunkcoding@outlook.com</a></em></li>
+<li><em><a href="https://drunkcoding.net">drunkcoding.net</a></em></li>
+<li><em><a href="https://github.com/baoduy">github.com</a></em></li>
 </ul>
 
 

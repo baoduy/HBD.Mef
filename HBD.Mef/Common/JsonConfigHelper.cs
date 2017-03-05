@@ -1,8 +1,12 @@
-﻿using HBD.Framework.Core;
-using Newtonsoft.Json;
+﻿#region
+
 using System;
 using System.Collections.Concurrent;
 using System.IO;
+using HBD.Framework.Core;
+using Newtonsoft.Json;
+
+#endregion
 
 namespace HBD.Mef.Common
 {
@@ -26,6 +30,15 @@ namespace HBD.Mef.Common
             var val = File.ReadAllText(p);
             return JsonConvert.DeserializeObject<T>(val);
         }) as T;
+
+        public static void ReadConfig<T>(T obj, string file)
+        {
+            var p = GetFilePath(file);
+            if (!File.Exists(p)) return;
+
+            var val = File.ReadAllText(p);
+            JsonConvert.PopulateObject(val, obj);
+        }
 
         /// <summary>
         ///     Write config to file the existing file will be rename to [OriginalName]_[yy.mm.dd hhmmss].back

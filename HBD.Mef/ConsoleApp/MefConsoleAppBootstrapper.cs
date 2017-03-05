@@ -1,4 +1,8 @@
-﻿using HBD.Mef.Core;
+﻿#region
+
+using HBD.Mef.Core;
+
+#endregion
 
 namespace HBD.Mef.ConsoleApp
 {

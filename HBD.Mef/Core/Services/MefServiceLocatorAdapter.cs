@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
+
+#endregion
 
 namespace HBD.Mef.Core.Services
 {

@@ -1,11 +1,14 @@
-﻿using HBD.Framework.IO;
-using HBD.Mef.Common;
-using HBD.Mef.Core.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#region
+
 using System.IO;
 using System.Linq;
+using HBD.Framework.IO;
+using HBD.Mef.Shell.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HBD.Framework.Shell.Tests
+#endregion
+
+namespace HBD.Mef.Common.Tests
 {
     [TestClass]
     public class JsonConfigHelperTests
@@ -26,7 +29,7 @@ namespace HBD.Framework.Shell.Tests
         [TestMethod]
         public void SaveConfigTest()
         {
-            System.IO.Directory.CreateDirectory("TestData\\");
+            Directory.CreateDirectory("TestData\\");
             DirectoryEx.DeleteFiles("TestData\\", "Shell.Testing*.*");
 
             var shell = new ShellConfig
@@ -49,6 +52,18 @@ namespace HBD.Framework.Shell.Tests
 
             Assert.IsTrue(File.Exists(fileName));
             Assert.IsTrue(Directory.GetFiles(Path.GetDirectoryName(fileName), "Shell.Testing_*.back").Any());
+        }
+
+        [TestMethod]
+        public void ReadConfig_WithObj_Test()
+        {
+            var shell = new ShellConfig();
+            JsonConfigHelper.ReadConfig(shell, "Shell.json");
+
+            Assert.AreEqual(shell.Title, "HBD Window Forms Shell");
+            Assert.AreEqual(shell.Logo, "Resources\\Shell.ico");
+            Assert.AreEqual(shell.Environment, "DEV");
+            Assert.AreEqual(shell.ModulePath, "./Modules");
         }
     }
 }

@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using HBD.Framework;
 using Prism.Logging;
 using Prism.Modularity;
+
+#endregion
 
 namespace HBD.Mef.Core.Modularity
 {
