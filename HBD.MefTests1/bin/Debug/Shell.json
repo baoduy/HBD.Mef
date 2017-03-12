@@ -1,0 +1,10 @@
+{
+  "Name": null,
+  "Title": "HBD Window Forms Shell",
+  "Logo": "Resources\\Shell.ico",
+  "Environment": "DEV",
+  "ModulePath": "./Modules",
+  "BackupModulePath": "./BackupModules",
+  "ThemePath": "./Themes",
+  "ImportedBinaries": []
+}

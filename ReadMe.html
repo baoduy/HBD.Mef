@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Nuget Package:</title>
+</head>
+<body>
+
+    <p><a href="https://ci.appveyor.com/project/baoduy/hbd-mef"><img src="https://ci.appveyor.com/api/projects/status/5albws593jcl3h6p" alt="Build status" /></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="License" /></a>
+<a href="https://www.nuget.org/packages/HBD.Mef/"><img src="https://img.shields.io/nuget/v/HBD.Mef.svg?maxAge=2592000" alt="NuGet" /></a></p>
+<h5 id="nuget-package">Nuget Package:</h5>
+<blockquote>
+<p>PM&gt; <em>Install-Package HBD.Mef</em></p>
+</blockquote>
+<h1 id="hbd.mef">HBD.Mef</h1>
+<p>I would like to share the Mef library for Console and Winforms application.
+This library allows creating a Bootstrapper for your allocation and loading the extensions modules at runtime dynamically.</p>
+<h2 id="whats-mef">What's Mef?</h2>
+<p><strong>Mef</strong> is short name of <strong>Managed Extensibility Framework</strong> had been introduced in the .NET Framework 4.0.
+If you are working on Prism for WPF you will see the advance of the Mef
+that allow building allow applications to isolate and manage extensions.
+MEF's focus is on discoverability, extensibility, and portability.</p>
+<h2 id="whys-mef">Why's Mef?</h2>
+<p>The Mef is a library for creating lightweight, extensible applications.
+<strong>It allows application developers to discover and use extensions modules with no configuration required.</strong>
+It also lets extensions modules developers easily encapsulate code and avoid fragile hard dependencies. MEF not only allows extensions to be reused within applications but across applications as well.
+<a href="https://msdn.microsoft.com/en-us/library/dd460648(v=vs.110).aspx">(Click here to read more about Mef).</a></p>
+<h2 id="whats-supporting-by-hbd.mef">What's supporting by HBD.Mef</h2>
+<h3 id="bootstrapper">1. Bootstrapper</h3>
+<ul>
+<li>The core bootstrapper is HBD.Core.<strong>MefBootstrapper</strong> contains needed API that allows creating Logger instance, create AggregateCatalog, Composition Container, and Initialize Application.</li>
+</ul>
+<h3 id="logging">2. Logging</h3>
+<ul>
+<li>The HBD.Mef.Core.Logging.<strong>TextFileLogger</strong> had been defined as default logger for this bootstrapper by using <strong>log4net</strong> library in Nuget.</li>
+<li>Default Log file location will be in the <strong>StartUp\Logs\Log.log</strong>. However, you can customize it by overwriting the <strong>CreateLogger()</strong> method and pass the new location as a constructor parameter.</li>
+</ul>
+<pre><code class="language-csharp">protected override ILoggerFacade CreateLogger() 
+    =&gt; new TextFileLogger(&quot;New Log Location Here&quot;);
+</code></pre>
+<h3 id="shell-configuration">3. Shell configuration</h3>
+<ul>
+<li>The <strong>ShellConfig</strong> in HBD.Mef.Core.Configuration had been defined for shell application configuration purpose.
+That allows setting the Title, Logo, Environment Name, Module and Backup folder location as well as the list of external dlls that need to be imported into the Mef when starting the application.</li>
+</ul>
+<pre><code class="language-csharp">public class ShellConfig
+{
+        //The nam of the application.
+        string Name{get;set;}
+
+        // The title of Main Form.
+        string Title{get;set;}
+
+        // The icon will be displayed on Main Forms icon.
+        string Logo{get;set;}
+
+        // The Name of Environment if you have multi environment. 
+        //This one may be display on the Main Form title as format {Title} - {Environment}
+        string Environment { get; set; }
+
+        //The backup location of the Modules. 
+        //The old module folder will be backed up in this folders.
+        string BackupModulePath { get; set; }
+
+        // The location of the Modules that will be imported when the app start.
+        string ModulePath { get; set; }
+
+        // The binaries that will be imported to Mef when the app start.
+        IList&lt;string&gt; ImportedBinaries { get; set; }
+}
+</code></pre>
+<h3 id="module-configuration">4. Module Configuration.</h3>
+<ul>
+<li>The <strong>ModuleConfig</strong> in HBD.Mef.Core.Configuration had been defined for Module configuration purpose.
+That allows setting the name, description, AssemplyFiles and Status of the Module.</li>
+</ul>
+<pre><code class="language-csharp">public class ModuleConfig
+{
+        // The name of Module
+        public string Name{get;set;}
+
+        // The description of Module
+        public string Description{get;set;}
+
+        // The version of the module. This should not be null.
+        public string Version {get;set;}
+
+        // The costume Assemblies that will be loaded into Mef. 
+        //If this list is empty whole folders
+        // will be loaded.
+        public IList&lt;string&gt; AssemplyFiles { get; }
+
+        // The flag to Disable or Enable the Module.
+        public bool IsEnabled{get;set;}
+
+        // Allows this Module to be managed by using Module Manager.
+        public bool AllowToManage{get;set;}
+
+        [JsonIgnore]
+        public string Directory { get; set; }
+
+        [JsonIgnore]
+        public string ConfigFile { get; set; }
+
+        [JsonIgnore]
+        public string InValidMessage { get; set; }
+
+        [JsonIgnore]
+        public bool IsValid { get; set; } = true;
+}
+</code></pre>
+<h3 id="the-helper-classes">5. The helper classes.</h3>
+<ol>
+<li><p>The HBD.Mef.Common.<strong>JsonConfigHelper</strong> is a helper class that helps to read json config file into an object and vise versa.
+All loaded config objects will be cached into an internal ConcurrentDictionary for future usage.
+So if you call RadConfig method twice for the same config file. The second call will return the object in the caching dictionary instead of reading data from the file again.</p>
+</li>
+<li><p>The HBD.Mef.<strong>ShellConfigManager</strong> is a helper class that helps to manage the Shell and Modules configuration files.</p>
+</li>
+</ol>
+<ul>
+<li><strong>ShellConfig</strong> property: The Shell.json config file from the StartUp location of the application will be read into this property.
+All changes of the ShellConfig object will be monitored and saved back to the config file once method <em>SaveChanges</em> had been called.</li>
+<li><strong>Modules</strong> property: This is a collection of all config files of all modules that will be loaded and monitored.
+All changes of the ModuleConfig will be saved back to the corresponding config files once method <em>SaveChanges</em> had been called.</li>
+<li><strong>SaveChanges</strong> method: that will save all changes of the <strong>ShellConfig</strong> and <strong>Modules</strong> back to the corresponding config files.</li>
+<li><strong>UndoChanges</strong> method: undo all changes of the <strong>ShellConfig</strong> and <strong>Modules</strong>.</li>
+</ul>
+<h3 id="the-default-instances-will-be-exported-into-mef">6 The default instances will be exported into Mef</h3>
+<ul>
+<li>ILoggerFacade</li>
+<li>IModuleCatalog</li>
+<li>ICompositionService</li>
+<li>IServiceLocator</li>
+<li>AggregateCatalog</li>
+</ul>
+<p>if you want to customize these instances you can overwrite the <em>RegisterBootstrapperProvidedTypes</em> method and expose the instances to the container.</p>
+<pre><code class="language-csharp">protected override void RegisterBootstrapperProvidedTypes()
+{
+    Container.ComposeExportedValue(Logger);
+    Container.ComposeExportedValue(ModuleCatalog);
+    Container.ComposeExportedValue(AggregateCatalog);
+    Container.ComposeExportedValue&lt;ICompositionService&gt;(Container);
+    Container.ComposeExportedValue&lt;IServiceLocator&gt;(new MefServiceLocatorAdapter(Container));
+}
+</code></pre>
+<h2 id="how-to-use-hbd.mef">How to use HBD.Mef</h2>
+<ol>
+<li><p><a href="https://drunkcoding.net/the-workspace-for-console-application">Console Application</a></p>
+</li>
+<li><p><a href="https://drunkcoding.net/the-workspace-for-windowforms/">WinForms Application</a></p>
+</li>
+<li><p>Update the <strong>Program.cs</strong> as below</p>
+</li>
+</ol>
+<pre><code class="language-csharp">[STAThread]
+private static void Main()
+{
+    Application.EnableVisualStyles();
+    Application.SetCompatibleTextRenderingDefault(false);
+    new Bootstrapper().Run();
+}
+</code></pre>
+<ol start="4">
+<li>Using Mef Container</li>
+</ol>
+<p>In the MainFrom you can import <strong>IServiceLocator</strong> and get the exported objects from Mef.</p>
+<pre><code class="language-csharp">public partial class FormBase : Form
+{
+    [Import]
+    public IServiceLocator ContainerService { protected get; set; }
+
+    [Import]
+    public ILoggerFacade Logger { protected get; set; }
+
+    //Load UserControl from Container and load into TabControl by Type
+    private void LoadViews(Type userControlType)
+    {
+        var control = ContainerService.GetInstance(userControlType) as UserControl;
+
+        if (control == null)
+        {
+            var message = $&quot;The control of {userControlType.Name} is not found.&quot;;
+            Logger.Exception(message);
+            this.ShowErrorMessage(message);
+            return;
+        }
+        tabControlManager.Add(control);
+    }
+}
+</code></pre>
+<h3 id="nuget-dependence-libraries">3. Nuget Dependence Libraries</h3>
+<ul>
+<li><a href="https://www.nuget.org/packages/CommonServiceLocator/">CommonServiceLocator</a></li>
+<li><a href="https://www.nuget.org/packages/HBD.Framework/">HBD.Framework</a></li>
+<li><a href="https://www.nuget.org/packages/log4net/">log4net</a></li>
+<li><a href="https://www.nuget.org/packages/Prism.Core">Prism.Core</a></li>
+<li><a href="https://www.nuget.org/packages/Prism.Wpf">Prism.Wpf</a></li>
+</ul>
+<p><em>Thanks for your reading</em></p>
+<ul>
+<li><em><a href="mailto:drunkcoding@outlook">drunkcoding@outlook.com</a></em></li>
+<li><em><a href="https://drunkcoding.net">drunkcoding.net</a></em></li>
+<li><em><a href="https://github.com/baoduy">github.com</a></em></li>
+</ul>
+
+
+</body>
+</html>

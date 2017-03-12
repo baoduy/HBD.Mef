@@ -1,0 +1,10 @@
+{
+  "Name": "Demo_Module",
+  "Description": "Demo Plugin",
+  "Version": null,
+  "AssemplyFiles": [
+    "HBD.Shell.Plugin.Demo.dll"
+  ],
+  "IsEnabled": true,
+  "AllowToManage": true
+}

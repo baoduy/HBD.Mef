@@ -1,0 +1,10 @@
+{
+  "Name": null,
+  "Title": "Hoang Bao Duy",
+  "Logo": "HBD",
+  "Environment": null,
+  "ModulePath": "./Modules",
+  "BackupModulePath": "./BackupModules",
+  "ThemePath": "./Themes",
+  "ImportedBinaries": []
+}
