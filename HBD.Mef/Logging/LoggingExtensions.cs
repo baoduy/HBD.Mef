@@ -2,7 +2,6 @@
 
 using System;
 using System.Text;
-using Prism.Logging;
 
 #endregion
 
@@ -20,7 +19,7 @@ namespace HBD.Mef.Logging
             while (true)
             {
                 if (!string.IsNullOrEmpty(indent))
-                    builder.Append($"====Inner Exception====").Append(Environment.NewLine);
+                    builder.Append("====Inner Exception====").Append(Environment.NewLine);
 
                 builder.Append($"Error: {@this.Message}{Environment.NewLine}");
                 builder.Append($"{indent}Source: {@this.Source}{Environment.NewLine}");
@@ -39,27 +38,27 @@ namespace HBD.Mef.Logging
             return builder.ToString();
         }
 
-        public static void Log(this ILoggerFacade @this, Exception exception)
-            => @this?.Log(exception.CreateExceptionString(), Category.Exception, Priority.High);
+        public static void Log(this ILogger @this, Exception exception)
+            => @this?.Log(exception.CreateExceptionString(), LogCategory.Exception);
 
         /// <summary>
         ///     NOTE: Debug message won't be written into the file when running on Release mode.
         /// </summary>
         /// <param name="this"></param>
         /// <param name="message"></param>
-        public static void Debug(this ILoggerFacade @this, string message)
-            => @this?.Log(message, Category.Debug, Priority.Low);
+        public static void Debug(this ILogger @this, string message)
+            => @this?.Log(message, LogCategory.Debug);
 
-        public static void Info(this ILoggerFacade @this, string message)
-            => @this?.Log(message, Category.Info, Priority.Low);
+        public static void Info(this ILogger @this, string message)
+            => @this?.Log(message, LogCategory.Info);
 
-        public static void Warn(this ILoggerFacade @this, string message)
-            => @this?.Log(message, Category.Warn, Priority.Low);
+        public static void Warn(this ILogger @this, string message)
+            => @this?.Log(message, LogCategory.Warn);
 
-        public static void Exception(this ILoggerFacade @this, string message)
-            => @this?.Log(message, Category.Exception, Priority.Low);
+        public static void Exception(this ILogger @this, string message)
+            => @this?.Log(message, LogCategory.Exception);
 
-        public static void Exception(this ILoggerFacade @this, Exception exception)
+        public static void Exception(this ILogger @this, Exception exception)
             => @this?.Log(exception);
     }
 }

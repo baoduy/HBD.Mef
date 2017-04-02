@@ -79,11 +79,8 @@ namespace HBD.Mef.Shell
         #region Privates
 
         internal static IMenuInfo GetItemByTitleOrName(this IMenuInfoCollection @this, string titleOrName)
-            => @this.FirstOrDefault(m =>
-            {
-                return m.CastAs<INamedObject>()?.Name.EqualsIgnoreCase(titleOrName) == true
-                    || m.CastAs<ITitleObject>()?.Title.EqualsIgnoreCase(titleOrName) == true;
-            });
+            => @this.FirstOrDefault(m => m.CastAs<INamedObject>()?.Name.EqualsIgnoreCase(titleOrName) == true
+                                         || m.CastAs<ITitleObject>()?.Title.EqualsIgnoreCase(titleOrName) == true);
 
         #endregion Privates
 

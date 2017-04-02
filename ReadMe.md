@@ -19,7 +19,13 @@ MEF's focus is on discoverability, extensibility, and portability.
 The Mef is a library for creating lightweight, extensible applications. 
 **It allows application developers to discover and use extensions modules with no configuration required.**
 It also lets extensions modules developers easily encapsulate code and avoid fragile hard dependencies. MEF not only allows extensions to be reused within applications but across applications as well.
-[(Click here to read more about Mef).](https://msdn.microsoft.com/en-us/library/dd460648(v=vs.110).aspx)
+
+
+><span style="color:blue">Similar with **Autofac** or **Unity** library, The Mef is an Inversion of Control container for .NET.
+>I'm referring to use the Mef because 2 reasons:</span>
+>1. It is build-in library in the .Net Framework.
+>2. The way to **Import** the class to the container and **Export** the instance from the container is using **Attributes** instead. 
+>You can find more details about [the Mef here](https://msdn.microsoft.com/en-us/library/dd460648(v=vs.110).aspx)
 
 ## What's supporting by HBD.Mef
 ### 1. Bootstrapper 
@@ -28,7 +34,7 @@ It also lets extensions modules developers easily encapsulate code and avoid fra
 - The HBD.Mef.Core.Logging.**TextFileLogger** had been defined as default logger for this bootstrapper by using **log4net** library in Nuget.
 - Default Log file location will be in the **StartUp\Logs\Log.log**. However, you can customize it by overwriting the **CreateLogger()** method and pass the new location as a constructor parameter.
 ```csharp
-protected override ILoggerFacade CreateLogger() 
+protected override ILogger CreateLogger() 
     => new TextFileLogger("New Log Location Here");
 ```
 ### 3. Shell configuration
@@ -114,7 +120,7 @@ All changes of the ModuleConfig will be saved back to the corresponding config f
 - **UndoChanges** method: undo all changes of the **ShellConfig** and **Modules**.
 
 ### 6 The default instances will be exported into Mef
-- ILoggerFacade
+- ILogger
 - IModuleCatalog
 - ICompositionService
 - IServiceLocator
@@ -150,13 +156,13 @@ private static void Main()
 
 In the MainFrom you can import **IServiceLocator** and get the exported objects from Mef.
 ```csharp
-public partial class FormBase : Form
+public partial class FormBase: Form
 {
     [Import]
     public IServiceLocator ContainerService { protected get; set; }
 
     [Import]
-    public ILoggerFacade Logger { protected get; set; }
+    public ILogger Logger { protected get; set; }
 
     //Load UserControl from Container and load into TabControl by Type
     private void LoadViews(Type userControlType)
@@ -179,8 +185,6 @@ public partial class FormBase : Form
 - [CommonServiceLocator](https://www.nuget.org/packages/CommonServiceLocator/)
 - [HBD.Framework](https://www.nuget.org/packages/HBD.Framework/)
 - [log4net](https://www.nuget.org/packages/log4net/)
-- [Prism.Core](https://www.nuget.org/packages/Prism.Core)
-- [Prism.Wpf](https://www.nuget.org/packages/Prism.Wpf)
 
 *Thanks for your reading*
   - *[drunkcoding@outlook.com](mailto:drunkcoding@outlook)*

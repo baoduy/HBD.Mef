@@ -5,7 +5,6 @@ using log4net.Appender;
 using log4net.Core;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
-using Prism.Logging;
 
 #endregion
 
@@ -41,27 +40,27 @@ namespace HBD.Mef.Logging
             _log = LogManager.GetLogger(GetType());
         }
 
-        public override void Log(string message, Category category, Priority priority)
+        public override void Log(string message, LogCategory category)
         {
             if (string.IsNullOrWhiteSpace(message)) return;
 
             switch (category)
             {
-                case Category.Debug:
+                case LogCategory.Debug:
 #if DEBUG
                     _log.Debug(message);
 #endif
                     break;
 
-                case Category.Exception:
+                case LogCategory.Exception:
                     _log.Error(message);
                     break;
 
-                case Category.Info:
+                case LogCategory.Info:
                     _log.Info(message);
                     break;
 
-                case Category.Warn:
+                case LogCategory.Warn:
                     _log.Warn(message);
                     break;
 

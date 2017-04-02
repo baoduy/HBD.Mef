@@ -23,8 +23,16 @@ MEF's focus is on discoverability, extensibility, and portability.</p>
 <h2 id="whys-mef">Why's Mef?</h2>
 <p>The Mef is a library for creating lightweight, extensible applications.
 <strong>It allows application developers to discover and use extensions modules with no configuration required.</strong>
-It also lets extensions modules developers easily encapsulate code and avoid fragile hard dependencies. MEF not only allows extensions to be reused within applications but across applications as well.
-<a href="https://msdn.microsoft.com/en-us/library/dd460648(v=vs.110).aspx">(Click here to read more about Mef).</a></p>
+It also lets extensions modules developers easily encapsulate code and avoid fragile hard dependencies. MEF not only allows extensions to be reused within applications but across applications as well.</p>
+<blockquote>
+<p><span style="color:blue">Similar with <strong>Autofac</strong> or <strong>Unity</strong> library, The Mef is an Inversion of Control container for .NET.
+I'm referring to use the Mef because 2 reasons:</span></p>
+<ol>
+<li>It is build-in library in the .Net Framework.</li>
+<li>The way to <strong>Import</strong> the class to the container and <strong>Export</strong> the instance from the container is using <strong>Attributes</strong> instead.
+You can find more details about <a href="https://msdn.microsoft.com/en-us/library/dd460648(v=vs.110).aspx">the Mef here</a></li>
+</ol>
+</blockquote>
 <h2 id="whats-supporting-by-hbd.mef">What's supporting by HBD.Mef</h2>
 <h3 id="bootstrapper">1. Bootstrapper</h3>
 <ul>
@@ -35,7 +43,7 @@ It also lets extensions modules developers easily encapsulate code and avoid fra
 <li>The HBD.Mef.Core.Logging.<strong>TextFileLogger</strong> had been defined as default logger for this bootstrapper by using <strong>log4net</strong> library in Nuget.</li>
 <li>Default Log file location will be in the <strong>StartUp\Logs\Log.log</strong>. However, you can customize it by overwriting the <strong>CreateLogger()</strong> method and pass the new location as a constructor parameter.</li>
 </ul>
-<pre><code class="language-csharp">protected override ILoggerFacade CreateLogger() 
+<pre><code class="language-csharp">protected override ILogger CreateLogger() 
     =&gt; new TextFileLogger(&quot;New Log Location Here&quot;);
 </code></pre>
 <h3 id="shell-configuration">3. Shell configuration</h3>
@@ -128,7 +136,7 @@ All changes of the ModuleConfig will be saved back to the corresponding config f
 </ul>
 <h3 id="the-default-instances-will-be-exported-into-mef">6 The default instances will be exported into Mef</h3>
 <ul>
-<li>ILoggerFacade</li>
+<li>ILogger</li>
 <li>IModuleCatalog</li>
 <li>ICompositionService</li>
 <li>IServiceLocator</li>
@@ -165,13 +173,13 @@ private static void Main()
 <li>Using Mef Container</li>
 </ol>
 <p>In the MainFrom you can import <strong>IServiceLocator</strong> and get the exported objects from Mef.</p>
-<pre><code class="language-csharp">public partial class FormBase : Form
+<pre><code class="language-csharp">public partial class FormBase: Form
 {
     [Import]
     public IServiceLocator ContainerService { protected get; set; }
 
     [Import]
-    public ILoggerFacade Logger { protected get; set; }
+    public ILogger Logger { protected get; set; }
 
     //Load UserControl from Container and load into TabControl by Type
     private void LoadViews(Type userControlType)
@@ -194,8 +202,6 @@ private static void Main()
 <li><a href="https://www.nuget.org/packages/CommonServiceLocator/">CommonServiceLocator</a></li>
 <li><a href="https://www.nuget.org/packages/HBD.Framework/">HBD.Framework</a></li>
 <li><a href="https://www.nuget.org/packages/log4net/">log4net</a></li>
-<li><a href="https://www.nuget.org/packages/Prism.Core">Prism.Core</a></li>
-<li><a href="https://www.nuget.org/packages/Prism.Wpf">Prism.Wpf</a></li>
 </ul>
 <p><em>Thanks for your reading</em></p>
 <ul>

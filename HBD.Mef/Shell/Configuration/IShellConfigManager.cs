@@ -1,7 +1,7 @@
 ﻿#region using
 
+using HBD.Mef.Logging;
 using System.ComponentModel.Composition.Hosting;
-using Prism.Logging;
 
 #endregion
 
@@ -30,7 +30,7 @@ namespace HBD.Mef.Shell.Configuration
         /// <param name="catalog"></param>
         void ImportModuleBinaries(AggregateCatalog catalog);
 
-        void SaveChanges(ILoggerFacade logger = null);
+        void SaveChanges(ILogger logger = null);
         void SaveChanges(TModuleConfig module);
         void UndoChanges();
         void UndoChanges(TModuleConfig module);

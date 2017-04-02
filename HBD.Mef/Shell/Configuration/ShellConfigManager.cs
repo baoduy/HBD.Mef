@@ -5,13 +5,12 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Linq;
-using System.Management.Instrumentation;
 using System.Reflection;
 using HBD.Framework;
 using HBD.Framework.Core;
+using HBD.Framework.Exceptions;
 using HBD.Mef.Logging;
 using Newtonsoft.Json;
-using Prism.Logging;
 
 #endregion
 
@@ -108,7 +107,7 @@ namespace HBD.Mef.Shell.Configuration
             }
         }
 
-        public virtual void SaveChanges(ILoggerFacade logger = null)
+        public virtual void SaveChanges(ILogger logger = null)
         {
             if (_shellConfigEntry?.IsChanged == true)
             {
@@ -135,7 +134,7 @@ namespace HBD.Mef.Shell.Configuration
         {
             var entry = Modules.Entry(module);
             if (entry == null)
-                throw new InstanceNotFoundException(module?.Name);
+                throw new NotFoundException(module?.Name);
 
             if (!entry.IsChanged) return;
 
@@ -155,7 +154,7 @@ namespace HBD.Mef.Shell.Configuration
         {
             var entry = Modules.Entry(module);
             if (entry == null)
-                throw new InstanceNotFoundException(module?.Name);
+                throw new NotFoundException(module?.Name);
 
             if (!entry.IsChanged) return;
             entry.UndoChanges();

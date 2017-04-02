@@ -7,7 +7,6 @@ using HBD.Mef.Logging;
 using HBD.Mef.Modularity;
 using HBD.Mef.Shell.Navigation;
 using HBD.Mef.Shell.Services;
-using Microsoft.Practices.ServiceLocation;
 
 #endregion
 
@@ -34,7 +33,7 @@ namespace HBD.Mef.Shell.Modularity
             try
             {
                 Logger.Info("Try to get IStartupViewCollection");
-                var startViews = ContainerService.TryResolve<IStartupViewCollection>();
+                var startViews = ContainerService.GetInstance<IStartupViewCollection>();
                 startViews.AddRange(GetStartUpViewTypes());
             }
             catch (Exception ex)

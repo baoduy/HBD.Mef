@@ -2,20 +2,19 @@
 
 using System.ComponentModel.Composition;
 using Microsoft.Practices.ServiceLocation;
-using Prism.Logging;
-using Prism.Modularity;
+using HBD.Mef.Logging;
 
 #endregion
 
 namespace HBD.Mef.Modularity
 {
-    public abstract class ModuleBase : IModule
+    public abstract class ModuleBase : IHbdModule
     {
-        [Import]
+        [Import(AllowRecomposition = true, AllowDefault = true)]
         protected IServiceLocator ContainerService { get; set; }
 
-        [Import]
-        protected ILoggerFacade Logger { get; set; }
+        [Import(AllowRecomposition = true, AllowDefault = true)]
+        protected ILogger Logger { get; set; }
 
         public abstract void Initialize();
     }

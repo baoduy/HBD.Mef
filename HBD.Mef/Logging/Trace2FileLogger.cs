@@ -4,7 +4,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using HBD.Framework;
-using Prism.Logging;
 
 #endregion
 
@@ -37,7 +36,7 @@ namespace HBD.Mef.Logging
 
         public void Dispose()
         {
-            Log($"Disposing {GetType().FullName}", Category.Debug, Priority.Medium);
+            Log($"Disposing {GetType().FullName}", LogCategory.Debug);
             Trace.Listeners.Remove(_traceWriter);
             Trace.Unindent();
 
@@ -52,25 +51,25 @@ namespace HBD.Mef.Logging
             Trace.Listeners.Clear();
         }
 
-        public override void Log(string message, Category category, Priority priority)
+        public override void Log(string message, LogCategory category)
         {
             switch (category)
             {
-                case Category.Debug:
+                case LogCategory.Debug:
 #if DEBUG
                     Trace.TraceInformation(message);
 #endif
                     break;
 
-                case Category.Exception:
+                case LogCategory.Exception:
                     Trace.TraceError(message);
                     break;
 
-                case Category.Info:
+                case LogCategory.Info:
                     Trace.TraceInformation(message);
                     break;
 
-                case Category.Warn:
+                case LogCategory.Warn:
                     Trace.TraceWarning(message);
                     break;
 

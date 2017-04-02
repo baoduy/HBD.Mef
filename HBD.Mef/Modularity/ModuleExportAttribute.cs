@@ -3,7 +3,6 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-using Prism.Modularity;
 
 #endregion
 
@@ -14,16 +13,17 @@ namespace HBD.Mef.Modularity
     public class ModuleExportAttribute : ExportAttribute, IModuleExport
     {
         public ModuleExportAttribute(Type moduleType)
-            : base(typeof(IModule))
+            : base(typeof(IHbdModule))
         {
             if (moduleType == null)
                 throw new ArgumentNullException(nameof(moduleType));
+
             ModuleName = moduleType.Name;
             ModuleType = moduleType;
         }
 
         public ModuleExportAttribute(string moduleName, Type moduleType)
-            : base(typeof(IModule))
+            : base(typeof(IHbdModule))
         {
             ModuleName = moduleName;
             ModuleType = moduleType;
@@ -33,9 +33,7 @@ namespace HBD.Mef.Modularity
 
         public Type ModuleType { get; }
 
-        public InitializationMode InitializationMode { get; set; }
-
-        [DefaultValue(new string[] {})]
+        [DefaultValue(new string[] { })]
         public string[] DependsOnModuleNames { get; set; }
     }
 }
