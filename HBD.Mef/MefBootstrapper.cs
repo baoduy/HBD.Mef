@@ -72,7 +72,7 @@ namespace HBD.Mef
         /// <summary>
         ///     Initialize all registered Modules.
         /// </summary>
-        protected virtual void InitializeModules() => Container.GetExportedValue<IHbdModuleManager>().Run();
+        protected virtual void InitializeModules() => Container.GetExportedValue<IPluginManager>().Run();
 
         public void Run()
         {

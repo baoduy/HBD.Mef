@@ -1,6 +1,6 @@
 ﻿namespace HBD.Mef.Modularity
 {
-    public interface IHbdModule
+    public interface IPlugin
     {
         void Initialize();
     }

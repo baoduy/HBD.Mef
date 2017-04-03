@@ -1,6 +1,6 @@
 ﻿namespace HBD.Mef.Modularity
 {
-    public enum ModuleState
+    public enum PluginState
     {
         NotStarted,
         //LoadingTypes,

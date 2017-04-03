@@ -8,7 +8,7 @@ using HBD.Mef.Logging;
 
 namespace HBD.Mef.Modularity
 {
-    public abstract class ModuleBase : IHbdModule
+    public abstract class PluginBase : IPlugin
     {
         [Import(AllowRecomposition = true, AllowDefault = true)]
         protected IServiceLocator ContainerService { get; set; }

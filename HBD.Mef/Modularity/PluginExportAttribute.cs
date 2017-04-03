@@ -10,10 +10,10 @@ namespace HBD.Mef.Modularity
 {
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class)]
-    public class ModuleExportAttribute : ExportAttribute, IModuleExport
+    public class PluginExportAttribute : ExportAttribute, IModuleExport
     {
-        public ModuleExportAttribute(Type moduleType)
-            : base(typeof(IHbdModule))
+        public PluginExportAttribute(Type moduleType)
+            : base(typeof(IPlugin))
         {
             if (moduleType == null)
                 throw new ArgumentNullException(nameof(moduleType));
@@ -22,8 +22,8 @@ namespace HBD.Mef.Modularity
             ModuleType = moduleType;
         }
 
-        public ModuleExportAttribute(string moduleName, Type moduleType)
-            : base(typeof(IHbdModule))
+        public PluginExportAttribute(string moduleName, Type moduleType)
+            : base(typeof(IPlugin))
         {
             ModuleName = moduleName;
             ModuleType = moduleType;

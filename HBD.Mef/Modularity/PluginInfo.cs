@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace HBD.Mef.Modularity
 {
     [Serializable]
-    public class ModuleInfo
+    public class PluginInfo
     {
         public string ModuleName { get; set; }
 
@@ -12,14 +12,14 @@ namespace HBD.Mef.Modularity
 
         public Collection<string> DependsOn { get; set; }
 
-        public ModuleState State { get; set; }
+        public PluginState State { get; set; }
 
-        public ModuleInfo()
+        public PluginInfo()
           : this(null, null, new string[0])
         {
         }
 
-        public ModuleInfo(string name, Type type, params string[] dependsOn)
+        public PluginInfo(string name, Type type, params string[] dependsOn)
         {
             if (dependsOn == null)
                 throw new ArgumentNullException(nameof(dependsOn));
@@ -30,7 +30,7 @@ namespace HBD.Mef.Modularity
                 DependsOn.Add(str);
         }
 
-        public ModuleInfo(string name, Type type)
+        public PluginInfo(string name, Type type)
           : this(name, type, new string[0])
         {
         }

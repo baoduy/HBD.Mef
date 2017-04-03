@@ -11,9 +11,9 @@ using HBD.Framework.Exceptions;
 
 namespace HBD.Mef.Modularity
 {
-    [Export(typeof(IHbdModuleManager))]
+    [Export(typeof(IPluginManager))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class HbdModuleManager : IHbdModuleManager
+    public class PluginManager : IPluginManager
     {
         [Import]
         protected AggregateCatalog AggregateCatalog { get; set; }
@@ -24,8 +24,8 @@ namespace HBD.Mef.Modularity
         [Import(AllowRecomposition = true, AllowDefault = true)]
         protected ILogger Logger { get; set; }
 
-        private IList<ModuleInfo> Modules { get; } = new List<ModuleInfo>();
-        private IList<IHbdModule> ExportedModules { get; } = new List<IHbdModule>();
+        private IList<PluginInfo> Modules { get; } = new List<PluginInfo>();
+        private IList<IPlugin> ExportedModules { get; } = new List<IPlugin>();
 
         public void Run()
         {
@@ -35,13 +35,13 @@ namespace HBD.Mef.Modularity
 
             if (!Modules.Any()) return;
 
-            ExportedModules.AddRange(ContainerService.GetExportedValues<IHbdModule>());
+            ExportedModules.AddRange(ContainerService.GetExportedValues<IPlugin>());
 
             foreach (var moduleInfo in Modules)
                 ActivateModule(moduleInfo);
         }
 
-        private IEnumerable<ModuleInfo> GetModuleInfos()
+        private IEnumerable<PluginInfo> GetModuleInfos()
         {
             foreach (var item in AggregateCatalog.SelectMany(p => p.ExportDefinitions)
                 .Where(p => p.Metadata.ContainsKey("ModuleName")
@@ -53,20 +53,20 @@ namespace HBD.Mef.Modularity
                 var dependsOnModuleNames = item.Metadata["DependsOnModuleNames"] as string[];
 
                 if (dependsOnModuleNames?.Any() == true)
-                    yield return new ModuleInfo(name, type, dependsOnModuleNames);
-                else yield return new ModuleInfo(name, type);
+                    yield return new PluginInfo(name, type, dependsOnModuleNames);
+                else yield return new PluginInfo(name, type);
             }
         }
 
-        protected virtual void ActivateModule([NotNull]ModuleInfo module)
+        protected virtual void ActivateModule([NotNull]PluginInfo module)
         {
-            if (module.State == ModuleState.Initializing
-                || module.State == ModuleState.Initialized)
+            if (module.State == PluginState.Initializing
+                || module.State == PluginState.Initialized)
                 return;
 
             ValidateDependsModules(module.DependsOn);
 
-            module.State = ModuleState.Initializing;
+            module.State = PluginState.Initializing;
 
             ActivateDependsModules(module.DependsOn);
 
@@ -74,12 +74,12 @@ namespace HBD.Mef.Modularity
 
             if (instance == null)
             {
-                module.State = ModuleState.NotStarted;
+                module.State = PluginState.NotStarted;
                 throw new NotFoundException(module.ModuleType.FullName);
             }
 
             instance.Initialize();
-            module.State = ModuleState.Initialized;
+            module.State = PluginState.Initialized;
         }
 
         protected virtual void ActivateDependsModules(Collection<string> dependsOnModuleNames)

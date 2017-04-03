@@ -15,7 +15,7 @@ namespace HBD.Mef.Shell.Modularity
     /// <summary>
     ///     The ShellModuleBase that share for both WindowForms and WPF.
     /// </summary>
-    public abstract class ShellModuleBase : ModuleBase
+    public abstract class ShellModuleBase : PluginBase
     {
         public override void Initialize()
         {

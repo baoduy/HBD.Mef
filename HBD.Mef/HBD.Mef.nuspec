@@ -11,10 +11,13 @@
       The custom Mef Bootstrapper that compatible with WPF, WinForms and Console app.
     </description>
     <releaseNotes>
-      Version 1.0.5
+      Version 1.0.6
       - Move HBD.Mef.Console to a separate project.
       - Consolidate the structure of the classes.
       - Build the custome ModuleManager and Remove the Prism packages.
+      - Remove the Prism packages.
+      - Rename all Module* classes to Plugin* classes.
+      - Upgrade to HBD.Framework 1.0.7
     </releaseNotes>
     <summary>
       The custom Mef Bootstrapper that compatible with WPF, WinForms and Console app.
