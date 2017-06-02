@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HBD.App.Shell</id>
+    <version>1.0.0</version>
+    <title>HBD.App.Shell</title>
+    <authors>Duy Hoang</authors>
+    <owners>Duy Hoang</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/baoduy/HBD.App.Shell</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Shell Console Application that provides a core-foundation to develop a Module-able batch job application.</description>
+    <summary>The Shell Console Application that provides a core-foundation to develop a loosely coupled, module-able and maintainable batch job application that can be triggered by the schedular.</summary>
+    <releaseNotes>
+      Version 1.0.2
+      - Upgrade to HBD.Framework 1.0.7
+      - Upgrade to HBD.Mef 1.0.6
+    </releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <language>en-US</language>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="HBD.Mef" version="1.0.4" />
+        <dependency id="HBD.Framework" version="1.0.5" />
+      </group>
+    </dependencies>
+    <tags>Console Workspace Modularity Shell Mef DI Dependency-Injection Ioc</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\*.*" target="tools\App.Shell\" exclude="bin\Release\*.txt" />
+    <file src="..\ReadMe.html" target="tools\ReadMe.html" />
+    <file src="..\ReadMe.md" target="tools\ReadMe.md" />
+    <file src="bin\Release\How_To_START.txt" target="content\How_To_START.txt" />
+    <file src="bin\Release\HBD.Mef.Console.dll" target="lib\HBD.Mef.Console.dll" />
+  </files>
+</package>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<package>
+  <metadata>
+    <id>HBD.Mef.Logging</id>
+    <version>${NugetVersion}</version>
+    <title>HBD.Mef.Logging</title>
+    <authors>Duy Hoang</authors>
+    <owners>Duy Hoang</owners>
+    <description>
+      The logger for HBD projects. All logging instance using in the HBD framework and libraries will be implemented in this project.
+    </description>
+    <releaseNotes>
+      Version ${NugetVersion}
+      - Segregated from HBD.Mef for WindowForms and Console App to separate project to share to all HBD.Mef libraries.
+    </releaseNotes>
+    <summary>
+      The logger for HBD projects.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/baoduy/HBD.Mef</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <copyright>Copyright 2017</copyright>
+    <dependencies></dependencies>
+    <references></references>
+    <tags>Logging Logger Log4Net Mef</tags>
+  </metadata>
+</package>
