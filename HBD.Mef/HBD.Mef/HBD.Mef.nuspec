@@ -13,6 +13,7 @@
     <releaseNotes>
       Version ${NugetVersion}
       - Moving the Logger into separate libarary to share to all HBD.Mef projects.
+      - Upgrade to .Net framework 4.6.2
       
       Version 1.0.7
       - Upgrade to HBD.Framework 1.0.12
