@@ -16,6 +16,10 @@ namespace HBD.Mef.Logging
             DefaultOutFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Logs\\Log_{GetType().Name}.log");
         }
 
+        public virtual void Dispose()
+        {
+        }
+
         public abstract void Log(string message, LogCategory category);
     }
 }

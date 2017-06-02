@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>HBD.Mef</id>
-    <version>$version$</version>
+    <version>${NugetVersion}</version>
     <title>HBD.Mef</title>
     <authors>Duy Hoang</authors>
     <owners>Duy Hoang</owners>
@@ -11,6 +11,12 @@
       The custom Mef Bootstrapper that compatible with WPF, WinForms and Console app.
     </description>
     <releaseNotes>
+      Version ${NugetVersion}
+      - Moving the Logger into separate libarary to share to all HBD.Mef projects.
+      
+      Version 1.0.7
+      - Upgrade to HBD.Framework 1.0.12
+
       Version 1.0.6
       - Move HBD.Mef.Console to a separate project.
       - Consolidate the structure of the classes.
@@ -30,6 +36,6 @@
     <copyright>Copyright 2017</copyright>
     <dependencies></dependencies>
     <references></references>
-    <tags></tags>
+    <tags>WPF Winform Console DI Dependency-Injection Mef IoC</tags>
   </metadata>
 </package>

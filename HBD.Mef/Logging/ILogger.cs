@@ -1,6 +1,8 @@
-﻿namespace HBD.Mef.Logging
+﻿using System;
+
+namespace HBD.Mef.Logging
 {
-    public interface ILogger
+    public interface ILogger : IDisposable
     {
         void Log(string message, LogCategory category);
     }

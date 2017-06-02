@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace HBD.Mef.Modularity
 {
-    public interface IModuleExport
+    public interface IPluginExport
     {
         string ModuleName { get; }
 

@@ -10,7 +10,7 @@ namespace HBD.Mef.Modularity
 {
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class)]
-    public class PluginExportAttribute : ExportAttribute, IModuleExport
+    public class PluginExportAttribute : ExportAttribute, IPluginExport
     {
         public PluginExportAttribute(Type moduleType)
             : base(typeof(IPlugin))

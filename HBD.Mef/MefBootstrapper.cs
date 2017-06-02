@@ -4,9 +4,9 @@ using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using HBD.Mef.Logging;
+using HBD.Mef.Modularity;
 using HBD.Mef.Services;
 using Microsoft.Practices.ServiceLocation;
-using HBD.Mef.Modularity;
 
 #endregion
 
@@ -20,23 +20,25 @@ namespace HBD.Mef
         public ILogger Logger { get; private set; }
         public CompositionContainer Container { get; private set; }
         protected AggregateCatalog AggregateCatalog { get; private set; }
-        //protected IModuleCatalog ModuleCatalog { get; private set; }
 
-        protected virtual ILogger CreateLogger() => new Trace2FileLogger();
+        protected virtual ILogger CreateLogger()
+        {
+            return new Trace2FileLogger();
+        }
 
-        protected virtual AggregateCatalog CreateAggregateCatalog() => new AggregateCatalog();
+        protected virtual AggregateCatalog CreateAggregateCatalog()
+        {
+            return new AggregateCatalog();
+        }
 
-        //protected virtual IModuleCatalog CreateModuleCatalog() => new ModuleCatalog();
-
-        protected virtual CompositionContainer CreateContainer() => new CompositionContainer(AggregateCatalog);
+        protected virtual CompositionContainer CreateContainer()
+        {
+            return new CompositionContainer(AggregateCatalog);
+        }
 
         protected virtual void ConfigureAggregateCatalog()
         {
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MefBootstrapper).Assembly));
-        }
-
-        protected virtual void ConfigureModuleCatalog()
-        {
         }
 
         /// <summary>
@@ -72,21 +74,12 @@ namespace HBD.Mef
         /// <summary>
         ///     Initialize all registered Modules.
         /// </summary>
-        protected virtual void InitializeModules() => Container.GetExportedValue<IPluginManager>().Run();
-
-        public void Run()
+        protected virtual void InitializeModules()
         {
-            try
-            {
-                Run(true);
-            }
-            catch (Exception ex)
-            {
-                Logger?.Exception(ex);
-            }
+            Container.GetExportedValue<IPluginManager>().Run();
         }
 
-        public virtual void Run(bool runWithDefaultConfiguration)
+        public void Run()
         {
             Logger = CreateLogger();
             if (Logger == null)
@@ -103,9 +96,6 @@ namespace HBD.Mef
             Logger.Debug("RegisterDefaultTypesIfMissing.");
             RegisterDefaultTypesIfMissing();
 
-            //Logger.Debug("CreateModuleCatalog.");
-            //ModuleCatalog = CreateModuleCatalog();
-
             Logger.Debug("Create Container.");
             Container = CreateContainer();
             if (Container == null)
@@ -119,6 +109,17 @@ namespace HBD.Mef
 
             Logger.Debug("Initialize Modules.");
             InitializeModules();
+
+            Logger.Debug("Run Application.");
+            RunApplication();
+        }
+
+        /// <summary>
+        ///     This method will be executed by Run() use to open the MainWindow forms. This method will be call in the the end of
+        ///     the Run method.
+        /// </summary>
+        protected virtual void RunApplication()
+        {
         }
     }
 }
