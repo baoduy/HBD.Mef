@@ -1,0 +1,100 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.main-menu-icon {
+    width: 16px !important;
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 3px;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: auto;
+}
+
+.navbar-nav > li > a > .fa {
+    color: #337ab7 !important;
+}
+
+.navbar-nav > li > a > .glyphicon {
+    color: #337ab7 !important;
+}
+/* Custom container */
+.container-full {
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Custom navbar */
+.navbar-brand {
+    padding-left: 15px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.navbar-nav > li > a{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.navbar-nav > li > p {
+    padding-top: 15px;
+    padding-left: 5px;
+}
+
+.navbar-nav > li > .dropdown-menu > li > p {
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+
+.navbar-right {
+    margin-right: 25px !important;
+}
+
+.navbar-nav > .active > a {
+    -ms-opacity: .6;
+    opacity: .6;
+}
+
+.footer-default {
+    background-color: ghostwhite;
+}
+
+footer > hr {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    border-top: 1px solid #eee;
+}
+
+.brand-img {
+    width: 40px;
+}
+
+@media all and (min-width:1700px) {
+    .container {
+        width: 1690px;
+    }
+}
+
+

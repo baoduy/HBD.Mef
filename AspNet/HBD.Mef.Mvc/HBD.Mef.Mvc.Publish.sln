@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26510.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.Mvc", "HBD.Mef.Mvc\HBD.Mef.Mvc.csproj", "{CCBA07D8-2492-4A87-9C98-824C5FFD3D10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.MvcTests", "HBD.Mef.MvcTests\HBD.Mef.MvcTests.csproj", "{E3C6F94A-F2BA-454A-826F-F45586FEEEC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1C27995-FB75-4B4B-AF82-370545B424CB}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.Mef.Mvc.St", "HBD.Mef.Mvc.St\HBD.Mef.Mvc.St.csproj", "{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.Mef.Mvc.Share", "HBD.Mef.Mvc.Share\HBD.Mef.Mvc.Share.shproj", "{62A7E5C3-1878-4621-9CFD-5CFFBC715187}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HBD.Mef.Mvc.Share\HBD.Mef.Mvc.Share.projitems*{62a7e5c3-1878-4621-9cfd-5cffbc715187}*SharedItemsImports = 13
+		HBD.Mef.Mvc.Share\HBD.Mef.Mvc.Share.projitems*{ccba07d8-2492-4a87-9c98-824c5ffd3d10}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCBA07D8-2492-4A87-9C98-824C5FFD3D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCBA07D8-2492-4A87-9C98-824C5FFD3D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCBA07D8-2492-4A87-9C98-824C5FFD3D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCBA07D8-2492-4A87-9C98-824C5FFD3D10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3C6F94A-F2BA-454A-826F-F45586FEEEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3C6F94A-F2BA-454A-826F-F45586FEEEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3C6F94A-F2BA-454A-826F-F45586FEEEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3C6F94A-F2BA-454A-826F-F45586FEEEC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://steven2412.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = HBD.Mef.Mvc\\HBD.Mef.Mvc.csproj
+		SccProjectName1 = HBD.Mef.Mvc
+		SccLocalPath1 = HBD.Mef.Mvc
+		SccProjectUniqueName2 = HBD.Mef.MvcTests\\HBD.Mef.MvcTests.csproj
+		SccProjectName2 = HBD.Mef.MvcTests
+		SccLocalPath2 = HBD.Mef.MvcTests
+		SccProjectUniqueName3 = HBD.Mef.Mvc.St\\HBD.Mef.Mvc.St.csproj
+		SccProjectName3 = HBD.Mef.Mvc.St
+		SccLocalPath3 = HBD.Mef.Mvc.St
+		SccProjectUniqueName4 = HBD.Mef.Mvc.Share\\HBD.Mef.Mvc.Share.shproj
+		SccProjectName4 = HBD.Mef.Mvc.Share
+		SccLocalPath4 = HBD.Mef.Mvc.Share
+		SccProjectUniqueName5 = HBD.Mef.Mvc.Share\\HBD.Mef.Mvc.Share.projitems
+		SccProjectTopLevelParentUniqueName5 = HBD.Mef.Mvc.Share\\HBD.Mef.Mvc.Share.shproj
+		SccProjectName5 = HBD.Mef.Mvc.Share
+		SccLocalPath5 = HBD.Mef.Mvc.Share
+	EndGlobalSection
+EndGlobal

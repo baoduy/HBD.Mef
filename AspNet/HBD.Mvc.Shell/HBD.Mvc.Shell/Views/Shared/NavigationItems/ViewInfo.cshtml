@@ -1,0 +1,10 @@
+﻿@model HBD.Mef.Mvc.Navigation.NavigateInfo.ViewInfo
+@if (Model != null)
+{
+    <li>
+        <p>
+            @Html.Partial("NavigationItems/IconView", Model)
+            @Model.GetInfo(this)
+        </p>
+    </li>
+}

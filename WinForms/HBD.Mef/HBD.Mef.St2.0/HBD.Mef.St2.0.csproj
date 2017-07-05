@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>HBD.Mef</AssemblyName>
+    <RootNamespace>HBD.Mef</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\HBD.Mef.GlobalShare\HBD.Mef.GlobalShare.projitems" Label="Shared" />
+
+  <Import Project="..\HBD.Mef.StShare\HBD.Mef.StShare.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="1.3.0" />
+    <PackageReference Include="HBD.Framework" Version="2.0.0-preview2" />
+    <PackageReference Include="HBD.Mef.Logging" Version="2.0.0-preview2" />
+    <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+﻿@using HBD.Mef.Mvc
+@using HBD.Mef.Mvc.Navigation.NavigateInfo
+@model NavigationInfo
+@if (Model != null)
+{
+    <li class="@(Model.IsActive(Url)?"active":"")">
+        <a href="@Url.Action(Model.Action, Model.Controller, new {area = Model.AreaName}, null)" title="@Model.Title">
+            @Html.Partial("NavigationItems/IconView", Model)
+            @if (Model.DisplayType == MenuDisplayType.IconAndText)
+            {
+                @Model.Title
+            }
+        </a>
+    </li>
+}

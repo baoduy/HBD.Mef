@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="HBD.Api.Shell.WebApiApplication" Language="C#" %>

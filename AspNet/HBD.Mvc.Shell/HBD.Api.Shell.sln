@@ -1,0 +1,102 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorage", "AzureStorage\AzureStorage.csproj", "{9A19E4CD-B965-4611-B4E2-3BCC658509F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureInterfaces", "AzureInterfaces\AzureInterfaces.csproj", "{335725A2-B414-41E2-A347-EE462B90131D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureApi", "AzureApi", "{CE8BB2C7-F7BC-4E2C-8FB3-0CE79D8D2E91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shell", "Shell", "{A6D77B3F-AEE6-41DE-A9E0-B7FA8294D54F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureNoteEntities", "AzureNoteEntities\AzureNoteEntities.csproj", "{90F7C43E-15DE-4F59-A66B-5A247E9FBEF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DFAE74EE-8041-4691-B3C9-8CC166A4CAE8}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureNotesApi", "AzureNotesApi\AzureNotesApi.csproj", "{8AB61DC7-F400-4249-B2EC-6B4426EA6B84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Api.Shell", "HBD.Api.Shell\HBD.Api.Shell.csproj", "{34416EC0-436F-48C9-8461-11D24DB984D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Api.ShellTests", "HBD.Api.ShellTests\HBD.Api.ShellTests.csproj", "{1707DFDF-E66E-4F98-BBC5-F0CE384716A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A19E4CD-B965-4611-B4E2-3BCC658509F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A19E4CD-B965-4611-B4E2-3BCC658509F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A19E4CD-B965-4611-B4E2-3BCC658509F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A19E4CD-B965-4611-B4E2-3BCC658509F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{335725A2-B414-41E2-A347-EE462B90131D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{335725A2-B414-41E2-A347-EE462B90131D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{335725A2-B414-41E2-A347-EE462B90131D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{335725A2-B414-41E2-A347-EE462B90131D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F7C43E-15DE-4F59-A66B-5A247E9FBEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F7C43E-15DE-4F59-A66B-5A247E9FBEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F7C43E-15DE-4F59-A66B-5A247E9FBEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F7C43E-15DE-4F59-A66B-5A247E9FBEF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB61DC7-F400-4249-B2EC-6B4426EA6B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB61DC7-F400-4249-B2EC-6B4426EA6B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB61DC7-F400-4249-B2EC-6B4426EA6B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB61DC7-F400-4249-B2EC-6B4426EA6B84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34416EC0-436F-48C9-8461-11D24DB984D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34416EC0-436F-48C9-8461-11D24DB984D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34416EC0-436F-48C9-8461-11D24DB984D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34416EC0-436F-48C9-8461-11D24DB984D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1707DFDF-E66E-4F98-BBC5-F0CE384716A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1707DFDF-E66E-4F98-BBC5-F0CE384716A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1707DFDF-E66E-4F98-BBC5-F0CE384716A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1707DFDF-E66E-4F98-BBC5-F0CE384716A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9A19E4CD-B965-4611-B4E2-3BCC658509F6} = {CE8BB2C7-F7BC-4E2C-8FB3-0CE79D8D2E91}
+		{335725A2-B414-41E2-A347-EE462B90131D} = {CE8BB2C7-F7BC-4E2C-8FB3-0CE79D8D2E91}
+		{90F7C43E-15DE-4F59-A66B-5A247E9FBEF5} = {CE8BB2C7-F7BC-4E2C-8FB3-0CE79D8D2E91}
+		{8AB61DC7-F400-4249-B2EC-6B4426EA6B84} = {CE8BB2C7-F7BC-4E2C-8FB3-0CE79D8D2E91}
+		{34416EC0-436F-48C9-8461-11D24DB984D3} = {A6D77B3F-AEE6-41DE-A9E0-B7FA8294D54F}
+		{1707DFDF-E66E-4F98-BBC5-F0CE384716A5} = {A6D77B3F-AEE6-41DE-A9E0-B7FA8294D54F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://steven2412.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AzureStorage\\AzureStorage.csproj
+		SccProjectTopLevelParentUniqueName1 = HBD.Api.Shell.sln
+		SccProjectName1 = AzureStorage
+		SccLocalPath1 = AzureStorage
+		SccProjectUniqueName2 = AzureInterfaces\\AzureInterfaces.csproj
+		SccProjectTopLevelParentUniqueName2 = HBD.Api.Shell.sln
+		SccProjectName2 = AzureInterfaces
+		SccLocalPath2 = AzureInterfaces
+		SccProjectUniqueName3 = AzureNoteEntities\\AzureNoteEntities.csproj
+		SccProjectTopLevelParentUniqueName3 = HBD.Api.Shell.sln
+		SccProjectName3 = AzureNoteEntities
+		SccLocalPath3 = AzureNoteEntities
+		SccProjectUniqueName4 = AzureNotesApi\\AzureNotesApi.csproj
+		SccProjectTopLevelParentUniqueName4 = HBD.Api.Shell.sln
+		SccProjectName4 = AzureNotesApi
+		SccLocalPath4 = AzureNotesApi
+		SccProjectUniqueName5 = HBD.Api.Shell\\HBD.Api.Shell.csproj
+		SccProjectTopLevelParentUniqueName5 = HBD.Api.Shell.sln
+		SccProjectName5 = HBD.Api.Shell
+		SccLocalPath5 = HBD.Api.Shell
+		SccProjectUniqueName6 = HBD.Api.ShellTests\\HBD.Api.ShellTests.csproj
+		SccProjectTopLevelParentUniqueName6 = HBD.Api.Shell.sln
+		SccProjectName6 = HBD.Api.ShellTests
+		SccLocalPath6 = HBD.Api.ShellTests
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <RootNamespace>HBD.Mef.StTests</RootNamespace>
+
+    <AssemblyName>HBD.Mef.StTests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170427-09" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HBD.Mef.St2.0\HBD.Mef.St2.0.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="BootstrapperTests.cs" />
+    <Compile Update="TestObs\StartUp1.cs" />
+  </ItemGroup>
+
+</Project>
