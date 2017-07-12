@@ -16,6 +16,13 @@
       - Added ExtendedCompositionHost and ExtendedContainerConfiguration that allows to import the object instance into Mef-core, similar with ComposeExportedValue in Mef.
       - Override the method CreateContainerConfiguration and using WithInstance to import the object instance into Mef-core.
 
+      Full .Net Framework Only.
+      - The ModuleInfoAttribute had been added to replace the Module configuration file.
+      - Customize the module activator allow to enable or disable via Module activator adapter.
+      - Apply auto export for all classes that inherited from IModuleActivationValidator interface.
+      - The PluginManager will scan all exported IModuleActivationValidator from Mef automatically.
+      - Remove the Module configuration management. So that the Module_.json is not supported anymore. Using ModuleInfoAttribute instead.
+
       Version 2.0.0-preview1
       - Wisely support from .Net 4.5 to .Net 4.7 and from .Net Standard 1.6 to .Net Standard 2.0.
       - Add StandardBootstrapper for .Net Standard.
@@ -46,34 +53,22 @@
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <copyright>Copyright 2017</copyright>
     <dependencies>
-      <group targetFramework=".NETFramework4.5.0">
-        <dependency id="HBD.Framework" version="2.0.0-preview2" />
-        <dependency id="HBD.Mef.Logging" version="2.0.0-preview2"/>
-        <dependency id="CommonServiceLocator" version="1.3"/>
-        <dependency id="Newtonsoft.Json" version="10.0.3"/>
-      </group>
-      <group targetFramework=".NETFramework4.6.0">
-        <dependency id="HBD.Framework" version="2.0.0-preview2" />
-        <dependency id="HBD.Mef.Logging" version="2.0.0-preview2"/>
-        <dependency id="CommonServiceLocator" version="1.3"/>
-        <dependency id="Newtonsoft.Json" version="10.0.3"/>
-      </group>
-      <group targetFramework=".NETFramework4.7.0">
-        <dependency id="HBD.Framework" version="2.0.0-preview2" />
+      <group targetFramework=".NETFramework4.5.2">
+        <dependency id="HBD.Framework" version="2.0.0-preview3" />
         <dependency id="HBD.Mef.Logging" version="2.0.0-preview2"/>
         <dependency id="CommonServiceLocator" version="1.3"/>
         <dependency id="Newtonsoft.Json" version="10.0.3"/>
       </group>
       <group targetFramework=".NETStandard1.6">
         <dependency id="NETStandard.Library" version="1.6.1" />
-        <dependency id="HBD.Framework" version="2.0.0-preview2" />
+        <dependency id="HBD.Framework" version="2.0.0-preview3" />
         <dependency id="HBD.Mef.Logging" version="2.0.0-preview2"/>
         <dependency id="Microsoft.Composition" version="1.0.31"/>
         <dependency id="System.Runtime.Loader" version="4.3.0"/>
       </group>
       <group targetFramework="NETStandard2.0">
         <dependency id="NETStandard.Library" version="2.0.0-preview1-25301-01" />
-        <dependency id="HBD.Framework" version="2.0.0-preview2" />
+        <dependency id="HBD.Framework" version="2.0.0-preview3" />
         <dependency id="HBD.Mef.Logging" version="2.0.0-preview2"/>
         <dependency id="CommonServiceLocator" version="1.3"/>
         <dependency id="Microsoft.Composition" version="1.0.31"/>
@@ -84,9 +79,7 @@
     <tags>WPF Winform Console DI Dependency-Injection Mef IoC</tags>
   </metadata>
   <files>
-    <file src="HBD.Mef.4.5\bin\Release\HBD.Mef.dll" target="lib\net45" exclude="**\*.pdb"/>
-    <file src="HBD.Mef\bin\Release\HBD.Mef.dll" target="lib\net46" exclude="**\*.pdb"/>
-    <file src="HBD.Mef.4.7\bin\Release\HBD.Mef.dll" target="lib\net47" exclude="**\*.pdb"/>
+    <file src="HBD.Mef\bin\Release\HBD.Mef.dll" target="lib\net452" exclude="**\*.pdb"/>
     <file src="HBD.Mef.St1.6\bin\Release\netstandard1.6\HBD.Mef.dll" target="lib\netstandard1.6" exclude="**\*.pdb"/>
     <file src="HBD.Mef.St2.0\bin\Release\netstandard2.0\HBD.Mef.dll" target="lib\netstandard2.0" exclude="**\*.pdb"/>
   </files>

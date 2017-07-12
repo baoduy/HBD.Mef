@@ -9,6 +9,15 @@
     <Import_RootNamespace>HBD.Mef</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Extentions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\IModuleInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\ModuleInfoAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\IModuleActivationValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\IPlugin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\IPluginExport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\IPluginManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\PluginInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\PluginState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StandardBootstrapper.cs" />
   </ItemGroup>
 </Project>

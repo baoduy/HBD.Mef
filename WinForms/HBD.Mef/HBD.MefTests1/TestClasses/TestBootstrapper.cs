@@ -1,23 +1,36 @@
 ﻿using HBD.Mef;
+using HBD.Mef.Catalogs;
 using HBD.Mef.Logging;
-using HBD.Mef.Shell.Configuration;
+using System;
 
 namespace HBD.MefTests.TestClasses
 {
     public class TestBootstrapper : MefBootstrapper
     {
+        protected override ILogger CreateLogger()
+            => new Trace2FileLogger($"Logs\\Log_{Guid.NewGuid()}.log");
+
+        static TestBootstrapper _default;
+        public static TestBootstrapper Default
+        {
+            get
+            {
+                if (_default != null) return _default;
+                _default = new TestBootstrapper();
+                _default.Run();
+                return _default;
+            }
+        }
         protected override void ConfigureAggregateCatalog()
         {
             base.ConfigureAggregateCatalog();
 
-            var mm = new ShellConfigManager();
             var rfc = CreateReflectionContext();
+            var ctg = rfc == null
+                ? new MultiDirectoriesCatalog(new[] { "Modules" }, System.IO.SearchOption.AllDirectories)
+                : new MultiDirectoriesCatalog(new[] { "Modules" }, System.IO.SearchOption.AllDirectories, rfc);
 
-            Logger.Info("Import Shell Binaries");
-            mm.ImportShellBinaries(AggregateCatalog, rfc);
-
-            Logger.Info("Import Module Binaries");
-            mm.ImportModuleBinaries(AggregateCatalog, rfc);
+            AggregateCatalog.Catalogs.Add(ctg);
         }
     }
 }

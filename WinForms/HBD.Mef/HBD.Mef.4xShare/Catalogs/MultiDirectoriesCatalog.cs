@@ -38,8 +38,7 @@ namespace HBD.Mef.Catalogs
             _searchOption = searchOption;
             _context = context;
             Catalogs = new List<AssemblyCatalog>();
-            //SubAppDomains = new ConcurrentDictionary<string, AppDomain>();
-            ExcludedBinaries = new List<string> {"System", "Microsoft"};
+            ExcludedBinaries = new List<string> { "System", "Microsoft" };
         }
 
         //protected ConcurrentDictionary<string, AppDomain> SubAppDomains { get; }
@@ -77,42 +76,32 @@ namespace HBD.Mef.Catalogs
         protected virtual void Initialize()
         {
             if (_isInitialized) return;
+            _isInitialized = true;
 
-            lock (_paths)
+            var excluedSetting = ConfigurationManager.AppSettings[AppSettingKey];
+            if (excluedSetting.IsNotNullOrEmpty())
+                ExcludedBinaries.AddRange(excluedSetting.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+
+            foreach (var path in _paths)
             {
-                var excluedSetting = ConfigurationManager.AppSettings[AppSettingKey];
-                if (excluedSetting.IsNotNullOrEmpty())
-                    ExcludedBinaries.AddRange(excluedSetting.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries));
+                var fullPath = Path.GetFullPath(path);
+                if (!Directory.Exists(fullPath))
+                    continue;
 
-                foreach (var path in _paths)
+                foreach (var file in Directory.GetFiles(fullPath, "*.dll", _searchOption))
                 {
-                    var fullPath = Path.GetFullPath(path);
-                    if (!Directory.Exists(fullPath))
-                        continue;
+                    if (IsExcluded(file)
+                        || IsLoaded(file)) continue;
 
-                    foreach (var file in Directory.GetFiles(fullPath, "*.dll", _searchOption))
-                    {
-                        if (IsExcluded(file)
-                            || IsLoaded(file)) continue;
+                    var assembly = GetOrLoad(file);
+                    if (assembly == null) continue;
 
-                        try
-                        {
-                            var assembly = GetOrLoad(file);
-                            if (assembly == null) continue;
+                    var ctg = _context == null
+                        ? new AssemblyCatalog(assembly)
+                        : new AssemblyCatalog(assembly, _context);
 
-                            var ctg = _context == null
-                                ? new AssemblyCatalog(assembly)
-                                : new AssemblyCatalog(assembly, _context);
-
-                            Catalogs.Add(ctg);
-                        }
-                        catch (Exception)
-                        {
-                            //Ignore
-                        }
-                    }
+                    Catalogs.Add(ctg);
                 }
-                _isInitialized = true;
             }
         }
 
@@ -129,16 +118,23 @@ namespace HBD.Mef.Catalogs
                 var fileName = Path.GetFileNameWithoutExtension(file);
                 return fileName != null && fileName.StartsWith(e);
             });
-        
+
         private static Assembly GetOrLoad([NotNull] string file)
         {
             var fileName = Path.GetFileNameWithoutExtension(file);
             if (fileName == null)
                 throw new InvalidDataException($"File:{file}");
 
-            var loadedAss = AppDomain.CurrentDomain.GetAssemblies()
-                .FirstOrDefault(a => Path.GetFileNameWithoutExtension(a.CodeBase).StartsWith(fileName));
-
+            Assembly loadedAss = null;
+            try
+            {
+                loadedAss = AppDomain.CurrentDomain.GetAssemblies()
+                    .FirstOrDefault(a => Path.GetFileNameWithoutExtension(a.CodeBase).StartsWith(fileName));
+            }
+            catch (NotSupportedException)
+            {
+                //ignore
+            }
             if (loadedAss != null) return loadedAss;
             return Assembly.LoadFrom(file);
         }

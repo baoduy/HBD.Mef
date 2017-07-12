@@ -1,5 +1,4 @@
-﻿using HBD.Framework;
-using HBD.Framework.Attributes;
+﻿using HBD.Framework.Attributes;
 using HBD.Mef.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,6 +14,7 @@ namespace HBD.Mef.Modularity
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class PluginManager : IPluginManager
     {
+        private bool _isRan = false;
         [Import]
         protected AggregateCatalog AggregateCatalog { get; set; }
 
@@ -24,16 +24,29 @@ namespace HBD.Mef.Modularity
         [Import(AllowRecomposition = true, AllowDefault = true)]
         protected ILogger Logger { get; set; }
 
-        public IList<PluginInfo> Plugins { get; } = new List<PluginInfo>();
-        public IList<IPlugin> ExportedModules { get; } = new List<IPlugin>();
+        public List<PluginInfo> _plugins;
+
+        public PluginManager()
+        {
+            _plugins = new List<PluginInfo>();
+        }
+
+        public IReadOnlyCollection<PluginInfo> Plugins => _plugins;
+        public IReadOnlyCollection<IPlugin> ExportedModules { get; private set; }
+        public IReadOnlyCollection<IModuleActivationValidator> ModuleActivationValidators { get; private set; }
 
         public void Run()
         {
-            Plugins.AddRange(GetModuleInfos());
+            if (_isRan)
+                throw new NotSupportedException($"The {this.GetType().Name} already ran.");
+            _isRan = true;
+
+            _plugins.AddRange(GetModuleInfos());
 
             if (!Plugins.Any()) return;
 
-            ExportedModules.AddRange(ContainerService.GetExportedValues<IPlugin>());
+            ModuleActivationValidators = ContainerService.GetExportedValues<IModuleActivationValidator>().ToList();
+            ExportedModules = ContainerService.GetExportedValues<IPlugin>().ToList();
 
             foreach (var moduleInfo in Plugins)
                 ActivateModule(moduleInfo);
@@ -48,26 +61,43 @@ namespace HBD.Mef.Modularity
                 var type = item.Metadata[Constants.ModuleType] as Type;
                 var dependsOnModuleNames = item.Metadata[Constants.DependsOnModuleNames] as string[];
 
-                if (Plugins.Any(p => p.ModuleType == type)) continue;
+                if (_plugins.Any(p => p.ModuleType == type)) continue;
 
                 if (dependsOnModuleNames?.Any() == true)
                     yield return new PluginInfo(name, type, dependsOnModuleNames);
                 else yield return new PluginInfo(name, type);
             }
-
-            //foreach (var item in AggregateCatalog.Where(p => p.Metadata.ContainsKey(Constants.ModuleName)
-            //                && p.Metadata.ContainsKey(Constants.ModuleType)))
-            //{
-            //    var name = item.Metadata[Constants.ModuleName] as string;
-            //    var type = item.Metadata[Constants.ModuleType] as Type;
-            //    yield return new PluginInfo(name, type);
-            //}
         }
 
-        protected virtual void ActivateModule([NotNull]PluginInfo module)
+        private bool IsActivatable([NotNull]PluginInfo module)
         {
             if (module.State == PluginState.Initializing
-                || module.State == PluginState.Initialized)
+               || module.State == PluginState.Initialized
+               || module.State == PluginState.Invalid)
+            {
+                return false;
+            }
+
+            var moduleInfo = module.GetModuleInfo();
+
+            if (moduleInfo != null
+                && !moduleInfo.IsSystemModule
+                && ModuleActivationValidators.Any(v => !v.CanActivate(moduleInfo)))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Activate Module. Before activate this module the <see cref="IModuleActivationValidator"/> will be called.
+        /// The module won't be activated of any IModuleValidator reject it.
+        /// </summary>
+        /// <param name="module"></param>
+        protected virtual void ActivateModule([NotNull]PluginInfo module)
+        {
+            if (!IsActivatable(module))
                 return;
 
             ValidateDependsModules(module.DependsOn);
@@ -80,7 +110,7 @@ namespace HBD.Mef.Modularity
 
             if (instance == null)
             {
-                module.State = PluginState.NotStarted;
+                module.State = PluginState.Invalid;
                 throw new NotFoundException(module.ModuleType.FullName);
             }
 
@@ -92,8 +122,6 @@ namespace HBD.Mef.Modularity
         {
             if (dependsOnModuleNames?.Any() == false)
                 return;
-
-
 
             // ReSharper disable once PossibleNullReferenceException
             foreach (var source in Plugins.Where(m => dependsOnModuleNames.Contains(m.ModuleName)))
@@ -116,6 +144,12 @@ namespace HBD.Mef.Modularity
             if (notfounds.Any())
                 throw new NotFoundException(notfounds);
 
+        }
+
+        public void Dispose() => Dispose(true);
+
+        protected void Dispose(bool isDisposing)
+        {
         }
     }
 }

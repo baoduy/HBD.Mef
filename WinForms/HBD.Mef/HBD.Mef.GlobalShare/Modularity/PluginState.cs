@@ -3,9 +3,8 @@
     public enum PluginState
     {
         NotStarted,
-        //LoadingTypes,
-        //ReadyForInitialization,
         Initializing,
         Initialized,
+        Invalid,
     }
 }

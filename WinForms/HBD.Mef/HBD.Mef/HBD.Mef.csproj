@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HBD.Mef</RootNamespace>
     <AssemblyName>HBD.Mef</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -38,10 +38,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HBD.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Framework.2.0.0-preview2\lib\net46\HBD.Framework.dll</HintPath>
+      <HintPath>..\packages\HBD.Framework.2.0.0-preview3\lib\net452\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.Logging.2.0.0-preview2\lib\net46\HBD.Mef.Logging.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.Logging.2.0.0-preview2\lib\net45\HBD.Mef.Logging.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="HBD.Mef.nuspec" />
     <None Include="HBD.Mef.ruleset" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

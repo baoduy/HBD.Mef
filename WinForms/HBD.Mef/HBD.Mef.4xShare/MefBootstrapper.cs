@@ -20,6 +20,7 @@ namespace HBD.Mef
         {
             var registration = new RegistrationBuilder();
 
+            //Auto export for IPlugin
             registration.ForTypesDerivedFrom<IPlugin>()
                 .SetCreationPolicy(CreationPolicy.Shared)
                 .Export()
@@ -29,6 +30,11 @@ namespace HBD.Mef
                     a.AddMetadata(Constants.ModuleType, t => t);
                     a.AddMetadata(Constants.DependsOnModuleNames, null);
                 });
+
+            //Auto export for IModuleActivationValidator
+            registration.ForTypesDerivedFrom<IModuleActivationValidator>()
+                .SetCreationPolicy(CreationPolicy.Shared)
+                .Export().ExportInterfaces();
 
             return registration;
         }
@@ -63,9 +69,7 @@ namespace HBD.Mef
         ///     Initialize all registered Modules.
         /// </summary>
         protected virtual void InitializeModules()
-        {
-            Container.GetExportedValue<IPluginManager>().Run();
-        }
+            => Container.GetExportedValue<IPluginManager>().Run();
 
         protected override void DoRun()
         {
