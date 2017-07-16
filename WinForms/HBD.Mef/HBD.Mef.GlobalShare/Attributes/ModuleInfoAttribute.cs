@@ -8,7 +8,7 @@ namespace HBD.Mef.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class ModuleInfoAttribute : Attribute, IModuleInfo
     {
-        public Guid Id { get; }
+        public string Id { get; }
 
         public string Name { get; }
 
@@ -23,7 +23,7 @@ namespace HBD.Mef.Attributes
             Guard.ArgumentIsNotNull(guid, nameof(guid));
             Guard.ArgumentIsNotNull(name, nameof(name));
 
-            this.Id = new Guid(guid);
+            this.Id = guid;
             this.Name = name;
         }
     }

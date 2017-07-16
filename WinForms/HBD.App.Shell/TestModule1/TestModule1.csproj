@@ -36,13 +36,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HBD.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Framework.1.0.13-beta1\lib\net460\HBD.Framework.dll</HintPath>
+      <HintPath>..\packages\HBD.Framework.2.0.0-preview3\lib\net452\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.1.1.0-beta9\lib\net462\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.2.0.0-preview3\lib\net452\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.Logging.1.0.0\lib\net462\HBD.Mef.Logging.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.Logging.2.0.0-preview2\lib\net46\HBD.Mef.Logging.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
@@ -51,7 +51,7 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -74,13 +74,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Module_TestModule1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.*" "$(SolutionDir)HBD.App.Shell\$(OutDir)\Modules\$(ProjectName)" /s /y /r /i</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)*.*" "$(SolutionDir)HBD.App.Shell\$(OutDir)\Modules\$(ProjectName)" /s /y /r /i
+xcopy "$(TargetDir)*.*" "$(SolutionDir)HBD.Mef.ConsoleTests\$(OutDir)\Modules\$(ProjectName)" /s /y /r /i</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using HBD.Mef.WinForms;
 using HBD.Mef.WinForms.Services;
 using HBD.Mef.Shell.Configuration;
+using HBD.Mef.Modularity;
 
 namespace HBD.WinForms.ModuleManagement.Plugin
 {
@@ -21,7 +22,7 @@ namespace HBD.WinForms.ModuleManagement.Plugin
         }
 
         [Import]
-        private IShellConfigManager ShellConfigManager { get; set; }
+        private IPluginManager PluginManager { get; set; }
 
         public ModuleConfig Module { get; set; }
 
@@ -55,7 +56,7 @@ namespace HBD.WinForms.ModuleManagement.Plugin
         {
             if (!Validate()) return;
 
-            ShellConfigManager.SaveChanges(Logger);
+            PluginManager.SaveChanges(Logger);
             this.ShowInfoMessage("The changes had been saved.");
             StatusService.SetStatus($"Saved the changes of Module {Module.Name}");
             Close();
@@ -66,7 +67,7 @@ namespace HBD.WinForms.ModuleManagement.Plugin
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
-            ShellConfigManager.UndoChanges();
+            PluginManager.UndoChanges();
             Close();
         }
 

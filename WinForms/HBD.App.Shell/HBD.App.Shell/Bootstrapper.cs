@@ -11,6 +11,7 @@ using HBD.Mef.Console.Core;
 using HBD.Mef.Logging;
 using HBD.Mef.Modularity;
 using HBD.Mef.Shell.Configuration;
+using HBD.Mef.Catalogs;
 
 #endregion
 
@@ -18,11 +19,16 @@ namespace HBD.App.Shell
 {
     internal class Bootstrapper : MefConsoleAppBootstrapper
     {
-        private IShellConfigManager ShellConfigManager { get; } = new ShellConfigManager();
+        private IShellConfigManager ShellConfigManager { get; }
 
-        protected override void RegisterBootstrapperProvidedTypes()
+        public Bootstrapper()
         {
-            base.RegisterBootstrapperProvidedTypes();
+            ShellConfigManager = new ShellConfigManager();
+        }
+
+        protected override void RegisterExternalObjects()
+        {
+            base.RegisterExternalObjects();
             Container.ComposeExportedValue(ShellConfigManager);
         }
 
@@ -31,15 +37,8 @@ namespace HBD.App.Shell
             base.ConfigureAggregateCatalog();
 
             Logger.Info("Add Bootstrapper Assembly");
-            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
-
-            var reflec = CreateReflectionContext();
-
-            Logger.Info("Import Shell Binaries");
-            ShellConfigManager.ImportShellBinaries(AggregateCatalog, reflec);
-
-            Logger.Info("Import Module Binaries");
-            ShellConfigManager.ImportModuleBinaries(AggregateCatalog, reflec);
+            AggregateCatalog.Catalogs.Add(
+                new MultiDirectoriesCatalog(new[] { ShellConfigManager.ShellConfig.ModulePath }, System.IO.SearchOption.AllDirectories, CreateReflectionContext()));
         }
 
         public override void Run(params string[] args)
@@ -92,6 +91,8 @@ namespace HBD.App.Shell
             }
             catch (Exception ex)
             {
+                if (ShellConfigManager.ShellConfig.Environment.EqualsIgnoreCase("debug"))
+                    throw;
                 Logger?.Exception(ex);
             }
         }
@@ -104,7 +105,7 @@ namespace HBD.App.Shell
                     .FirstOrDefault(l => l.Metadata.ModuleName.EqualsIgnoreCase(moduleName))?.Value;
 
             if (moduleInfo == null)
-                moduleInfo = Container.GetExportedValues<IPlugin>().FirstOrDefault(a=>a.GetType().Name.EqualsIgnoreCase(moduleName));
+                moduleInfo = Container.GetExportedValues<IPlugin>().FirstOrDefault(a => a.GetType().Name.EqualsIgnoreCase(moduleName));
 
             if (moduleInfo == null)
                 throw new NotFoundException($"Module {moduleName}");

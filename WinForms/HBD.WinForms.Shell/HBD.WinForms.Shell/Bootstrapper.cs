@@ -10,6 +10,8 @@ using HBD.Mef.Shell.Navigation;
 using HBD.Mef.Shell.Services;
 using HBD.Mef.WinForms;
 using HBD.WinForms.Shell.Properties;
+using HBD.Mef.Modularity;
+using HBD.Mef.Catalogs;
 
 #endregion
 
@@ -23,27 +25,22 @@ namespace HBD.WinForms.Shell
         {
             base.ConfigureAggregateCatalog();
 
-            var rfc = CreateReflectionContext();
-
-            Logger.Info("Import Shell Binaries");
-            ShellConfigManager.ImportShellBinaries(AggregateCatalog, rfc);
-
-            Logger.Info("Import Module Binaries");
-            ShellConfigManager.ImportModuleBinaries(AggregateCatalog, rfc);
+            this.AggregateCatalog.Catalogs.Add(
+                new MultiDirectoriesCatalog(new[] { this.ShellConfigManager.ShellConfig.ModulePath }, 
+                System.IO.SearchOption.AllDirectories, 
+                CreateReflectionContext()));
         }
 
-        protected override void RegisterBootstrapperProvidedTypes()
+        protected override void RegisterExternalObjects()
         {
-            base.RegisterBootstrapperProvidedTypes();
+            base.RegisterExternalObjects();
+
             Container.ComposeExportedValue<IShellMenuService>(new ShellMenuService());
             Container.ComposeExportedValue<IStartupViewCollection>(new StartupViewCollection());
             Container.ComposeExportedValue(ShellConfigManager);
         }
 
-        protected override Form CreateMainWindow()
-        {
-            return Container.GetExportedValue<FrMain>();
-        }
+        protected override Form CreateMainWindow() => Container.GetExportedValue<FrMain>();
 
         protected override void InitializeApplication()
         {

@@ -8,13 +8,13 @@ namespace HBD.Mef.Modularity
     [DebuggerDisplay("ModuleType = {ModuleType}")]
     public class PluginInfo
     {
-        public string ModuleName { get; set; }
+        public string ModuleName { get; internal protected set; }
 
-        public Type ModuleType { get; set; }
+        public Type ModuleType { get; internal protected set; }
 
-        public Collection<string> DependsOn { get; set; }
+        public Collection<string> DependsOn { get;internal protected set; }
 
-        public PluginState State { get; set; }
+        public PluginState State { get;internal protected set; }
 
         public PluginInfo()
           : this(null, null, new string[0])

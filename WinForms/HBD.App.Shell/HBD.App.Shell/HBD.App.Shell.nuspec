@@ -14,10 +14,15 @@
     <summary>The Shell Console Application that provides a core-foundation to develop a loosely coupled, module-able and maintainable batch job application that can be triggered by the schedular.</summary>
     <releaseNotes>
       Version ${NugetVersion}
+      - Upgrade to HBD.Framework 2.0.0
+      - Upgrade to HBD.Mef 2.0.0
+      - The plugin now does not need the Modue_.json anymore.
+      
+      Version 1.0.3
       - Upgrade to HBD.Framework 1.0.12
       - Upgrade to HBD.Mef 1.0.7
       - Upgrade to .Net Framework 4.6.2
-      - Remane module to Plugin.
+      - Rename module to Plugin.
 
       Version 1.0.2
       - Upgrade to HBD.Framework 1.0.7
@@ -37,7 +42,6 @@
     <file src="bin\Release\*.*" target="tools\App.Shell\" exclude="bin\Release\*.txt" />
     <file src="..\ReadMe.html" target="tools\ReadMe.html" />
     <file src="..\ReadMe.md" target="tools\ReadMe.md" />
-    <file src="bin\Release\How_To_START.txt" target="content\How_To_START.txt" />
     <file src="bin\Release\HBD.Mef.Console.dll" target="lib\HBD.Mef.Console.dll" />
   </files>
 </package>

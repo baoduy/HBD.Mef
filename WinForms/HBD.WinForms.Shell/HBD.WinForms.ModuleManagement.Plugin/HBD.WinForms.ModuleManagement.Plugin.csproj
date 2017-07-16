@@ -42,16 +42,16 @@
       <HintPath>..\packages\HBD.Data.Comparisions.1.0.1\lib\net461\HBD.Data.Comparisons.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Framework.1.0.13-beta1\lib\net460\HBD.Framework.dll</HintPath>
+      <HintPath>..\packages\HBD.Framework.2.0.0-preview3\lib\net452\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Framework.Data.Excel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HBD.Framework.Data.Excel.1.0.1\lib\net461\HBD.Framework.Data.Excel.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.1.1.0-beta9\lib\net462\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.2.0.0-preview4\lib\net452\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.Logging.1.0.0\lib\net462\HBD.Mef.Logging.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.Logging.2.0.0-preview2\lib\net46\HBD.Mef.Logging.dll</HintPath>
     </Reference>
     <Reference Include="HBD.QueryBuilders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HBD.QueryBuilders.1.0.2\lib\net461\HBD.QueryBuilders.dll</HintPath>
@@ -70,7 +70,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.TransactSql.ScriptDom.14.0.3660.1\lib\net40\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

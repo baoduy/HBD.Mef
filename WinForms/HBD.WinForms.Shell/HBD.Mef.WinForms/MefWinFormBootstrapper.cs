@@ -32,9 +32,10 @@ namespace HBD.Mef.WinForms
 
             return registration;
         }
-        protected override void RegisterBootstrapperProvidedTypes()
+
+        protected override void RegisterExternalObjects()
         {
-            base.RegisterBootstrapperProvidedTypes();
+            base.RegisterExternalObjects();
 
             Container.ComposeExportedValue<IMessageBoxService>(new MessageBoxService());
             var navm = new ViewNavigationManager();

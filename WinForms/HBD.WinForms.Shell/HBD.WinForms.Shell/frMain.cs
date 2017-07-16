@@ -110,10 +110,10 @@ namespace HBD.WinForms.Shell
                 .DisplayAt(0)
                 .WithIcon(Resource.Shell)
                 .Children
-                .AddSeparator()
-                .AddNavigation(Resource.Menu_Exit)
-                .WithIcon(Resource.Exit)
-                .ForAction(Close);
+                    .AddSeparator()
+                    .AddNavigation(Resource.Menu_Exit)
+                    .WithIcon(Resource.Exit)
+                    .ForAction(Close);
 
             MenuSet.BindingToMenu(menuStrip.Items, MenuAction);
         }

@@ -11,6 +11,7 @@ namespace HBD.MefTests.PluginManagers
             if (moduleInfo.IsSystemModule)
                 throw new NotSupportedException();
             Count += 1;
+
             return true;
         }
     }

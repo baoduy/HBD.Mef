@@ -7,6 +7,8 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using HBD.Framework.Exceptions;
+using HBD.Framework;
+using Microsoft.Practices.ServiceLocation;
 
 namespace HBD.Mef.Modularity
 {
@@ -31,8 +33,7 @@ namespace HBD.Mef.Modularity
             _plugins = new List<PluginInfo>();
         }
 
-        public IReadOnlyCollection<PluginInfo> Plugins => _plugins;
-        public IReadOnlyCollection<IPlugin> ExportedModules { get; private set; }
+        public IReadOnlyCollection<PluginInfo> Plugins => _plugins.ToReadOnly();
         public IReadOnlyCollection<IModuleActivationValidator> ModuleActivationValidators { get; private set; }
 
         public void Run()
@@ -45,8 +46,7 @@ namespace HBD.Mef.Modularity
 
             if (!Plugins.Any()) return;
 
-            ModuleActivationValidators = ContainerService.GetExportedValues<IModuleActivationValidator>().ToList();
-            ExportedModules = ContainerService.GetExportedValues<IPlugin>().ToList();
+            ModuleActivationValidators = ContainerService.GetExportedValues<IModuleActivationValidator>().ToReadOnly();
 
             foreach (var moduleInfo in Plugins)
                 ActivateModule(moduleInfo);
@@ -90,6 +90,19 @@ namespace HBD.Mef.Modularity
             return true;
         }
 
+        private IPlugin TryGetPlugin([NotNull]PluginInfo module)
+        {
+            //Manual Export
+            var manual = ContainerService.GetExports<IPlugin, IPluginExport>()
+               .FirstOrDefault(i => i.Metadata.ModuleType == module.ModuleType && i.Metadata.ModuleName == module.ModuleName);
+
+            if (manual != null)
+                return manual.Value;
+
+            //Auto Export
+            return ServiceLocator.Current.GetInstance(module.ModuleType)as IPlugin;
+        }
+
         /// <summary>
         /// Activate Module. Before activate this module the <see cref="IModuleActivationValidator"/> will be called.
         /// The module won't be activated of any IModuleValidator reject it.
@@ -106,7 +119,7 @@ namespace HBD.Mef.Modularity
 
             ActivateDependsModules(module.DependsOn);
 
-            var instance = ExportedModules.FirstOrDefault(i => i.GetType() == module.ModuleType);
+            var instance = TryGetPlugin(module);
 
             if (instance == null)
             {
