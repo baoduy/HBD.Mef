@@ -1,11 +1,12 @@
-﻿using HBD.Mef.Logging;
+﻿using HBD.Framework;
+using HBD.Mef.Logging;
 using HBD.Mef.Modularity;
 using HBD.Mef.Shell.Configuration;
 using HBD.Mef.Shell.Services;
 using HBD.MefTests.TestClasses;
+using HBD.MefTests.TestObs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
@@ -96,6 +97,16 @@ namespace HBD.MefTests
         {
             var a = TestBootstrapper.Default.Container.GetExportedValue<IShellConfigManager>();
             Assert.IsNotNull(a);
+        }
+
+        [TestMethod]
+        public void Able_To_Get_Duy_Plugin()
+        {
+            var a = TestBootstrapper.Default.Container.GetExportedValue<DuyPlugin>();
+
+            Assert.IsNotNull(a);
+            Assert.IsNotNull(a.Container);
+            Assert.IsNotNull(a.Logger);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using HBD.Mef.Logging;
+﻿using HBD.Framework;
+using HBD.Mef.Logging;
 using HBD.Mef.StTests.TestObs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Composition;
@@ -70,7 +71,10 @@ namespace HBD.Mef.StTests
         public void Able_To_Get_Duy_Plugin()
         {
             var a = b.Container.GetExport<IPlugin>("Duy");
+
             Assert.IsNotNull(a);
+            Assert.IsNotNull(a.PropertyValue("Container"));
+            Assert.IsNotNull(a.PropertyValue("Logger"));
         }
     }
 }

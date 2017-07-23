@@ -26,6 +26,7 @@ namespace HBD.MefTests.TestClasses
                 return _default;
             }
         }
+
         protected override void ConfigureAggregateCatalog()
         {
             base.ConfigureAggregateCatalog();
@@ -37,6 +38,7 @@ namespace HBD.MefTests.TestClasses
                 : new MultiDirectoriesCatalog(new[] { "Modules" }, System.IO.SearchOption.AllDirectories, rfc);
 
             AggregateCatalog.Catalogs.Add(ctg);
+            //AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(TestBootstrapper).Assembly, rfc));
         }
 
         protected override void RegisterExternalObjects()

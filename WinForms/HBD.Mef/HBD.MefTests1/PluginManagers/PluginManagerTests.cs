@@ -3,7 +3,6 @@ using HBD.Mef;
 using HBD.Mef.Modularity;
 using HBD.MefTests.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace HBD.MefTests.PluginManagers

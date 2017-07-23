@@ -42,6 +42,8 @@ namespace HBD.Mef.Hosting
                 return false;
 
             export = found.Instance;
+            this.SatisfyImports(export);
+
             return true;
         }
     }

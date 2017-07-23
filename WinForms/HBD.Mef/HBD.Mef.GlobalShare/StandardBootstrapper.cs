@@ -30,9 +30,9 @@ namespace HBD.Mef
             Catalogs = new CatalogCollection();
         }
         public CompositionContext Container { get; private set; }
-        private CatalogCollection Catalogs { get; }
+        protected CatalogCollection Catalogs { get; }
 
-        protected virtual void ConfigureCatalog(CatalogCollection catalogs)
+        protected virtual void ConfigureCatalog()
         { }
 
         protected virtual CompositionContext CreateContainer()
@@ -47,10 +47,10 @@ namespace HBD.Mef
         protected virtual ExtendedContainerConfiguration CreateContainerConfiguration()
         {
             var configuration = new ExtendedContainerConfiguration()
-                .WithInstance(()=>Logger)
-                .WithInstance(()=>this.Container)
+                .WithInstance(() => Logger)
+                .WithInstance(() => this.Container)
 #if NETSTANDARD2_0
-                .WithInstance<Microsoft.Practices.ServiceLocation.IServiceLocator>(()=>new Services.MefServiceLocatorAdapter(this.Container))
+                .WithInstance<Microsoft.Practices.ServiceLocation.IServiceLocator>(() => new Services.MefServiceLocatorAdapter(this.Container))
 #endif
                 .WithAssembly(typeof(StandardBootstrapper).GetTypeInfo().Assembly);
 
@@ -121,7 +121,7 @@ namespace HBD.Mef
 
 #if NETSTANDARD2_0 || NETSTANDARD1_6
             Logger.Debug("Configure Catalogs.");
-            ConfigureCatalog(Catalogs);
+            ConfigureCatalog();
 #else
             Logger.Debug("Create AggregateCatalog.");
             AggregateCatalog = CreateAggregateCatalog();
@@ -135,6 +135,12 @@ namespace HBD.Mef
             Container = CreateContainer();
             if (Container == null)
                 throw new InvalidOperationException(nameof(CreateContainer));
+
+#if !NETSTANDARD2_0 && !NETSTANDARD1_6
+            Logger.Debug("Configure RegisterExternalObjects.");
+            RegisterExternalObjects();
+#endif
+
         }
 
         public void Dispose() => Dispose(true);

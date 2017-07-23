@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HBD.Mef.Modularity
+﻿namespace HBD.Mef.Modularity
 {
     public interface IModuleInfo
     {

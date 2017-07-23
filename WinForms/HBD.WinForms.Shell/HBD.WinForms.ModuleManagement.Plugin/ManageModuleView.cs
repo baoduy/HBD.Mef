@@ -25,7 +25,7 @@ namespace HBD.WinForms.ModuleManagement.Plugin
         private void BindingData()
         {
             dataGridView.AutoGenerateColumns = false;
-            dataGridView.DataSource = ShellConfigManager.Modules.ToList();
+            //dataGridView.DataSource = ShellConfigManager.Modules.ToList();
         }
 
         protected override void OnIsActiveChanged(EventArgs e)
@@ -48,7 +48,7 @@ namespace HBD.WinForms.ModuleManagement.Plugin
 
             var tab = ContainerService.GetInstance<IMainViewService>();
             var editView = ContainerService.GetInstance<EditModuleView>();
-            editView.Module = dataGridView.CurrentCell.OwningRow.DataBoundItem as ModuleConfig;
+            //editView.Module = dataGridView.CurrentCell.OwningRow.DataBoundItem as ModuleConfig;
             tab.ActiveView(editView);
         }
 

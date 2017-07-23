@@ -39,7 +39,7 @@
       <HintPath>..\packages\HBD.Framework.2.0.0-preview3\lib\net452\HBD.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HBD.Mef.2.0.0-preview4\lib\net452\HBD.Mef.dll</HintPath>
+      <HintPath>..\packages\HBD.Mef.2.0.0-preview5\lib\net452\HBD.Mef.dll</HintPath>
     </Reference>
     <Reference Include="HBD.Mef.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HBD.Mef.Logging.2.0.0-preview2\lib\net46\HBD.Mef.Logging.dll</HintPath>

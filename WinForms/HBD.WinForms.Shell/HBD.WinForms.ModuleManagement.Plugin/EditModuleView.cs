@@ -21,10 +21,7 @@ namespace HBD.WinForms.ModuleManagement.Plugin
             Text = string.Format(Resource.EditModuleView_Title, string.Empty);
         }
 
-        [Import]
-        private IPluginManager PluginManager { get; set; }
-
-        public ModuleConfig Module { get; set; }
+        public IModuleInfo Module { get; set; }
 
         protected override void OnIsActiveChanged(EventArgs e)
         {
@@ -45,9 +42,9 @@ namespace HBD.WinForms.ModuleManagement.Plugin
             data_Version.Text = Module.Version;
             bindingSource.DataSource = Module;
 
-            tableLayoutPanel1.Enabled =  Module.AllowToManage;
-            btn_Save.Enabled = Module.AllowToManage;
-            data_AllowToManage.Visible = !Module.AllowToManage;
+            tableLayoutPanel1.Enabled =  Module.IsSystemModule;
+            btn_Save.Enabled = Module.IsSystemModule;
+            data_AllowToManage.Visible = !Module.IsSystemModule;
 
             StatusService.SetStatus("Module is ready for edit.");
         }
@@ -56,18 +53,16 @@ namespace HBD.WinForms.ModuleManagement.Plugin
         {
             if (!Validate()) return;
 
-            PluginManager.SaveChanges(Logger);
             this.ShowInfoMessage("The changes had been saved.");
             StatusService.SetStatus($"Saved the changes of Module {Module.Name}");
             Close();
         }
 
         private void btn_VIewFolder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-            => Process.Start(Module.Directory);
+        { }
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
-            PluginManager.UndoChanges();
             Close();
         }
 

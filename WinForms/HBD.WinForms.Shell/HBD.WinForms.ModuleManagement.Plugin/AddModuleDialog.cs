@@ -65,194 +65,194 @@ namespace HBD.WinForms.ModuleManagement.Plugin
             //- The Module.json config file should be found.
             //- The Module is valid and Name is not empty.
             ZipArchive zip = null;
-            ModuleConfig newModule = null;
-            try
-            {
-                backgroundWorker.ReportProgress(++step, "Verify the zip file.");
 
-                #region Verify the zip file
+            //try
+            //{
+            //    backgroundWorker.ReportProgress(++step, "Verify the zip file.");
 
-                var filePath = fileBrowserBar.SelectedPath;
-                if (!File.Exists(filePath))
-                {
-                    backgroundWorker.ReportProgress(++step,
-                        "Error: Zip file is not existed. Please check the file location.");
-                    return;
-                }
+            //    #region Verify the zip file
 
-                try
-                {
-                    zip = ZipFile.OpenRead(filePath);
-                }
-                catch (Exception ex)
-                {
-                    backgroundWorker.ReportProgress(++step, $"Error: {ex.Message}");
-                    Logger.Exception(ex);
-                    return;
-                }
+            //    var filePath = fileBrowserBar.SelectedPath;
+            //    if (!File.Exists(filePath))
+            //    {
+            //        backgroundWorker.ReportProgress(++step,
+            //            "Error: Zip file is not existed. Please check the file location.");
+            //        return;
+            //    }
 
-                #endregion Verify the zip file
+            //    try
+            //    {
+            //        zip = ZipFile.OpenRead(filePath);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        backgroundWorker.ReportProgress(++step, $"Error: {ex.Message}");
+            //        Logger.Exception(ex);
+            //        return;
+            //    }
 
-                backgroundWorker.ReportProgress(++step, "Verify the file contents.");
+            //    #endregion Verify the zip file
 
-                #region Verify the file contents
+            //    backgroundWorker.ReportProgress(++step, "Verify the file contents.");
 
-                if (zip.Entries.Count <= 1)
-                {
-                    backgroundWorker.ReportProgress(++step, "Error: Zip file is empty.");
-                    return;
-                }
+            //    #region Verify the file contents
 
-                var jsonFile = zip.Entries.FirstOrDefault(f => f.Name.StartsWith("Module", StringComparison.Ordinal)
-                                                               && f.Name.EndsWith(".json", StringComparison.Ordinal));
+            //    if (zip.Entries.Count <= 1)
+            //    {
+            //        backgroundWorker.ReportProgress(++step, "Error: Zip file is empty.");
+            //        return;
+            //    }
 
-                if (jsonFile.IsNull())
-                {
-                    backgroundWorker.ReportProgress(++step, "Error: The module json config file is not found.");
-                    return;
-                }
+            //    var jsonFile = zip.Entries.FirstOrDefault(f => f.Name.StartsWith("Module", StringComparison.Ordinal)
+            //                                                   && f.Name.EndsWith(".json", StringComparison.Ordinal));
 
-                var dll = zip.Entries.FirstOrDefault(f => f.Name.EndsWith(".dll", StringComparison.Ordinal));
+            //    if (jsonFile.IsNull())
+            //    {
+            //        backgroundWorker.ReportProgress(++step, "Error: The module json config file is not found.");
+            //        return;
+            //    }
 
-                if (dll.IsNull())
-                {
-                    backgroundWorker.ReportProgress(++step, "Error: The module doesn't have any binary file.");
-                    return;
-                }
+            //    var dll = zip.Entries.FirstOrDefault(f => f.Name.EndsWith(".dll", StringComparison.Ordinal));
 
-                #endregion Verify the file contents
+            //    if (dll.IsNull())
+            //    {
+            //        backgroundWorker.ReportProgress(++step, "Error: The module doesn't have any binary file.");
+            //        return;
+            //    }
 
-                backgroundWorker.ReportProgress(++step, "Verify the config file.");
+            //    #endregion Verify the file contents
 
-                #region Verify the config file
+            //    backgroundWorker.ReportProgress(++step, "Verify the config file.");
 
-                try
-                {
-                    // ReSharper disable once PossibleNullReferenceException
-                    var tmpFileName = Path.Combine(Path.GetTempPath(), jsonFile.Name);
-                    jsonFile.ExtractToFile(tmpFileName, true);
-                    newModule = JsonConfigHelper.ReadConfig<ModuleConfig>(tmpFileName);
-                    File.Delete(tmpFileName);
+            //    #region Verify the config file
 
-                    if (newModule.Name.IsNullOrEmpty())
-                    {
-                        backgroundWorker.ReportProgress(++step, "Error: Module Name is empty.");
-                        return;
-                    }
+            //    try
+            //    {
+            //        // ReSharper disable once PossibleNullReferenceException
+            //        var tmpFileName = Path.Combine(Path.GetTempPath(), jsonFile.Name);
+            //        jsonFile.ExtractToFile(tmpFileName, true);
+            //        newModule = JsonConfigHelper.ReadConfig<ModuleConfig>(tmpFileName);
+            //        File.Delete(tmpFileName);
 
-                    if (newModule.Version.IsNullOrEmpty())
-                    {
-                        backgroundWorker.ReportProgress(++step, "Error: Module Version is empty.");
-                        return;
-                    }
-                    //Verify the binaries if have
-                    if (newModule.AssemplyFiles.Count > 0)
-                    {
-                        var notfounds =
-                            newModule.AssemplyFiles.Where(a => !zip.Entries.Any(t => t.Name.EndsWith(a))).ToList();
-                        if (notfounds.Any())
-                        {
-                            backgroundWorker.ReportProgress(++step,
-                                $"Error: Binaries are not found '{string.Join(",", notfounds)}'.");
-                            return;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    backgroundWorker.ReportProgress(++step, $"Error: {ex.Message}");
-                    Logger.Exception(ex);
-                    return;
-                }
+            //        if (newModule.Name.IsNullOrEmpty())
+            //        {
+            //            backgroundWorker.ReportProgress(++step, "Error: Module Name is empty.");
+            //            return;
+            //        }
 
-                #endregion Verify the config file
+            //        if (newModule.Version.IsNullOrEmpty())
+            //        {
+            //            backgroundWorker.ReportProgress(++step, "Error: Module Version is empty.");
+            //            return;
+            //        }
+            //        //Verify the binaries if have
+            //        if (newModule.AssemplyFiles.Count > 0)
+            //        {
+            //            var notfounds =
+            //                newModule.AssemplyFiles.Where(a => !zip.Entries.Any(t => t.Name.EndsWith(a))).ToList();
+            //            if (notfounds.Any())
+            //            {
+            //                backgroundWorker.ReportProgress(++step,
+            //                    $"Error: Binaries are not found '{string.Join(",", notfounds)}'.");
+            //                return;
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        backgroundWorker.ReportProgress(++step, $"Error: {ex.Message}");
+            //        Logger.Exception(ex);
+            //        return;
+            //    }
 
-                //Check duplicate module. if existing module then update the existing one.
-                backgroundWorker.ReportProgress(++step, "Check Module duplicating.");
+            //    #endregion Verify the config file
 
-                #region Check Module duplicating
+            //    //Check duplicate module. if existing module then update the existing one.
+            //    backgroundWorker.ReportProgress(++step, "Check Module duplicating.");
 
-                var oldModule = ShellConfigManager.Modules.FirstOrDefault(m => m.Name.EqualsIgnoreCase(newModule.Name));
-                if (oldModule != null)
-                {
-                    backgroundWorker.ReportProgress(++step,
-                        $"The module '{oldModule.Name}' is an existing module with version '{oldModule.Version}'.");
+            //    #region Check Module duplicating
 
-                    //Compare the version on both Modules.
-                    if (
-                        this.ShowConfirmationMessage(
-                            $"Do you want to overwrite module:\n- '{oldModule.Name}' version '{oldModule.Version}' with version '{newModule.Version}'?") !=
-                        DialogResult.Yes)
-                    {
-                        backgroundWorker.ReportProgress(++step, $"The module importing had been canceled by user.");
-                        return;
-                    }
+            //    var oldModule = ShellConfigManager.Modules.FirstOrDefault(m => m.Name.EqualsIgnoreCase(newModule.Name));
+            //    if (oldModule != null)
+            //    {
+            //        backgroundWorker.ReportProgress(++step,
+            //            $"The module '{oldModule.Name}' is an existing module with version '{oldModule.Version}'.");
 
-                    if (oldModule.IsEnabled)
-                    {
-                        backgroundWorker.ReportProgress(++step,
-                            $"The old module '{oldModule.Name}' cannot be overwritten because it is enabled. Please disable it and restart the application in order to overwrite the module '{newModule.Name}'.");
-                        return;
-                    }
+            //        //Compare the version on both Modules.
+            //        if (
+            //            this.ShowConfirmationMessage(
+            //                $"Do you want to overwrite module:\n- '{oldModule.Name}' version '{oldModule.Version}' with version '{newModule.Version}'?") !=
+            //            DialogResult.Yes)
+            //        {
+            //            backgroundWorker.ReportProgress(++step, $"The module importing had been canceled by user.");
+            //            return;
+            //        }
 
-                    if (!oldModule.AllowToManage)
-                    {
-                        backgroundWorker.ReportProgress(++step,
-                            $"The old module '{oldModule.Name}' is not allow to be overwritten as allow to manage is disabled.");
-                        return;
-                    }
+            //        if (oldModule.IsEnabled)
+            //        {
+            //            backgroundWorker.ReportProgress(++step,
+            //                $"The old module '{oldModule.Name}' cannot be overwritten because it is enabled. Please disable it and restart the application in order to overwrite the module '{newModule.Name}'.");
+            //            return;
+            //        }
 
-                    Directory.CreateDirectory(ShellConfigManager.ShellConfig.BackupModulePath);
-                    var backupFileName = Path.Combine(ShellConfigManager.ShellConfig.BackupModulePath,
-                        new DirectoryInfo(oldModule.Directory).Name + "_" + DateTime.Now.ToString("yyyy.mm.dd-hh.mm.ss") +
-                        ".zip");
+            //        if (!oldModule.AllowToManage)
+            //        {
+            //            backgroundWorker.ReportProgress(++step,
+            //                $"The old module '{oldModule.Name}' is not allow to be overwritten as allow to manage is disabled.");
+            //            return;
+            //        }
 
-                    ZipFile.CreateFromDirectory(oldModule.Directory, backupFileName, CompressionLevel.Optimal, false);
-                    backgroundWorker.ReportProgress(++step,
-                        $"Backup the old module '{oldModule.Name}' to {backupFileName}.");
+            //        Directory.CreateDirectory(ShellConfigManager.ShellConfig.BackupModulePath);
+            //        var backupFileName = Path.Combine(ShellConfigManager.ShellConfig.BackupModulePath,
+            //            new DirectoryInfo(oldModule.Directory).Name + "_" + DateTime.Now.ToString("yyyy.mm.dd-hh.mm.ss") +
+            //            ".zip");
 
-                    Directory.Delete(oldModule.Directory, true);
-                }
+            //        ZipFile.CreateFromDirectory(oldModule.Directory, backupFileName, CompressionLevel.Optimal, false);
+            //        backgroundWorker.ReportProgress(++step,
+            //            $"Backup the old module '{oldModule.Name}' to {backupFileName}.");
 
-                #endregion Check Module duplicating
+            //        Directory.Delete(oldModule.Directory, true);
+            //    }
 
-                backgroundWorker.ReportProgress(++step, "Extract zip file to Module folder.");
+            //    #endregion Check Module duplicating
 
-                #region Extract zip file to Module folder.
+            //    backgroundWorker.ReportProgress(++step, "Extract zip file to Module folder.");
 
-                // ReSharper disable once AssignNullToNotNullAttribute
-                var extractFolderName = Path.Combine(ShellConfigManager.ShellConfig.ModulePath,
-                    Path.GetFileNameWithoutExtension(filePath));
-                zip.ExtractToDirectory(extractFolderName);
-                //Check if the extracted folder had only 1 subfolder and the same is exactly the same with parent folder.
-                //Then move all files and folders to the parent then delete subfolder.
-                var extractDirectory = new DirectoryInfo(extractFolderName);
-                if (extractDirectory.GetDirectories().Length == 1)
-                {
-                    var sub = extractDirectory.GetDirectories().First();
-                    if (sub.Name.EqualsIgnoreCase(extractDirectory.Name))
-                        sub.MoveAllFilesAndFoldersTo(extractDirectory.FullName);
-                }
+            //    #region Extract zip file to Module folder.
 
-                #endregion Extract zip file to Module folder.
+            //    // ReSharper disable once AssignNullToNotNullAttribute
+            //    var extractFolderName = Path.Combine(ShellConfigManager.ShellConfig.ModulePath,
+            //        Path.GetFileNameWithoutExtension(filePath));
+            //    zip.ExtractToDirectory(extractFolderName);
+            //    //Check if the extracted folder had only 1 subfolder and the same is exactly the same with parent folder.
+            //    //Then move all files and folders to the parent then delete subfolder.
+            //    var extractDirectory = new DirectoryInfo(extractFolderName);
+            //    if (extractDirectory.GetDirectories().Length == 1)
+            //    {
+            //        var sub = extractDirectory.GetDirectories().First();
+            //        if (sub.Name.EqualsIgnoreCase(extractDirectory.Name))
+            //            sub.MoveAllFilesAndFoldersTo(extractDirectory.FullName);
+            //    }
 
-                backgroundWorker.ReportProgress(++step,
-                    "New module had been imported. Please restart the application to use the new module.");
-            }
-            catch (Exception ex)
-            {
-                backgroundWorker.ReportProgress(++step, $"Error: {ex.Message}");
-                backgroundWorker.ReportProgress(++step,
-                    "Import module failed. Please re-start the application and try again.");
-                Logger.Exception(ex);
-            }
-            finally
-            {
-                //Close the zip file
-                zip?.Dispose();
-                //Write info to log.
-                Logger.Info(textBox1.Text);
-            }
+            //    #endregion Extract zip file to Module folder.
+
+            //    backgroundWorker.ReportProgress(++step,
+            //        "New module had been imported. Please restart the application to use the new module.");
+            //}
+            //catch (Exception ex)
+            //{
+            //    backgroundWorker.ReportProgress(++step, $"Error: {ex.Message}");
+            //    backgroundWorker.ReportProgress(++step,
+            //        "Import module failed. Please re-start the application and try again.");
+            //    Logger.Exception(ex);
+            //}
+            //finally
+            //{
+            //    //Close the zip file
+            //    zip?.Dispose();
+            //    //Write info to log.
+            //    Logger.Info(textBox1.Text);
+            //}
         }
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

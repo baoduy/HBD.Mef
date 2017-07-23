@@ -148,10 +148,6 @@
             this.data_Description.TabIndex = 3;
             this.validationManager1.SetValidators(this.data_Description, new HBD.WinForms.Base.IValidation[0]);
             // 
-            // bindingSource
-            // 
-            this.bindingSource.DataSource = typeof(HBD.Mef.Shell.Configuration.ModuleConfig);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;

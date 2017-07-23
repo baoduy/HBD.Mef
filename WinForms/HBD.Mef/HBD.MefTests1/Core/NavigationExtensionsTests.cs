@@ -59,8 +59,8 @@ namespace HBD.MefTests.Core
             menuSet.Menu("Menu 4").DisplayAt(0);
             menuSet.Menu("Menu 1").DisplayAt(2);
 
-            Assert.AreEqual(menuSet[0].GetValueFromProperty("Title"), "Menu 4");
-            Assert.AreEqual(menuSet[2].GetValueFromProperty("Title"), "Menu 1");
+            Assert.AreEqual(menuSet[0].PropertyValue("Title"), "Menu 4");
+            Assert.AreEqual(menuSet[2].PropertyValue("Title"), "Menu 1");
         }
     }
 }

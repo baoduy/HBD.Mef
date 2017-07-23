@@ -34,12 +34,12 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_Add = new System.Windows.Forms.ToolStripButton();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ctm_Edit = new System.Windows.Forms.ToolStripMenuItem();
             this.col_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_Des = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_Version = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_IsEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctm_Edit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -47,11 +47,13 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_Add});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(500, 25);
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(1165, 37);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -61,7 +63,7 @@
             this.btn_Add.Image = global::HBD.WinForms.ModuleManagement.Plugin.Resource.Add;
             this.btn_Add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(93, 22);
+            this.btn_Add.Size = new System.Drawing.Size(160, 34);
             this.btn_Add.Text = "Add Module";
             this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
@@ -85,27 +87,13 @@
             this.col_IsEnabled});
             this.dataGridView.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(0, 25);
+            this.dataGridView.Location = new System.Drawing.Point(0, 37);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(500, 475);
+            this.dataGridView.Size = new System.Drawing.Size(1165, 886);
             this.dataGridView.TabIndex = 1;
             this.dataGridView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_MouseDoubleClick);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ctm_Edit});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(95, 26);
-            // 
-            // ctm_Edit
-            // 
-            this.ctm_Edit.Name = "ctm_Edit";
-            this.ctm_Edit.Size = new System.Drawing.Size(94, 22);
-            this.ctm_Edit.Text = "&Edit";
-            this.ctm_Edit.Click += new System.EventHandler(this.ctm_Edit_Click);
             // 
             // col_Name
             // 
@@ -139,14 +127,30 @@
             this.col_IsEnabled.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.col_IsEnabled.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctm_Edit});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(122, 38);
+            // 
+            // ctm_Edit
+            // 
+            this.ctm_Edit.Name = "ctm_Edit";
+            this.ctm_Edit.Size = new System.Drawing.Size(121, 34);
+            this.ctm_Edit.Text = "&Edit";
+            this.ctm_Edit.Click += new System.EventHandler(this.ctm_Edit_Click);
+            // 
             // ManageModuleView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "ManageModuleView";
-            this.Size = new System.Drawing.Size(500, 500);
+            this.Size = new System.Drawing.Size(1165, 923);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();

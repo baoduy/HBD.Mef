@@ -13,10 +13,10 @@ namespace HBD.Mef.StTests.TestObs
                 .WithInstance<IPlugin>("Duy", () => new DuyPlugin());
         }
 
-        protected override void ConfigureCatalog(CatalogCollection catalogs)
+        protected override void ConfigureCatalog()
         {
-            base.ConfigureCatalog(catalogs);
-            catalogs.Add(new MultiDirectoriesCatalog(new[] { AppContext.BaseDirectory }, System.IO.SearchOption.AllDirectories, CreateConventionBuilder()));
+            base.ConfigureCatalog();
+            this.Catalogs.Add(new MultiDirectoriesCatalog(new[] { AppContext.BaseDirectory }, System.IO.SearchOption.AllDirectories, CreateConventionBuilder()));
         }
 
         private ConventionBuilder CreateConventionBuilder()

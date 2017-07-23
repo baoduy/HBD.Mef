@@ -69,14 +69,11 @@ namespace HBD.Mef
         ///     Initialize all registered Modules.
         /// </summary>
         protected virtual void InitializeModules()
-            => Container.GetExportedValue<IPluginManager>().Run();
+            => Container.GetExportedValueOrDefault<IPluginManager>()?.Run();
 
         protected override void DoRun()
         {
             base.DoRun();
-
-            Logger.Debug("Register Bootstrapper ProvidedTypes.");
-            RegisterExternalObjects();
 
             Logger.Debug("Initialize Application.");
             InitializeApplication();
