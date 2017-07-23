@@ -17,6 +17,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Hosting\ExtendedContainerConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hosting\IInstanceInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hosting\InstanceInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MefServiceLocatorAdapter.cs" />
   </ItemGroup>
 </Project>

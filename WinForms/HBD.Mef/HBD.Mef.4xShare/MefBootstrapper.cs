@@ -3,8 +3,6 @@
 using System.ComponentModel.Composition;
 using HBD.Mef.Logging;
 using HBD.Mef.Modularity;
-using HBD.Mef.Services;
-using Microsoft.Practices.ServiceLocation;
 using System.ComponentModel.Composition.Registration;
 
 #endregion

@@ -11,7 +11,6 @@ using HBD.Mef.Catalogs;
 #else 
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using Microsoft.Practices.ServiceLocation;
 using System.ComponentModel.Composition.Registration;
 #endif
 

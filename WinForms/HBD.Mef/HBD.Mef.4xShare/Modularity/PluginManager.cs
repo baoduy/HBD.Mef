@@ -8,7 +8,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using HBD.Framework.Exceptions;
 using HBD.Framework;
-using Microsoft.Practices.ServiceLocation;
+using HBD.ServiceLocator;
 
 namespace HBD.Mef.Modularity
 {

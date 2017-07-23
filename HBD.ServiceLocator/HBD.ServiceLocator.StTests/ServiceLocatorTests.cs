@@ -5,7 +5,7 @@ using Moq.Protected;
 using System;
 using System.Collections.Generic;
 
-namespace HBD.ServiceLocator.StTests
+namespace HBD.ServiceLocators.StTests
 {
     [TestClass]
     public class ServiceLocatorTests

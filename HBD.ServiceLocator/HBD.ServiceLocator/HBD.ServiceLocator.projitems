@@ -6,7 +6,7 @@
     <SharedGUID>8c37717d-c021-4fdd-a4b7-a6561a5ce5ce</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>HBD.ServiceLocator</Import_RootNamespace>
+    <Import_RootNamespace>HBD</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)IServiceLocator.cs" />

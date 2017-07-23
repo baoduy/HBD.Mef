@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition.Hosting;
 
-namespace HBD.ServiceLocator
+namespace HBD
 {
     public static partial class ServiceLocator
     {

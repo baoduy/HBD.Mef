@@ -4,7 +4,7 @@
 using System.Composition;
 #endif
 
-namespace HBD.ServiceLocator
+namespace HBD
 {
     public static partial class ServiceLocator
     {

@@ -27,6 +27,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.ServiceLocator.FullTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.ServiceLocator.StTests", "HBD.ServiceLocator.StTests\HBD.ServiceLocator.StTests.csproj", "{411F30B6-C4D8-4999-B1FC-676218DBB8FA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{F4AE48AA-5B64-4821-A37B-0C3A54AEDAF9}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\HBD.ServiceLocatorCSharp.ruleset = SonarQube\HBD.ServiceLocatorCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		HBD.ServiceLocator\HBD.ServiceLocator.projitems*{0f785787-922c-4bc8-97d7-527003262851}*SharedItemsImports = 4

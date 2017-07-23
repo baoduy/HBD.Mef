@@ -1,8 +1,8 @@
 ﻿#region using
 
 using System.ComponentModel.Composition;
-using Microsoft.Practices.ServiceLocation;
 using HBD.Mef.Logging;
+using HBD.ServiceLocator;
 
 #endregion
 

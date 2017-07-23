@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HBD.ServiceLocator
+namespace HBD
 {
     public abstract class ServiceLocatorBase : IServiceLocator
     {

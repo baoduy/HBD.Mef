@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HBD.ServiceLocator
+namespace HBD
 {
     public interface IServiceLocator : IServiceProvider
     {

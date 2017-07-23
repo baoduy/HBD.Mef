@@ -17,7 +17,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Modularity\PluginBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Modularity\PluginExportAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Modularity\PluginManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MefServiceLocatorAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Configuration\IShellConfigManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Configuration\ShellConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Configuration\ShellConfigManager.cs" />

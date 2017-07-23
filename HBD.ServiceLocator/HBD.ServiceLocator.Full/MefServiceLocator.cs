@@ -7,7 +7,7 @@ using System.Linq;
 
 #endregion
 
-namespace HBD.ServiceLocator
+namespace HBD
 {
     public class MefServiceLocator : ServiceLocatorBase
     {

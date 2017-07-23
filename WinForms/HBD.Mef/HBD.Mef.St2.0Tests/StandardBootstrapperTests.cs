@@ -1,6 +1,4 @@
-﻿using Castle.Core.Logging;
-using HBD.Mef;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Moq.Protected;
 using System.Linq;

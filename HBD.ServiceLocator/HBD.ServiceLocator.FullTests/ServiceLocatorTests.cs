@@ -1,13 +1,9 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HBD.ServiceLocator.FullTests
+namespace HBD.ServiceLocators.FullTests
 {
     [TestClass]
     public class ServiceLocatorTests
