@@ -37,9 +37,7 @@ namespace HBD.Mef
         protected virtual CompositionContext CreateContainer()
         {
             var context = CreateContainerConfiguration().CreateContainer();
-#if NETSTANDARD2_0
-            Microsoft.Practices.ServiceLocation.ServiceLocator.SetLocatorProvider(() => new Mef.Services.MefServiceLocatorAdapter(context));
-#endif
+            ServiceLocator.SetServiceLocator(() => context);
             return context;
         }
 
@@ -48,9 +46,7 @@ namespace HBD.Mef
             var configuration = new ExtendedContainerConfiguration()
                 .WithInstance(() => Logger)
                 .WithInstance(() => this.Container)
-#if NETSTANDARD2_0
-                .WithInstance<Microsoft.Practices.ServiceLocation.IServiceLocator>(() => new Services.MefServiceLocatorAdapter(this.Container))
-#endif
+                .WithInstance<IServiceLocator>(() => new MefServiceLocator(this.Container))
                 .WithAssembly(typeof(StandardBootstrapper).GetTypeInfo().Assembly);
 
             foreach (var item in Catalogs)
@@ -74,7 +70,9 @@ namespace HBD.Mef
 
         protected virtual CompositionContainer CreateContainer()
         {
-            return new CompositionContainer(AggregateCatalog);
+            var container = new CompositionContainer(AggregateCatalog);
+            ServiceLocator.SetServiceLocator(() => container);
+            return container;
         }
 
         protected virtual void ConfigureAggregateCatalog()
@@ -101,6 +99,7 @@ namespace HBD.Mef
             Container.ComposeExportedValue(AggregateCatalog);
             Container.ComposeExportedValue(Container);
             Container.ComposeExportedValue<ICompositionService>(Container);
+            Container.ComposeExportedValue<IServiceLocator>(new MefServiceLocator(Container));
         }
 
 #endif

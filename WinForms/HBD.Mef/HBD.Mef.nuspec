@@ -15,7 +15,8 @@
       Version ${NugetVersion}
       - Added ExtendedCompositionHost and ExtendedContainerConfiguration that allows to import the object instance into Mef-core, similar with ComposeExportedValue in Mef.
       - Override the method CreateContainerConfiguration and using WithInstance to import the object instance into Mef-core.
-
+      - Say good by the CommonServiceLocator and welcome onboard HBD.ServiceLocator.
+      
       Full .Net Framework Only.
       - The ModuleInfoAttribute had been added to replace the Module configuration file.
       - Customize the module activator allow to enable or disable via Module activator adapter.
@@ -56,7 +57,7 @@
       <group targetFramework=".NETFramework4.5.2">
         <dependency id="HBD.Framework" version="2.0.0-preview3" />
         <dependency id="HBD.Mef.Logging" version="2.0.0-preview2"/>
-        <dependency id="CommonServiceLocator" version="1.3"/>
+        <dependency id="HBD.ServiceLocator" version="1.0.0-preview2"/>
         <dependency id="Newtonsoft.Json" version="10.0.3"/>
       </group>
       <group targetFramework=".NETStandard1.6">
@@ -64,6 +65,7 @@
         <dependency id="HBD.Framework" version="2.0.0-preview3" />
         <dependency id="HBD.Mef.Logging" version="2.0.0-preview2"/>
         <dependency id="Microsoft.Composition" version="1.0.31"/>
+        <dependency id="HBD.ServiceLocator" version="1.0.0-preview2"/>
         <dependency id="System.Runtime.Loader" version="4.3.0"/>
       </group>
       <group targetFramework="NETStandard2.0">
@@ -71,7 +73,7 @@
         <dependency id="HBD.Framework" version="2.0.0-preview3" />
         <dependency id="HBD.Mef.Logging" version="2.0.0-preview2"/>
         <dependency id="CommonServiceLocator" version="1.3"/>
-        <dependency id="Microsoft.Composition" version="1.0.31"/>
+        <dependency id="HBD.ServiceLocator" version="1.0.0-preview2"/>
         <dependency id="System.Runtime.Loader" version="4.3.0"/>
       </group>
     </dependencies>

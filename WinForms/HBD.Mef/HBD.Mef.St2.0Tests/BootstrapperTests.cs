@@ -20,7 +20,7 @@ namespace HBD.Mef.StTests
         [TestMethod]
         public void TestServiceLocator()
         {
-            var p1 = Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<TestObs.StartUp2>();
+            var p1 = ServiceLocator.Current.GetInstance<TestObs.StartUp2>();
             Assert.IsNotNull(p1);
         }
 
@@ -63,7 +63,7 @@ namespace HBD.Mef.StTests
         [TestMethod]
         public void Able_To_Get_IServiceLocator()
         {
-            var a = b.Container.GetExport<Microsoft.Practices.ServiceLocation.IServiceLocator>();
+            var a = b.Container.GetExport<IServiceLocator>();
             Assert.IsNotNull(a);
         }
 
@@ -75,6 +75,14 @@ namespace HBD.Mef.StTests
             Assert.IsNotNull(a);
             Assert.IsNotNull(a.PropertyValue("Container"));
             Assert.IsNotNull(a.PropertyValue("Logger"));
+        }
+
+        [TestMethod]
+        public void ServiceLocator_Is_Not_Null()
+        {
+            var s = b.Container.GetExport<IServiceLocator>();
+            Assert.IsNotNull(s);
+            Assert.IsNotNull(ServiceLocator.Current);
         }
     }
 }

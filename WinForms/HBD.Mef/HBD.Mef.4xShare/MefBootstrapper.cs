@@ -38,15 +38,6 @@ namespace HBD.Mef
         }
 
         /// <summary>
-        /// Register the external and singleton objects to Mef.
-        /// </summary>
-        protected override void RegisterExternalObjects()
-        {
-            base.RegisterExternalObjects();
-            Container.ComposeExportedValue<IServiceLocator>(new MefServiceLocatorAdapter(Container));
-        }
-
-        /// <summary>
         ///     using this.AggregateCatalog.Catalogs.Add(new TypeCatalog(typeof())) to register default
         ///     type if missing.
         /// </summary>

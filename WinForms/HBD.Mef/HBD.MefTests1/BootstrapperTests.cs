@@ -88,7 +88,7 @@ namespace HBD.MefTests
         [TestMethod]
         public void Able_To_Get_IServiceLocator()
         {
-            var a = TestBootstrapper.Default.Container.GetExportedValue<Microsoft.Practices.ServiceLocation.IServiceLocator>();
+            var a = TestBootstrapper.Default.Container.GetExportedValue<IServiceLocator>();
             Assert.IsNotNull(a);
         }
 
@@ -107,6 +107,14 @@ namespace HBD.MefTests
             Assert.IsNotNull(a);
             Assert.IsNotNull(a.Container);
             Assert.IsNotNull(a.Logger);
+        }
+
+        [TestMethod]
+        public void ServiceLocator_Is_Not_Null()
+        {
+            var s = TestBootstrapper.Default.Container.GetExportedValue<IServiceLocator>();
+            Assert.IsNotNull(s);
+            Assert.IsNotNull(ServiceLocator.Current);
         }
     }
 }

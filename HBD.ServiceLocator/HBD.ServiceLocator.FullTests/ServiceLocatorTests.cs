@@ -13,6 +13,7 @@ namespace HBD.ServiceLocators.FullTests
         {
             Action a = () => ServiceLocator.Current.GetInstance(null);
             a.ShouldThrow<InvalidOperationException>();
+            ServiceLocator.IsServiceLocatorSet.Should().BeFalse();
         }
 
         [TestMethod]
@@ -46,6 +47,8 @@ namespace HBD.ServiceLocators.FullTests
 
             Action b = () => ServiceLocator.Current.GetAllInstances(typeof(object));
             b.ShouldNotThrow();
+
+            ServiceLocator.IsServiceLocatorSet.Should().BeTrue();
         }
 
         [TestMethod]
@@ -60,6 +63,8 @@ namespace HBD.ServiceLocators.FullTests
                     return null;
                 return new MefServiceLocator(new CompositionContainer(new AggregateCatalog()));
             });
+
+            ServiceLocator.IsServiceLocatorSet.Should().BeTrue();
 
             Action a = () => ServiceLocator.Current.GetAllInstances(null);
             a.ShouldThrow<Exception>();

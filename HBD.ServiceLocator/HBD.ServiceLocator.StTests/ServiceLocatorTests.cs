@@ -15,6 +15,7 @@ namespace HBD.ServiceLocators.StTests
         {
             Action a = () => ServiceLocator.Current.GetInstance(null);
             a.ShouldThrow<InvalidOperationException>();
+            ServiceLocator.IsServiceLocatorSet.Should().BeFalse();
         }
 
         [TestMethod]
@@ -47,6 +48,8 @@ namespace HBD.ServiceLocators.StTests
 
                 return mock.Object;
             });
+
+            ServiceLocator.IsServiceLocatorSet.Should().BeTrue();
 
             Action a = () => ServiceLocator.Current.GetAllInstances(null);
             a.ShouldThrow<Exception>();

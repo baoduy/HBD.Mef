@@ -13,6 +13,9 @@ namespace HBD
 
         public static IServiceLocator Current => GetOrInitialize();
 
+        public static bool IsServiceLocatorSet
+            => currentProvider != null || serviceLocatorBuilder != null;
+
         private static IServiceLocator GetOrInitialize()
         {
             if (currentProvider == null && serviceLocatorBuilder == null)

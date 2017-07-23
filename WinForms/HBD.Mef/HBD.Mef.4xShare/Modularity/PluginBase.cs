@@ -2,7 +2,6 @@
 
 using System.ComponentModel.Composition;
 using HBD.Mef.Logging;
-using HBD.ServiceLocator;
 
 #endregion
 
