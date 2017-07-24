@@ -4,7 +4,7 @@
   <metadata>
     <id>HBD.ServiceLocator</id>
     <version>${NugetVersion}</version>
-    <title>HBD.Mef</title>
+    <title>HBD.ServiceLocator</title>
     <authors>Duy Hoang</authors>
     <owners>Duy Hoang</owners>
     <description>
