@@ -84,5 +84,20 @@ namespace HBD.Mef.StTests
             Assert.IsNotNull(s);
             Assert.IsNotNull(ServiceLocator.Current);
         }
+
+        [TestMethod]
+        public void ServiceLocator_GetInstance()
+        {
+            var s = ServiceLocator.Current.GetInstance<StartUp1>();
+            Assert.IsNotNull(s);
+        }
+
+        [TestMethod]
+        public void ServiceLocator_GetAllInstances()
+        {
+            var ss = ServiceLocator.Current.GetAllInstances<IPlugin>();
+            Assert.IsNotNull(ss);
+            Assert.IsTrue(ss.Count() >= 3);
+        }
     }
 }

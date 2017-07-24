@@ -14,7 +14,7 @@ namespace HBD
             => _compositionContainer = compositionContainer ?? throw new ArgumentNullException(nameof(compositionContainer));
 
         protected override IEnumerable<object> DoGetAllInstances(Type serviceType)
-            => _compositionContainer.GetExports(serviceType, string.Empty);
+            => _compositionContainer.GetExports(serviceType);
 
         protected override object DoGetInstance(Type serviceType, string key)
             => _compositionContainer.GetExport(serviceType, key);
