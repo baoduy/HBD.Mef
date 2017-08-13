@@ -29,6 +29,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -147,16 +148,6 @@
     <Content Include="AzureNote.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AzureInterfaces\AzureInterfaces.csproj">
-      <Project>{335725a2-b414-41e2-a347-ee462b90131d}</Project>
-      <Name>AzureInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AzureNoteEntities\AzureNoteEntities.csproj">
-      <Project>{90f7c43e-15de-4f59-a66b-5a247e9fbef5}</Project>
-      <Name>AzureNoteEntities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +160,20 @@
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\HBD.Mvc.Shell\AzureInterfaces\AzureInterfaces.csproj">
+      <Project>{335725a2-b414-41e2-a347-ee462b90131d}</Project>
+      <Name>AzureInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HBD.Mvc.Shell\AzureNoteEntities\AzureNoteEntities.csproj">
+      <Project>{90f7c43e-15de-4f59-a66b-5a247e9fbef5}</Project>
+      <Name>AzureNoteEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HBD.Mvc.Shell\AzureStorage\AzureStorage.csproj">
+      <Project>{9a19e4cd-b965-4611-b4e2-3bcc658509f6}</Project>
+      <Name>AzureStorage</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

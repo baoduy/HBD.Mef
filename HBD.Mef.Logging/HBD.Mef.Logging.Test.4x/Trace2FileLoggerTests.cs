@@ -15,7 +15,7 @@ namespace HBD.MefTests.Core.Logging
         [TestCleanup]
         public void Cleanup()
         {
-            HBD.Framework.IO.DirectoryEx.DeleteDirectories("Logs");
+            Directory.Delete("Logs",true);
         }
 
         [TestMethod]

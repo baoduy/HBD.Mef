@@ -9,7 +9,9 @@ namespace HBD.Mef.Logging
 {
     public abstract class LoggerBase : ILogger
     {
-        public const string AllowDebugLogKey = "HBD.Logging.AllowDebugLog";
+#if !NETSTANDARD2_0 || !NETSTANDARD1_6
+        public const string AppSettingKey="HBD.Mef.Logging.AllowDebugLog";
+#endif
 
         public readonly string DefaultOutFileName;
         public bool AllowDebugLog { get; }
@@ -20,8 +22,10 @@ namespace HBD.Mef.Logging
             DefaultOutFileName = Path.Combine(AppContext.BaseDirectory, $"Logs\\Log_{GetType().Name}.log");
 #else
             DefaultOutFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Logs\\Log_{GetType().Name}.log");
-            if(!allowDebugLog)
-                allowDebugLog = HBD.Framework.Configuration.ConfigurationManager.GetAppSettingValue<bool>(AllowDebugLogKey);
+
+            var appSetting = System.Configuration.ConfigurationManager.AppSettings[AppSettingKey];
+            if (string.Compare(appSetting, bool.TrueString, StringComparison.OrdinalIgnoreCase) == 0)
+                allowDebugLog = true;
 #endif
             AllowDebugLog = allowDebugLog;
         }

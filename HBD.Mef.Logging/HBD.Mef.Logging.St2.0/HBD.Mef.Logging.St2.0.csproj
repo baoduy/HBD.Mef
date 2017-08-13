@@ -9,8 +9,11 @@
   <Import Project="..\HBD.Mef.Logging.Share\HBD.Mef.Logging.Share.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="HBD.Framework" Version="2.0.0-preview3" />
     <PackageReference Include="log4net" Version="2.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="NETStandard.Library" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

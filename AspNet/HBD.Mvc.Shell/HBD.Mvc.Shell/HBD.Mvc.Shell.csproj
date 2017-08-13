@@ -31,7 +31,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
     <ApplicationInsightsResourceId>/subscriptions/03b96d5e-2477-4844-80fe-f403177f7b6d/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HBD.Mvc.Shell</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/03b96d5e-2477-4844-80fe-f403177f7b6d/resourceGroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HBD.Mvc.Shell</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>

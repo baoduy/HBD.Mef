@@ -7,7 +7,7 @@
 # HBD.ServiceLocator
 Similar to CommonServiceLocator in nuget. However, this implementation of IServiceProvider using Mef and widely supports for all .Net Framework from 4.5 to Standard 1.6 and 2.0.
 
-With this implementation it provides the easy way to share the instance of Mef container to all the modules, libraries in separate projects regardless how the Mef container had been initialized.
+With this implementation it provides the easy way to share the instance of Mef container to across the modules, libraries in separate projects regardless how the Mef container had been initialized.
 
 If you want to use the custom Dependency Injection *(Example: Ninject, Unity or AutoFact)* you can create your own IServiceLocator for your container.
 

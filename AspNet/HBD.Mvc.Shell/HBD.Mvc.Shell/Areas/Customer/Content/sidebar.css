@@ -1,0 +1,160 @@
+﻿#sidebar-content, #sidebar {
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transition: all 0.5s ease;
+}
+
+#sidebar {
+    background-color: #312A25 !Important;
+    height: 100%;
+    left: 250px;
+    top: 70px;
+    margin-left: -250px;
+    margin-top: -20px;
+    overflow: hidden;
+    position: fixed;
+    transition: all 0.5s ease;
+    width: 250px;
+    z-index: 1000;
+    font-size: 14px;
+}
+
+.sidebar-fixed {
+    position: relative;
+    margin: 10px;
+}
+
+    .sidebar-fixed > a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        height: 40px;
+        overflow: hidden;
+        padding-right: 0;
+        padding-top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 40px;
+        text-indent: 5px;
+    }
+
+        .sidebar-fixed > a > span {
+            margin-left: 5px;
+        }
+
+        .sidebar-fixed > a:focus,
+        .sidebar-fixed > a:hover,
+        .sidebar-fixed > a:active {
+            background: darkslategrey;
+        }
+
+    .sidebar-fixed > hr {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+#menu-toggle {
+    display: block;
+    padding-left:0px;
+    margin-left:0px;
+    font-size: 18px;
+    margin-top:-5px;
+}
+
+    #menu-toggle:hover,
+    #menu-toggle:focus,
+    #menu-toggle:active {
+        background: none;
+    }
+
+.sidebar-nav {
+    list-style:none;
+    margin:10px;
+    padding:0px;
+}
+    .sidebar-nav li a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        height: 40px;
+        overflow: hidden;
+        padding-right: 0;
+        padding-top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 40px;
+        text-indent: 5px;
+    }
+
+        .sidebar-nav li a span {
+            margin-left: 5px;
+        }
+
+        .sidebar-nav li a:focus,
+        .sidebar-nav li a:hover,
+        .sidebar-nav li a:active {
+            background: darkslategrey;
+        }
+
+#sidebar.toggled {
+    width: 50px;
+}
+
+#sidebar.toggled span {
+    visibility:hidden;
+}
+
+    #sidebar.toggled a {
+        text-decoration: none;
+        text-overflow: inherit;
+        white-space: inherit;
+    }
+
+#sidebar-content {
+    margin-left:120px;
+}
+
+#sidebar-content.toggled {
+    margin-left: 0;
+}
+
+@media (max-width: 700px) {
+    #sidebar {
+        width: 50px;
+    }
+
+        #sidebar.toggled {
+            width: 200px;
+        }
+
+            #sidebar a {
+                text-decoration: none;
+                text-overflow: inherit;
+                white-space: inherit;
+            }
+
+        #sidebar.toggled a {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 40px;
+            text-indent: 5px;
+        }
+
+            #sidebar span {
+                visibility: hidden;
+            }
+            #sidebar.toggled span {
+                visibility: visible;
+            }
+
+    #sidebar-content {
+        margin-left: 50px;
+    }
+
+        #sidebar-content.toggled {
+            margin-left: 50px;
+        }
+
+}

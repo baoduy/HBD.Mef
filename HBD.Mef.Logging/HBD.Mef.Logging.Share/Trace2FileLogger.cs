@@ -3,7 +3,6 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using HBD.Framework;
 
 #endregion
 
@@ -16,7 +15,7 @@ namespace HBD.Mef.Logging
 
         public Trace2FileLogger(string outputFile = null,bool allowDebugLog=true):base(allowDebugLog)
         {
-            if (outputFile.IsNullOrEmpty())
+            if (string.IsNullOrWhiteSpace( outputFile))
                 outputFile = DefaultOutFileName;
 
             // ReSharper disable once AssignNullToNotNullAttribute

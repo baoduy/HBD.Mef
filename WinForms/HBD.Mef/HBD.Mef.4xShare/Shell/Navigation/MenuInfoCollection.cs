@@ -8,8 +8,8 @@ using System.Linq;
 
 namespace HBD.Mef.Shell.Navigation
 {
-    [DebuggerDisplay("Count = {Count}")]
-    public class MenuInfoCollection : ObservableSortedCollection<int, IMenuInfo>, IMenuInfoCollection
+    [DebuggerDisplay("Count = {" + nameof(Count) + "}")]
+    public class MenuInfoCollection : ObservableSortedCollection<IMenuInfo>, IMenuInfoCollection
     {
         public MenuInfoCollection() : base(i => i.DisplayIndex)
         {
@@ -17,43 +17,20 @@ namespace HBD.Mef.Shell.Navigation
 
         public virtual IMenuInfo this[string titleOrName] => this.GetItemByTitleOrName(titleOrName);
 
-        public override void Add(IMenuInfo item)
+        protected override void InsertItem(int index, IMenuInfo item)
         {
             if (item.DisplayIndex <= 0)
-            {
-                item.DisplayIndex = Count;
-                item.PropertyChanged += Item_PropertyChanged;
-            }
+                item.DisplayIndex = this.Count + 1;
 
-            base.Add(item);
-        }
-        public override bool Remove(IMenuInfo item)
-        {
-            item.PropertyChanged -= Item_PropertyChanged;
-            return base.Remove(item);
+            base.InsertItem(index, item);
         }
 
-        public override void Clear()
+        protected override void SetItem(int index, IMenuInfo item)
         {
-            foreach (var item in this)
-                item.PropertyChanged -= Item_PropertyChanged;
+            if (item.DisplayIndex <= 0)
+                item.DisplayIndex = this.Count + 1;
 
-            base.Clear();
-        }
-
-        private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            var m = sender as IMenuInfo;
-            if (m == null) return;
-
-            var m1 = this.FirstOrDefault(i => i != m && i.DisplayIndex == m.DisplayIndex);
-            if (m1 == null) return;
-
-            var m0 = this.FirstOrDefault(i => i.DisplayIndex == m1.DisplayIndex - 1);
-
-            if (m0 == null && m1.DisplayIndex > 0)
-                m1.DisplayIndex -= 1;
-            else m1.DisplayIndex += 1;
+            base.SetItem(index, item);
         }
     }
 }

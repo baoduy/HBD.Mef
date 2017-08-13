@@ -9,7 +9,7 @@ namespace HBD.Mef.Logging.Test
         [TestCleanup]
         public void Cleanup()
         {
-            HBD.Framework.IO.DirectoryEx.DeleteDirectories("Logs");
+            Directory.Delete("Logs",true);
         }
 
         [TestMethod]
@@ -41,16 +41,34 @@ namespace HBD.Mef.Logging.Test
         }
 
         [TestMethod]
-        //[ExpectedException(typeof(NullReferenceException))]
+        public void Log4NetLogger_AllowDebugLog_Test()
+        {
+            System.Configuration.ConfigurationManager.AppSettings[Log4NetLogger.AppSettingKey] = bool.TrueString;
+
+            using (var log = new Log4NetLogger())
+            {
+                Assert.IsTrue(log.AllowDebugLog);
+            }
+        }
+
+        [TestMethod]
+        public void Log4NetLogger_NotAllowDebugLog_Test()
+        {
+            System.Configuration.ConfigurationManager.AppSettings[Log4NetLogger.AppSettingKey] = bool.FalseString;
+
+            using (var log = new Log4NetLogger())
+            {
+                Assert.IsFalse(log.AllowDebugLog);
+            }
+        }
+
+        [TestMethod]
         public void DisposeTest()
         {
             var file = "Logs\\Log_Log4NetLogger_DisposeTest.log";
             var log = new Log4NetLogger(file);
             log.Info("Duy");
             log.Dispose();
-           // Assert.IsTrue(File.ReadAllText(file).Contains("Duy"));
-            //log.Dispose();
-            //log.Info("AA");
         }
     }
 }

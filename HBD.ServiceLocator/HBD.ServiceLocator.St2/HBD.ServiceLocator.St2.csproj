@@ -12,4 +12,8 @@
     <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="NETStandard.Library" Version="2.0.0" />
+  </ItemGroup>
+
 </Project>

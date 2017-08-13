@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26711.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account", "Account\Account.csproj", "{EAAD2854-F02C-472F-9176-32C8851EFDD6}"
 EndProject
@@ -31,10 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.md = ReadMe.md
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{295DC1C1-5B2C-494D-A54A-FD1FF6D0E134}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellCodeUITest", "ShellCodeUITest\ShellCodeUITest.csproj", "{C7FC437F-B306-4015-8903-7861871EE54D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,10 +74,6 @@ Global
 		{DC210909-980E-445D-BBEB-917F33A1F6BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC210909-980E-445D-BBEB-917F33A1F6BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC210909-980E-445D-BBEB-917F33A1F6BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7FC437F-B306-4015-8903-7861871EE54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7FC437F-B306-4015-8903-7861871EE54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7FC437F-B306-4015-8903-7861871EE54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7FC437F-B306-4015-8903-7861871EE54D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,55 +88,9 @@ Global
 		{5152026E-789C-4462-B949-7B41DC85FEC2} = {CE8BB2C7-F7BC-4E2C-8FB3-0CE79D8D2E91}
 		{298B7051-E615-435A-B15F-0D93C445BC5F} = {A6D77B3F-AEE6-41DE-A9E0-B7FA8294D54F}
 		{DC210909-980E-445D-BBEB-917F33A1F6BB} = {A6D77B3F-AEE6-41DE-A9E0-B7FA8294D54F}
-		{C7FC437F-B306-4015-8903-7861871EE54D} = {295DC1C1-5B2C-494D-A54A-FD1FF6D0E134}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 11
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://steven2412.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Account\\Account.csproj
-		SccProjectTopLevelParentUniqueName1 = HBD.Mvc.Shell.sln
-		SccProjectName1 = Account
-		SccLocalPath1 = Account
-		SccProjectUniqueName2 = AzureNote\\AzureNote.csproj
-		SccProjectTopLevelParentUniqueName2 = HBD.Mvc.Shell.sln
-		SccProjectName2 = AzureNote
-		SccLocalPath2 = AzureNote
-		SccProjectUniqueName3 = Customer\\Customer.csproj
-		SccProjectTopLevelParentUniqueName3 = HBD.Mvc.Shell.sln
-		SccProjectName3 = Customer
-		SccLocalPath3 = Customer
-		SccProjectUniqueName4 = AzureStorage\\AzureStorage.csproj
-		SccProjectTopLevelParentUniqueName4 = HBD.Mvc.Shell.sln
-		SccProjectName4 = AzureStorage
-		SccLocalPath4 = AzureStorage
-		SccProjectUniqueName5 = AzureInterfaces\\AzureInterfaces.csproj
-		SccProjectTopLevelParentUniqueName5 = HBD.Mvc.Shell.sln
-		SccProjectName5 = AzureInterfaces
-		SccLocalPath5 = AzureInterfaces
-		SccProjectUniqueName6 = AzureNoteEntities\\AzureNoteEntities.csproj
-		SccProjectTopLevelParentUniqueName6 = HBD.Mvc.Shell.sln
-		SccProjectName6 = AzureNoteEntities
-		SccLocalPath6 = AzureNoteEntities
-		SccProjectUniqueName7 = AzureStorageTests\\AzureStorageTests.csproj
-		SccProjectTopLevelParentUniqueName7 = HBD.Mvc.Shell.sln
-		SccProjectName7 = AzureStorageTests
-		SccLocalPath7 = AzureStorageTests
-		SccProjectUniqueName8 = HBD.Mvc.Shell\\HBD.Mvc.Shell.csproj
-		SccProjectTopLevelParentUniqueName8 = HBD.Mvc.Shell.sln
-		SccProjectName8 = HBD.Mvc.Shell
-		SccLocalPath8 = HBD.Mvc.Shell
-		SccProjectUniqueName9 = HBD.Mvc\\HBD.Mvc.csproj
-		SccProjectTopLevelParentUniqueName9 = HBD.Mvc.Shell.sln
-		SccProjectName9 = HBD.Mvc
-		SccLocalPath9 = HBD.Mvc
-		SccProjectUniqueName10 = ShellCodeUITest\\ShellCodeUITest.csproj
-		SccProjectTopLevelParentUniqueName10 = HBD.Mvc.Shell.sln
-		SccProjectName10 = ShellCodeUITest
-		SccLocalPath10 = ShellCodeUITest
+		SolutionGuid = {B7B054B9-B420-4C05-977F-F924CED38D58}
 	EndGlobalSection
 EndGlobal
