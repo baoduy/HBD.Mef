@@ -1,6 +1,5 @@
 ﻿@using System.Collections
 @using HBD.Mef.Mvc.Navigation
-@using Microsoft.Practices.ServiceLocation
 <div class="navbar navbar-default navbar-fixed-top">
 
     <div class="navbar-header">
@@ -14,7 +13,7 @@
         </a>
     </div>
     @{
-        var menuFactory = ServiceLocator.Current.GetInstance<INavigationServiceFactory>();
+        var menuFactory = HBD.ServiceLocator.Current.GetInstance<INavigationServiceFactory>();
 
         var leftMenus = menuFactory.GetLeftMenuFor(User);
         var rightMenus = menuFactory.GetRightMenuFor(User);

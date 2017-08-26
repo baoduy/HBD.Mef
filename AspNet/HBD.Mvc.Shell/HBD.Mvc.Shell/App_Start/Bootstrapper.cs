@@ -1,15 +1,11 @@
 ﻿#region using
 
-using System;
-using HBD.Framework;
 using HBD.Mef.Mvc;
 using HBD.Mef.Mvc.Icons;
-using HBD.Mef.Mvc.Logging;
 using HBD.Mef.Mvc.Navigation;
 using HBD.Mvc.Shell;
 using HBD.Mvc.Shell.Controllers;
 using WebActivatorEx;
-using WebGrease;
 
 #endregion
 

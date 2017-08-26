@@ -57,7 +57,7 @@ namespace HBD.Mef.Mvc.Adapters
 
             var controllerTypes =
                 controllersResolver.GetControllerTypes(assembliesResolver)
-                    .Where(t => t.Name.StartsWith(controllerName)).ToArray();
+                    .Where(t => t.Name.StartsWith(controllerName, StringComparison.OrdinalIgnoreCase)).ToArray();
 
             Type[] foundTypes = null;
             if (controllerTypes.Length > 0)

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.Mvc", "HBD.Mef.Mvc\HBD.Mef.Mvc.csproj", "{CCBA07D8-2492-4A87-9C98-824C5FFD3D10}"
 EndProject
@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.MvcTests", "HBD.Mef
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1C27995-FB75-4B4B-AF82-370545B424CB}"
 	ProjectSection(SolutionItems) = preProject
+		HBD.Mef.Mvc.nuspec = HBD.Mef.Mvc.nuspec
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
@@ -74,47 +75,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 10
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://steven2412.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = HBD.Mef.Mvc\\HBD.Mef.Mvc.csproj
-		SccProjectTopLevelParentUniqueName1 = HBD.Mef.Mvc.sln
-		SccProjectName1 = HBD.Mef.Mvc
-		SccLocalPath1 = HBD.Mef.Mvc
-		SccProjectUniqueName2 = HBD.Mef.MvcTests\\HBD.Mef.MvcTests.csproj
-		SccProjectTopLevelParentUniqueName2 = HBD.Mef.Mvc.sln
-		SccProjectName2 = HBD.Mef.MvcTests
-		SccLocalPath2 = HBD.Mef.MvcTests
-		SccProjectUniqueName3 = HBD.Mef.Mvc.St\\HBD.Mef.Mvc.St.csproj
-		SccProjectTopLevelParentUniqueName3 = HBD.Mef.Mvc.sln
-		SccProjectName3 = HBD.Mef.Mvc.St
-		SccLocalPath3 = HBD.Mef.Mvc.St
-		SccProjectUniqueName4 = HBD.Mef.Mvc.Share\\HBD.Mef.Mvc.Share.shproj
-		SccProjectTopLevelParentUniqueName4 = HBD.Mef.Mvc.sln
-		SccProjectName4 = HBD.Mef.Mvc.Share
-		SccLocalPath4 = HBD.Mef.Mvc.Share
-		SccProjectUniqueName5 = HBD.Mef.Mvc.Share\\HBD.Mef.Mvc.Share.projitems
-		SccProjectTopLevelParentUniqueName5 = HBD.Mef.Mvc.Share\\HBD.Mef.Mvc.Share.shproj
-		SccProjectName5 = HBD.Mef.Mvc.Share
-		SccLocalPath5 = HBD.Mef.Mvc.Share
-		SccProjectUniqueName6 = HBD.Shell.Navigation\\HBD.Shell.Navigation.shproj
-		SccProjectTopLevelParentUniqueName6 = HBD.Mef.Mvc.sln
-		SccProjectName6 = HBD.Shell.Navigation
-		SccLocalPath6 = HBD.Shell.Navigation
-		SccProjectUniqueName7 = HBD.Shell.Navigation\\HBD.Shell.Navigation.projitems
-		SccProjectTopLevelParentUniqueName7 = HBD.Mef.Mvc.sln
-		SccProjectName7 = HBD.Shell.Navigation
-		SccLocalPath7 = HBD.Shell.Navigation
-		SccProjectUniqueName8 = HBD.Shell.TwoLevelNavigation\\HBD.Shell.TwoLevelNavigation.csproj
-		SccProjectTopLevelParentUniqueName8 = HBD.Mef.Mvc.sln
-		SccProjectName8 = HBD.Shell.TwoLevelNavigation
-		SccLocalPath8 = HBD.Shell.TwoLevelNavigation
-		SccProjectUniqueName9 = HBD.Shell.MultiLevelNavigation\\HBD.Shell.MultiLevelNavigation.csproj
-		SccProjectTopLevelParentUniqueName9 = HBD.Mef.Mvc.sln
-		SccProjectName9 = HBD.Shell.MultiLevelNavigation
-		SccLocalPath9 = HBD.Shell.MultiLevelNavigation
+		SolutionGuid = {8970F6E1-7839-43ED-9AB7-D54F47364533}
 	EndGlobalSection
 EndGlobal

@@ -160,9 +160,6 @@
     <Compile Include="Services\MefApiDependencyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="HBD.Mef.Mvc.nuspec">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

@@ -1,9 +1,8 @@
 ﻿@using HBD.Mef.Mvc.Core
 @using HBD.Mef.Mvc.Navigation
 @using HBD.Mef.Mvc.Navigation.NavigateInfo
-@using Microsoft.Practices.ServiceLocation
 @{
-    var footerService = ServiceLocator.Current.GetInstance<IFooterNavigationService>();
+    var footerService = HBD.ServiceLocator.Current.GetInstance<IFooterNavigationService>();
     var items = footerService.GetMenuFor(User);
     var leftMenus = items.OfType<IDisplayability>().Where(i => i.Alignment == MenuAlignment.Left).ToList();
     var rightMenus = items.OfType<IDisplayability>().Where(i => i.Alignment == MenuAlignment.Right).ToList();
