@@ -12,7 +12,11 @@
     <releaseNotes>
       Version ${NugetVersion}
       - Using the HBD.Mef.Logging instead.
-      - Seperate the Navigation to HBD.Shell.Navigation project that provides the flexibility to custom the Navigation for the Workspace.
+      - Separate the Navigation to HBD.Shell.Navigation project that provides the flexibility to custom the Navigation for the Workspace.
+      - Update to the HBD.Framework 2.0.0
+      - Update to the HBD.Mef.Logging 2.0.0
+      - Say good by CommonServiceLocator and welcome on-board HBD.ServiceLocator 1.0.0
+      - Support .Net framework 4.5.2 onward.
       
       Version 1.0.5
       - Allow to log the debug info in Log4NetLogger by add the key 'HBD.Logging.AllowDebugLog' to the AppSettings.
@@ -45,7 +49,7 @@
     <summary>
       The Mef (Dependence injection) for Mvc5 and Mvc6 that support to build the independent Areas for Mvc application.
       - Allow to register the navigations for an Area at runtime.
-      - Allow to render the Area bundle for seperate Areas in order to prevent the resource conflict between the Areas.
+      - Allow to render the Area bundle for separate Areas in order to prevent the resource conflict between the Areas.
     </summary>
     <language>en-US</language>
     <projectUrl>https://github.com/baoduy/HBD.Mef.Mvc</projectUrl>

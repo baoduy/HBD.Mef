@@ -1,11 +1,6 @@
 ﻿using HBD.Mef.Logging;
 using HBD.Mef.MvcTests.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HBD.Mef.MvcTests
 {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
-using Microsoft.Practices.ServiceLocation;
 
 namespace HBD.Mef.Mvc.Services
 {

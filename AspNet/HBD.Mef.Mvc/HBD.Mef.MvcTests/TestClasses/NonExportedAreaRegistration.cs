@@ -1,10 +1,8 @@
 ﻿#region using
 
-using System.ComponentModel.Composition;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using HBD.Mef.Mvc;
-using HBD.Mef.Mvc.Core;
 using HBD.Mef.Mvc.Navigation;
 
 #endregion

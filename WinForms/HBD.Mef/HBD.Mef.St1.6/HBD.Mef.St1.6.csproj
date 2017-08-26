@@ -11,9 +11,9 @@
   <Import Project="..\HBD.Mef.StShare\HBD.Mef.StShare.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="HBD.Framework" Version="2.0.0-preview14" />
-    <PackageReference Include="HBD.Mef.Logging" Version="2.0.0-preview4" />
-    <PackageReference Include="HBD.ServiceLocator" Version="1.0.0-preview5" />
+    <PackageReference Include="HBD.Framework" Version="2.0.0" />
+    <PackageReference Include="HBD.Mef.Logging" Version="2.0.0" />
+    <PackageReference Include="HBD.ServiceLocator" Version="1.0.0" />
     <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
   </ItemGroup>

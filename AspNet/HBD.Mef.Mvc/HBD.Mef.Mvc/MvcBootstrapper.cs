@@ -6,7 +6,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Registration;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Controllers;
@@ -20,7 +19,6 @@ using HBD.Mef.Mvc.Catalogs;
 using HBD.Mef.Mvc.Core;
 using HBD.Mef.Mvc.Navigation;
 using HBD.Mef.Mvc.Services;
-using Microsoft.Practices.ServiceLocation;
 using HBD.Mef.Logging;
 
 #endregion
@@ -39,7 +37,7 @@ namespace HBD.Mef.Mvc
         protected virtual void SetResolver()
         {
             DependencyResolver.SetResolver(Container.GetExportedValue<IServiceLocator>());
-            ServiceLocator.SetLocatorProvider(() => Container.GetExportedValue<IServiceLocator>());
+            HBD.ServiceLocator.SetServiceLocator(() => Container);
 
             if (GlobalConfiguration.Configuration != null)
                 GlobalConfiguration.Configuration.DependencyResolver =
@@ -145,7 +143,7 @@ namespace HBD.Mef.Mvc
             Container.ComposeExportedValue(Logger);
             Container.ComposeExportedValue(Container);
             Container.ComposeExportedValue<ICompositionService>(Container);
-            Container.ComposeExportedValue<IServiceLocator>(new MefServiceLocatorAdapter(Container, Logger));
+            Container.ComposeExportedValue<IServiceLocator>(new HBD.MefServiceLocator(Container));
             Container.ComposeExportedValue<IHttpControllerSelector>(
                 new MefApiHttpControllerSelector(GlobalConfiguration.Configuration, Logger));
         }
@@ -168,7 +166,7 @@ namespace HBD.Mef.Mvc
                 //}
                 //catch
                 //{
-                //    //Ignored when the are already registerd by default.
+                //    //Ignored when the are already registered by default.
                 //}
 
                 if (!menuService.IsRegistered(a.AreaName))

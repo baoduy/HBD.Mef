@@ -6,7 +6,6 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using HBD.Mef.Mvc.Core;
-using Microsoft.Practices.ServiceLocation;
 using HBD.Mef.Logging;
 
 namespace HBD.Mef.Mvc.Adapters

@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using HBD.Framework.Attributes;
 using HBD.Framework.Core;
-using Microsoft.Practices.ServiceLocation;
 using System.Security.Principal;
 
 #endregion
