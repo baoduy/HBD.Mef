@@ -14,7 +14,7 @@ namespace HBD.Mef.Mvc.Adapters
     ///     This MefApiHttpControllerSelector allow to load the duplicated controllers from difference binaries based on the
     ///     Area name in the router.
     ///     This selector had been tested on the route "api/{area}/{controller}/{id}".
-    ///     If the Area on the request is not found in the Module Mapping. The the default controller in Shell binariy will be
+    ///     If the Area on the request is not found in the Module Mapping. The default controller in Shell binary will be
     ///     picked up.
     /// </summary>
     public class MefApiHttpControllerSelector : DefaultHttpControllerSelector
@@ -80,7 +80,7 @@ namespace HBD.Mef.Mvc.Adapters
             //If there is more than 1 type in the Assembly then the exception will be threw in the base class.
             if (foundTypes == null || foundTypes.Length <= 0)
             {
-                Logger?.Exception($"The controller of '{areaName}' and controller: '{controllerName}' is not found.");
+                Logger?.Exception($"The area '{areaName}' or controller: '{controllerName}' is not found.");
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
