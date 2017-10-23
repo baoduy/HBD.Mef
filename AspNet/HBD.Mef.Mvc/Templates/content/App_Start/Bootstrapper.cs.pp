@@ -34,6 +34,14 @@ namespace $rootnamespace$
 
         private static Bootstrapper Current { get; set; }
 
+		/// <summary>
+        /// Get exported object from Mef Container.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T GetExportedOrDefault<T>()
+            => Current.Container.GetExportedValueOrDefault<T>();
+
         public static void AppPreStart() => (Current = new Bootstrapper()).Start();
         public static void AppPostStart() => Current.PostStart();
         public static void AppShutdown() => Current.Shutdown();

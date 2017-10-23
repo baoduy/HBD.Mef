@@ -1,11 +1,11 @@
 ﻿#region using
 
+using System.Linq;
 using log4net;
 using log4net.Appender;
 using log4net.Core;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
-using System.Linq;
 
 #endregion
 
@@ -13,16 +13,14 @@ namespace HBD.Mef.Logging
 {
     public class Log4NetLogger : LoggerBase
     {
-       
-
         private readonly ILog _log;
 
-        public Log4NetLogger(string outputFile = null, bool allowDebugLog = false):base(allowDebugLog)
+        public Log4NetLogger(string outputFile = null, bool allowDebugLog = false) : base(allowDebugLog)
         {
             if (string.IsNullOrWhiteSpace(outputFile))
                 outputFile = DefaultOutFileName;
 
-            var type = this.GetType();
+            var type = GetType();
             Hierarchy hierarchy = null;
 
             try
@@ -31,7 +29,7 @@ namespace HBD.Mef.Logging
             }
             catch
             {
-                hierarchy = (Hierarchy)LogManager.CreateRepository(type.FullName);
+                hierarchy = (Hierarchy) LogManager.CreateRepository(type.FullName);
             }
 
             var roller = new RollingFileAppender
@@ -42,7 +40,7 @@ namespace HBD.Mef.Logging
                 MaxSizeRollBackups = 5,
                 MaximumFileSize = "5MB",
                 RollingStyle = RollingFileAppender.RollingMode.Composite,
-                StaticLogFileName = true,
+                StaticLogFileName = true
             };
 
             roller.ActivateOptions();

@@ -15,14 +15,16 @@ using HBD.Framework.Attributes;
 
 namespace HBD.Mef.Mvc.Catalogs
 {
+    /// <inheritdoc cref="" />
     /// <summary>
     ///     Load the assemblies from the paths dynamically. If there are 2 version of the same binary it will load 1 only.
     ///     The ExcludedBinaries caon be configured in the App setting with the format as below.
     ///     key:'MultiDirectoriesCatalog:ExcludedBinaries' value:'The name of assemblies separate with comman'
     /// </summary>
-    public class MultiDirectoriesCatalog : ComposablePartCatalog, ICompositionElement
+    public sealed class MultiDirectoriesCatalog : ComposablePartCatalog, ICompositionElement
     {
-        public const string AppSettingKey = "MultiDirectoriesCatalog:ExcludedBinaries";
+        private const string AppSettingKey = "MultiDirectoriesCatalog:ExcludedBinaries";
+        private readonly object _locker = new object();
         private readonly ReflectionContext _context;
         private readonly string[] _paths;
         private readonly SearchOption _searchOption;
@@ -39,7 +41,7 @@ namespace HBD.Mef.Mvc.Catalogs
             _context = context;
             Catalogs = new List<AssemblyCatalog>();
             //SubAppDomains = new ConcurrentDictionary<string, AppDomain>();
-            ExcludedBinaries = new List<string> {"System", "Microsoft"};
+            ExcludedBinaries = new List<string> { "System", "Microsoft" };
         }
 
         //protected ConcurrentDictionary<string, AppDomain> SubAppDomains { get; }
@@ -53,7 +55,7 @@ namespace HBD.Mef.Mvc.Catalogs
             }
         }
 
-        protected IList<AssemblyCatalog> Catalogs { get; }
+        private IList<AssemblyCatalog> Catalogs { get; }
 
         public IList<string> ExcludedBinaries { get; }
 
@@ -74,15 +76,15 @@ namespace HBD.Mef.Mvc.Catalogs
             return Catalogs.SelectMany(c => c.Parts).GetEnumerator();
         }
 
-        protected virtual void Initialize()
+        private void Initialize()
         {
             if (_isInitialized) return;
 
-            lock (_paths)
+            lock (_locker)
             {
                 var excluedSetting = ConfigurationManager.AppSettings[AppSettingKey];
                 if (excluedSetting.IsNotNullOrEmpty())
-                    ExcludedBinaries.AddRange(excluedSetting.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries));
+                    ExcludedBinaries.AddRange(excluedSetting.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
 
                 foreach (var path in _paths)
                 {
@@ -143,8 +145,7 @@ namespace HBD.Mef.Mvc.Catalogs
             var loadedAss = AppDomain.CurrentDomain.GetAssemblies()
                 .FirstOrDefault(a => Path.GetFileNameWithoutExtension(a.CodeBase).StartsWith(fileName));
 
-            if (loadedAss != null) return loadedAss;
-            return Assembly.LoadFrom(file);
+            return loadedAss ?? Assembly.LoadFrom(file);
         }
     }
 }

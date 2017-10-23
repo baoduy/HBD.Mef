@@ -9,6 +9,17 @@ namespace HBD.Mef.Mvc
     {
         public virtual string PrimaryRouteName => $"{AreaName}_Default";
 
+        public override void RegisterArea(AreaRegistrationContext context)
+        {
+            context.Routes.MapRoute(
+                    PrimaryRouteName,
+                    $"{AreaName}/{{controller}}/{{action}}/{{id}}",
+                    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                    new[] { $"{GetType().Namespace}.Controllers" }
+                )
+                .DataTokens.Add("area", AreaName);
+        }
+
         public virtual void RegisterFooterNavigation(IFooterNavigationService footerNavigationService)
         {
         }

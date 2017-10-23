@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.MvcTests", "HBD.Mef
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1C27995-FB75-4B4B-AF82-370545B424CB}"
 	ProjectSection(SolutionItems) = preProject
+		HBD.Mef.Mvc.Bootstrapper.nuspec = HBD.Mef.Mvc.Bootstrapper.nuspec
+		HBD.Mef.Mvc.ModuleRegister.nuspec = HBD.Mef.Mvc.ModuleRegister.nuspec
 		HBD.Mef.Mvc.nuspec = HBD.Mef.Mvc.nuspec
 		ReadMe.md = ReadMe.md
 	EndProjectSection
@@ -26,6 +28,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Shell.TwoLevelNavigation", "HBD.Shell.TwoLevelNavigation\HBD.Shell.TwoLevelNavigation.csproj", "{9B79DF1C-54BA-42E1-9098-7D3C0EDDAF38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Shell.MultiLevelNavigation", "HBD.Shell.MultiLevelNavigation\HBD.Shell.MultiLevelNavigation.csproj", "{A71AF8F3-811A-471F-8B83-0820C731962C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{DC7874A6-29DB-4E89-8E66-ED80788E908D}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\content\ModuleRegister.cs.pp = Templates\content\ModuleRegister.cs.pp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{F0477B9C-D1BF-49B8-BD67-6031FF52C0CB}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\content\App_Start\Bootstrapper.cs.pp = Templates\content\App_Start\Bootstrapper.cs.pp
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -72,9 +84,10 @@ Global
 		{8639DD61-CA83-4A24-969B-0DCC95025A4C} = {C9468454-A8B2-4129-B878-4EDF2340039F}
 		{9B79DF1C-54BA-42E1-9098-7D3C0EDDAF38} = {C9468454-A8B2-4129-B878-4EDF2340039F}
 		{A71AF8F3-811A-471F-8B83-0820C731962C} = {C9468454-A8B2-4129-B878-4EDF2340039F}
+		{F0477B9C-D1BF-49B8-BD67-6031FF52C0CB} = {DC7874A6-29DB-4E89-8E66-ED80788E908D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 		SolutionGuid = {8970F6E1-7839-43ED-9AB7-D54F47364533}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 	EndGlobalSection
 EndGlobal

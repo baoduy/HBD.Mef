@@ -13,16 +13,16 @@ namespace HBD.Mef.Logging
         private TraceListener _traceWriter;
         private TextWriter _writer;
 
-        public Trace2FileLogger(string outputFile = null,bool allowDebugLog=true):base(allowDebugLog)
+        public Trace2FileLogger(string outputFile = null, bool allowDebugLog = true) : base(allowDebugLog)
         {
-            if (string.IsNullOrWhiteSpace( outputFile))
+            if (string.IsNullOrWhiteSpace(outputFile))
                 outputFile = DefaultOutFileName;
 
             // ReSharper disable once AssignNullToNotNullAttribute
             Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            _writer = new StreamWriter(File.Create( outputFile));
+            _writer = new StreamWriter(File.Create(outputFile));
 
             _traceWriter = new TextWriterTraceListener(_writer, GetType().FullName)
             {

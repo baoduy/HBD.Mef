@@ -39,7 +39,9 @@ namespace HBD.Mef.Logging
         }
 
         public static void Log(this ILogger @this, Exception exception)
-            => @this?.Log(exception.CreateExceptionString(), LogCategory.Exception);
+        {
+            @this?.Log(exception.CreateExceptionString(), LogCategory.Exception);
+        }
 
         /// <summary>
         ///     NOTE: Debug message won't be written into the file when running on Release mode.
@@ -47,18 +49,28 @@ namespace HBD.Mef.Logging
         /// <param name="this"></param>
         /// <param name="message"></param>
         public static void Debug(this ILogger @this, string message)
-            => @this?.Log(message, LogCategory.Debug);
+        {
+            @this?.Log(message, LogCategory.Debug);
+        }
 
         public static void Info(this ILogger @this, string message)
-            => @this?.Log(message, LogCategory.Info);
+        {
+            @this?.Log(message, LogCategory.Info);
+        }
 
         public static void Warn(this ILogger @this, string message)
-            => @this?.Log(message, LogCategory.Warn);
+        {
+            @this?.Log(message, LogCategory.Warn);
+        }
 
         public static void Exception(this ILogger @this, string message)
-            => @this?.Log(message, LogCategory.Exception);
+        {
+            @this?.Log(message, LogCategory.Exception);
+        }
 
         public static void Exception(this ILogger @this, Exception exception)
-            => @this?.Log(exception);
+        {
+            @this?.Log(exception);
+        }
     }
 }

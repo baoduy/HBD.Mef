@@ -279,8 +279,6 @@
     <Content Include="Areas\AzureNote\Views\Shared\SideBar.cshtml" />
     <Content Include="Areas\AzureNote\Views\Web.config" />
     <Content Include="Areas\AzureNote\Views\_ViewStart.cshtml" />
-    <None Include="Properties\PublishProfiles\hbdshell - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\hbdshell - Web Deploy.pubxml" />
     <Content Include="RoleMapping.json" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\DemoLogo.png" />

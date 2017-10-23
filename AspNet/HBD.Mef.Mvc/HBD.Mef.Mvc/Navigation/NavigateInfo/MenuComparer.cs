@@ -21,11 +21,6 @@ namespace HBD.Mef.Mvc.Navigation.NavigateInfo
             if (d2 == null)
                 return -1;
 
-            if (d1.DisplayIndex == null)
-                d1.DisplayIndex = ushort.MaxValue;
-            if (d2.DisplayIndex == null)
-                d2.DisplayIndex = ushort.MaxValue;
-
             return Comparer<ushort?>.Default.Compare(d1.DisplayIndex, d2.DisplayIndex);
         }
     }

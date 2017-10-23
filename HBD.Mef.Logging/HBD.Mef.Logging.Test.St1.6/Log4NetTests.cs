@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
+﻿using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HBD.Mef.Logging.Test
 {
@@ -9,7 +9,7 @@ namespace HBD.Mef.Logging.Test
         [TestCleanup]
         public void Cleanup()
         {
-            Directory.Delete("Logs",true);
+            Directory.Delete("Logs", true);
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace HBD.Mef.Logging.Test
         [TestMethod]
         public void Log4NetLogger_AllowDebugLog_Test()
         {
-            using (var log = new Log4NetLogger(allowDebugLog:true))
+            using (var log = new Log4NetLogger(allowDebugLog: true))
             {
                 Assert.IsTrue(log.AllowDebugLog);
             }
@@ -52,7 +52,7 @@ namespace HBD.Mef.Logging.Test
         [TestMethod]
         public void Log4NetLogger_NotAllowDebugLog_Test()
         {
-            using (var log = new Log4NetLogger(allowDebugLog:false))
+            using (var log = new Log4NetLogger(allowDebugLog: false))
             {
                 Assert.IsFalse(log.AllowDebugLog);
             }

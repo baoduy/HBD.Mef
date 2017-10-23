@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
+﻿using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HBD.Mef.Logging.Test
 {
@@ -9,7 +9,7 @@ namespace HBD.Mef.Logging.Test
         [TestCleanup]
         public void Cleanup()
         {
-            Directory.Delete("Logs",true);
+            Directory.Delete("Logs", true);
         }
 
         [TestMethod]
@@ -38,28 +38,6 @@ namespace HBD.Mef.Logging.Test
             }
 
             Assert.IsTrue(File.ReadAllText(file).Contains("BB"));
-        }
-
-        [TestMethod]
-        public void Log4NetLogger_AllowDebugLog_Test()
-        {
-            System.Configuration.ConfigurationManager.AppSettings[Log4NetLogger.AppSettingKey] = bool.TrueString;
-
-            using (var log = new Log4NetLogger())
-            {
-                Assert.IsTrue(log.AllowDebugLog);
-            }
-        }
-
-        [TestMethod]
-        public void Log4NetLogger_NotAllowDebugLog_Test()
-        {
-            System.Configuration.ConfigurationManager.AppSettings[Log4NetLogger.AppSettingKey] = bool.FalseString;
-
-            using (var log = new Log4NetLogger())
-            {
-                Assert.IsFalse(log.AllowDebugLog);
-            }
         }
 
         [TestMethod]

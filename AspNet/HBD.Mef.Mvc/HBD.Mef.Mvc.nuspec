@@ -11,13 +11,17 @@
     </description>
     <releaseNotes>
       Version ${NugetVersion}
+      - Add default Router for MefAreaRegistration.
+      - Support registering and rendering the bundles for particular page.
+      
+      Version 1.1.0
       - Using the HBD.Mef.Logging instead.
       - Separate the Navigation to HBD.Shell.Navigation project that provides the flexibility to custom the Navigation for the Workspace.
       - Update to the HBD.Framework 2.0.0
       - Update to the HBD.Mef.Logging 2.0.0
       - Say good by CommonServiceLocator and welcome on-board HBD.ServiceLocator 1.0.0
       - Support .Net framework 4.5.2 onward.
-      
+
       Version 1.0.5
       - Allow to log the debug info in Log4NetLogger by add the key 'HBD.Logging.AllowDebugLog' to the AppSettings.
       - Apply the logic to throw an HttpResponseException if there is no controller found for an Area in MefApiHttpControllerSelector.
@@ -89,10 +93,14 @@
       </group>-->
     </dependencies>
     <references></references>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web"  targetFramework="net452"/>
+      <frameworkAssembly assemblyName="System.ComponentModel.Composition" targetFramework="net452" />
+    </frameworkAssemblies>
+    
     <tags>MVC WebApi DI Dependency-Injection Mef IoC</tags>
   </metadata>
   <files>
     <file src="HBD.Mef.Mvc\bin\Release\HBD.Mef.Mvc.dll" target="lib\net452" />
-    <file src="HBD.Mef.Mvc\bin\Release\content\App_Start\*" target="content\App_Start" />
   </files>
 </package>
