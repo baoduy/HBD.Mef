@@ -1,0 +1,26 @@
+﻿@using HBD.Framework
+@using HBD.Mef.Mvc.Navigation.NavigateInfo
+@model LinkInfo
+
+@if (Model != null)
+{
+    <li>
+        @if (Model.Link.IsNullOrEmpty())
+        {
+            <p>
+                @Html.Partial("NavigationItems/IconView", Model)
+                @Model.Title
+            </p>
+        }
+        else
+        {
+            <a href="@Model.Link" target="_blank" title="@Model.Title">
+                @Html.Partial("NavigationItems/IconView", Model)
+                @if (Model.DisplayType == MenuDisplayType.IconAndText)
+                {
+                    @Model.Title
+                }
+            </a>
+        }
+    </li>
+}

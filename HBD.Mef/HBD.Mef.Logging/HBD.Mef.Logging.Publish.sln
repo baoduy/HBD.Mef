@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.Mef.Logging.Share", "HBD.Mef.Logging.Share\HBD.Mef.Logging.Share.shproj", "{E69FA010-2D06-46C5-9E6B-CB521DF4B5D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A891F94D-EDC5-4ACE-AC76-83819AB93522}"
+	ProjectSection(SolutionItems) = preProject
+		HBD.Mef.Logging.nuspec = HBD.Mef.Logging.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Share", "1. Share", "{14489A3A-4C55-4B7E-805F-1AD9F2A0D4AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Compilations", "2. Compilations", "{A16C98AB-AD35-4A53-ABD1-35D76340ED68}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.Mef.Logging.St1.6", "HBD.Mef.Logging.St1.6\HBD.Mef.Logging.St1.6.csproj", "{DE166C01-450F-4E80-A01A-4702C771A607}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.Mef.Logging.St2.0", "HBD.Mef.Logging.St2.0\HBD.Mef.Logging.St2.0.csproj", "{3A8323E3-24D9-4548-8834-54EDA956A302}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.Logging.4.5", "HBD.Mef.Logging.4.5\HBD.Mef.Logging.4.5.csproj", "{550B2B8E-9257-4299-A0EA-3F504A208E1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Tests", "3. Tests", "{67405D55-69CF-4C85-8D9A-7CE0DDE2FA99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.Mef.Logging.Test.St1.6", "HBD.Mef.Logging.Test.St1.6\HBD.Mef.Logging.Test.St1.6.csproj", "{A9A5AABC-44AF-44C8-B8D5-DE8E3417025E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.Logging.Test.4x", "HBD.Mef.Logging.Test.4x\HBD.Mef.Logging.Test.4x.csproj", "{A811B168-D458-44A1-8836-687815340859}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HBD.Mef.Logging.Share\HBD.Mef.Logging.Share.projitems*{550b2b8e-9257-4299-a0ea-3f504a208e1e}*SharedItemsImports = 4
+		HBD.Mef.Logging.Share\HBD.Mef.Logging.Share.projitems*{e69fa010-2d06-46c5-9e6b-cb521df4b5d8}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE166C01-450F-4E80-A01A-4702C771A607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE166C01-450F-4E80-A01A-4702C771A607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE166C01-450F-4E80-A01A-4702C771A607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE166C01-450F-4E80-A01A-4702C771A607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A8323E3-24D9-4548-8834-54EDA956A302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A8323E3-24D9-4548-8834-54EDA956A302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A8323E3-24D9-4548-8834-54EDA956A302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A8323E3-24D9-4548-8834-54EDA956A302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{550B2B8E-9257-4299-A0EA-3F504A208E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{550B2B8E-9257-4299-A0EA-3F504A208E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{550B2B8E-9257-4299-A0EA-3F504A208E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{550B2B8E-9257-4299-A0EA-3F504A208E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A5AABC-44AF-44C8-B8D5-DE8E3417025E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A5AABC-44AF-44C8-B8D5-DE8E3417025E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A5AABC-44AF-44C8-B8D5-DE8E3417025E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A5AABC-44AF-44C8-B8D5-DE8E3417025E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A811B168-D458-44A1-8836-687815340859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A811B168-D458-44A1-8836-687815340859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A811B168-D458-44A1-8836-687815340859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A811B168-D458-44A1-8836-687815340859}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E69FA010-2D06-46C5-9E6B-CB521DF4B5D8} = {14489A3A-4C55-4B7E-805F-1AD9F2A0D4AA}
+		{DE166C01-450F-4E80-A01A-4702C771A607} = {A16C98AB-AD35-4A53-ABD1-35D76340ED68}
+		{3A8323E3-24D9-4548-8834-54EDA956A302} = {A16C98AB-AD35-4A53-ABD1-35D76340ED68}
+		{550B2B8E-9257-4299-A0EA-3F504A208E1E} = {A16C98AB-AD35-4A53-ABD1-35D76340ED68}
+		{A9A5AABC-44AF-44C8-B8D5-DE8E3417025E} = {67405D55-69CF-4C85-8D9A-7CE0DDE2FA99}
+		{A811B168-D458-44A1-8836-687815340859} = {67405D55-69CF-4C85-8D9A-7CE0DDE2FA99}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9CB7A3F-AD72-4737-B30A-13BE4A36D27C}
+	EndGlobalSection
+EndGlobal

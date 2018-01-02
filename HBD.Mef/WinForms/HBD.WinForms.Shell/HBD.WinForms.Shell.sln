@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.WinForms.Shell", "HBD.WinForms.Shell\HBD.WinForms.Shell.csproj", "{C005201D-FBCF-43F7-ACA1-CC4936EA2625}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5F9D19E2-3129-461B-8799-1E1DBC281007}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.html = ReadMe.html
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.WinForms", "HBD.Mef.WinForms\HBD.Mef.WinForms.csproj", "{4238EB27-9CED-4E93-B467-71B52E481405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.WinForms.ModuleManagement.Plugin", "HBD.WinForms.ModuleManagement.Plugin\HBD.WinForms.ModuleManagement.Plugin.csproj", "{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shell", "Shell", "{C4671DC9-1C96-4618-97C7-0F8A20664CB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{AD9CCCA5-868E-40F5-BF51-CE7F80CA1D83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModule1", "TestModule1\TestModule1.csproj", "{A49BA83C-8471-4B88-B7F3-4F8B8CA8E152}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModule2", "TestModule2\TestModule2.csproj", "{9DA2481B-9C46-4C7B-B2F3-A78574854EC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4238EB27-9CED-4E93-B467-71B52E481405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4238EB27-9CED-4E93-B467-71B52E481405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4238EB27-9CED-4E93-B467-71B52E481405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4238EB27-9CED-4E93-B467-71B52E481405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A49BA83C-8471-4B88-B7F3-4F8B8CA8E152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49BA83C-8471-4B88-B7F3-4F8B8CA8E152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A49BA83C-8471-4B88-B7F3-4F8B8CA8E152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49BA83C-8471-4B88-B7F3-4F8B8CA8E152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DA2481B-9C46-4C7B-B2F3-A78574854EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA2481B-9C46-4C7B-B2F3-A78574854EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA2481B-9C46-4C7B-B2F3-A78574854EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA2481B-9C46-4C7B-B2F3-A78574854EC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625} = {C4671DC9-1C96-4618-97C7-0F8A20664CB3}
+		{4238EB27-9CED-4E93-B467-71B52E481405} = {C4671DC9-1C96-4618-97C7-0F8A20664CB3}
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940} = {AD9CCCA5-868E-40F5-BF51-CE7F80CA1D83}
+		{A49BA83C-8471-4B88-B7F3-4F8B8CA8E152} = {AD9CCCA5-868E-40F5-BF51-CE7F80CA1D83}
+		{9DA2481B-9C46-4C7B-B2F3-A78574854EC0} = {AD9CCCA5-868E-40F5-BF51-CE7F80CA1D83}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://steven2412.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = HBD.WinForms.Shell\\HBD.WinForms.Shell.csproj
+		SccProjectTopLevelParentUniqueName1 = HBD.WinForms.Shell.sln
+		SccProjectName1 = HBD.WinForms.Shell
+		SccLocalPath1 = HBD.WinForms.Shell
+		SccProjectUniqueName2 = HBD.Mef.WinForms\\HBD.Mef.WinForms.csproj
+		SccProjectTopLevelParentUniqueName2 = HBD.WinForms.Shell.sln
+		SccProjectName2 = HBD.Mef.WinForms
+		SccLocalPath2 = HBD.Mef.WinForms
+		SccProjectUniqueName3 = HBD.WinForms.ModuleManagement.Plugin\\HBD.WinForms.ModuleManagement.Plugin.csproj
+		SccProjectTopLevelParentUniqueName3 = HBD.WinForms.Shell.sln
+		SccProjectName3 = HBD.WinForms.ModuleManagement.Plugin
+		SccLocalPath3 = HBD.WinForms.ModuleManagement.Plugin
+		SccProjectUniqueName4 = TestModule1\\TestModule1.csproj
+		SccProjectTopLevelParentUniqueName4 = HBD.WinForms.Shell.sln
+		SccProjectName4 = TestModule1
+		SccLocalPath4 = TestModule1
+		SccProjectUniqueName5 = TestModule2\\TestModule2.csproj
+		SccProjectTopLevelParentUniqueName5 = HBD.WinForms.Shell.sln
+		SccProjectName5 = TestModule2
+		SccLocalPath5 = TestModule2
+	EndGlobalSection
+EndGlobal

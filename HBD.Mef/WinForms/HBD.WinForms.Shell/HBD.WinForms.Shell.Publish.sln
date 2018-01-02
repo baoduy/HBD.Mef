@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.WinForms.Shell", "HBD.WinForms.Shell\HBD.WinForms.Shell.csproj", "{C005201D-FBCF-43F7-ACA1-CC4936EA2625}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5F9D19E2-3129-461B-8799-1E1DBC281007}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.Config = NuGet.Config
+		ReadMe.html = ReadMe.html
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{A389B9E9-DE3B-42F8-8346-235D24CC8B81}"
+	ProjectSection(SolutionItems) = preProject
+		Images\Demo_Shell.png = Images\Demo_Shell.png
+		Images\DemoModule_Debug.png = Images\DemoModule_Debug.png
+		Images\DemoModule_Json.png = Images\DemoModule_Json.png
+		Images\DemoModule_Views.png = Images\DemoModule_Views.png
+		Images\MenuBar.png = Images\MenuBar.png
+		Images\StatusBar.png = Images\StatusBar.png
+		Images\TabManager.png = Images\TabManager.png
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Mef.WinForms", "HBD.Mef.WinForms\HBD.Mef.WinForms.csproj", "{4238EB27-9CED-4E93-B467-71B52E481405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.WinForms.ModuleManagement.Plugin", "HBD.WinForms.ModuleManagement.Plugin\HBD.WinForms.ModuleManagement.Plugin.csproj", "{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C005201D-FBCF-43F7-ACA1-CC4936EA2625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4238EB27-9CED-4E93-B467-71B52E481405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4238EB27-9CED-4E93-B467-71B52E481405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4238EB27-9CED-4E93-B467-71B52E481405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4238EB27-9CED-4E93-B467-71B52E481405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB92DE8-0DE8-49B7-909E-AC4443BB1940}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A389B9E9-DE3B-42F8-8346-235D24CC8B81} = {5F9D19E2-3129-461B-8799-1E1DBC281007}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://steven2412.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = HBD.WinForms.Shell\\HBD.WinForms.Shell.csproj
+		SccProjectName1 = HBD.WinForms.Shell
+		SccLocalPath1 = HBD.WinForms.Shell
+		SccProjectUniqueName2 = HBD.Mef.WinForms\\HBD.Mef.WinForms.csproj
+		SccProjectName2 = HBD.Mef.WinForms
+		SccLocalPath2 = HBD.Mef.WinForms
+		SccProjectUniqueName3 = HBD.WinForms.ModuleManagement.Plugin\\HBD.WinForms.ModuleManagement.Plugin.csproj
+		SccProjectName3 = HBD.WinForms.ModuleManagement.Plugin
+		SccLocalPath3 = HBD.WinForms.ModuleManagement.Plugin
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,7 @@
+﻿{
+  "Environment": "RELEASE", //Environment DEBUG, DEV,DVx,SITx,UATx and PRD.
+  "ModulePath": "./Modules", //Default folder is Modules
+  // The binaries that will be imported to Mef.
+  // If it is just file name then the root folder will be from AppDomain.CurrentDomain.BaseDirectory.
+  "ImportedBinaries": null
+}

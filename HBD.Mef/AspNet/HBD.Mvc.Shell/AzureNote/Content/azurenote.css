@@ -1,0 +1,32 @@
+﻿body {
+    overflow-x:hidden;
+}
+
+.no-border, no-border:hover, no-border:focus {
+    border: 0;
+    box-shadow: none;
+    font-weight: bold;
+    color: #337ab7;
+    font-size: 25px !important;
+    -webkit-box-shadow: none;
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+h3 {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+}
+
+hr {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.container {
+    width:auto;
+}
+.body-content {
+    padding-left: 15px;
+    padding-right: 25px;
+    padding-top:10px;
+}

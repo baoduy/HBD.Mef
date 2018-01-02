@@ -1,0 +1,48 @@
+DEBUG 
+Time: 2017-04-08 23:29:39,184 
+Message: Create AggregateCatalog. 
+ 
+DEBUG 
+Time: 2017-04-08 23:29:39,197 
+Message: Configure AggregateCatalog. 
+ 
+DEBUG 
+Time: 2017-04-08 23:29:39,197 
+Message: Create Container. 
+ 
+DEBUG 
+Time: 2017-04-08 23:29:39,199 
+Message: Register Bootstrapper ProvidedTypes. 
+ 
+DEBUG 
+Time: 2017-04-08 23:29:39,202 
+Message: Initialize Modules. 
+ 
+DEBUG 
+Time: 2017-04-08 23:29:39,202 
+Message: Register Dependency Resolver. 
+ 
+DEBUG 
+Time: 2017-04-08 23:34:49,048 
+Message: Create AggregateCatalog. 
+ 
+DEBUG 
+Time: 2017-04-08 23:34:49,064 
+Message: Configure AggregateCatalog. 
+ 
+DEBUG 
+Time: 2017-04-08 23:34:49,065 
+Message: Create Container. 
+ 
+DEBUG 
+Time: 2017-04-08 23:34:49,066 
+Message: Register Bootstrapper ProvidedTypes. 
+ 
+DEBUG 
+Time: 2017-04-08 23:34:49,068 
+Message: Initialize Modules. 
+ 
+DEBUG 
+Time: 2017-04-08 23:34:49,069 
+Message: Register Dependency Resolver. 
+ 

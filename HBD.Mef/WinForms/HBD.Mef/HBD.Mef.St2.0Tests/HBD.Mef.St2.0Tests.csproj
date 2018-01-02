@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <RootNamespace>HBD.Mef.StTests</RootNamespace>
+
+    <AssemblyName>HBD.Mef.StTests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="4.19.3" />
+    <PackageReference Include="HBD.Framework" Version="2.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0-preview-20170810-02" />
+    <PackageReference Include="Moq" Version="4.7.99" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0-beta3" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0-beta3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HBD.Mef.St2.0\HBD.Mef.St2.0.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="BootstrapperTests.cs" />
+    <Compile Update="TestObs\StartUp1.cs" />
+  </ItemGroup>
+
+</Project>

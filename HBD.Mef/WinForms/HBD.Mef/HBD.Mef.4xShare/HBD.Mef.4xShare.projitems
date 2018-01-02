@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a36adba2-5b04-4f85-8d71-23139ab39f1e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>HBD.Mef</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Catalogs\MultiDirectoriesCatalog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonConfigHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MefBootstrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\PluginBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\PluginExportAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modularity\PluginManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Configuration\IShellConfigManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Configuration\ShellConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Configuration\ShellConfigManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Core\IPermissionValidationInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Core\IStatusInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Modularity\ShellModuleBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\NavigationExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\ActionNavigationParameter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\DisplayMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\IMenuInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\IMenuInfoCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\INavigationInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\INavigationParameter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\INavigationParametersCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\IStartupViewCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\IViewInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\MenuAlignment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\MenuInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\MenuInfoBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\MenuInfoCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\NavigationInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\NavigationParameterCollector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\SeparatorInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\StartupViewCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Navigation\ViewInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Services\IShellMenuService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Services\IShellStartupService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Services\IShellStatusService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Services\ShellMenuService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Views\IShellMainView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Views\IShellMenuView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Views\IShellStatusView.cs" />
+  </ItemGroup>
+</Project>

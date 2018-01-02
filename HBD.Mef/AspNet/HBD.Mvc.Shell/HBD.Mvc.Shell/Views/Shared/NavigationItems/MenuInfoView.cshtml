@@ -1,0 +1,27 @@
+﻿@using HBD.Mef.Mvc
+@using HBD.Mef.Mvc.Navigation.NavigateInfo
+@model HBD.Mef.Mvc.Navigation.NavigateInfo.MenuInfo
+@if (Model != null)
+{
+    <li class="dropdown @(Model.IsActive(Url)? "active" : "")">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
+           title="@Model.Title">
+            @Html.Partial("NavigationItems/IconView", Model)
+            @if (Model.DisplayType == MenuDisplayType.IconAndText)
+            {
+                @Model.Title
+            }
+            @if (Model.Items.Count > 0)
+            {
+                <span class="caret"></span>
+            }
+        </a>
+        
+        @if (Model.Items.Count > 0)
+        {
+            <ul class="dropdown-menu">
+                @Html.Partial("NavigationItems/MenuItemsView", Model.Items)
+            </ul>
+        }
+    </li>
+}

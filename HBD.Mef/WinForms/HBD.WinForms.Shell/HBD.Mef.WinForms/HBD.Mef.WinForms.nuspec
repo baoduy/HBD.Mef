@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<package>
+  <metadata>
+    <id>HBD.Mef.WinForms</id>
+    <version>$version$</version>
+    <title>HBD.Mef.WinForms</title>
+    <authors>Duy Hoang</authors>
+    <owners>Duy Hoang</owners>
+    <description>
+      The Mef Bootstrapper for WindowForms.
+    </description>
+    <releaseNotes>
+      - Add WinFormModuleBase
+      - Add IMessageBoxService for WindowForms
+    </releaseNotes>
+    <summary>
+      The Mef Bootstrapper for WindowForms.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/baoduy/HBD.Mef.WinForms</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <copyright>Copyright 2017</copyright>
+    <dependencies></dependencies>
+    <references></references>
+    <tags></tags>
+  </metadata>
+</package>

@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>HBD.Mef.Mvc</id>
+    <version>${NugetVersion}</version>
+    <title>HBD.Mef.Mvc</title>
+    <authors>Duy Hoang</authors>
+    <owners>Duy Hoang</owners>
+    <description>
+      The Mef (Dependence injection) for Mvc5 and Mvc6.
+    </description>
+    <releaseNotes>
+      Version ${NugetVersion}
+      - Add default Router for MefAreaRegistration.
+      - Support registering and rendering the bundles for particular page.
+      - Add naming bundle for Area that can be in the Page level
+      
+      Version 1.1.0
+      - Using the HBD.Mef.Logging instead.
+      - Separate the Navigation to HBD.Shell.Navigation project that provides the flexibility to custom the Navigation for the Workspace.
+      - Update to the HBD.Framework 2.0.0
+      - Update to the HBD.Mef.Logging 2.0.0
+      - Say good by CommonServiceLocator and welcome on-board HBD.ServiceLocator 1.0.0
+      - Support .Net framework 4.5.2 onward.
+
+      Version 1.0.5
+      - Allow to log the debug info in Log4NetLogger by add the key 'HBD.Logging.AllowDebugLog' to the AppSettings.
+      - Apply the logic to throw an HttpResponseException if there is no controller found for an Area in MefApiHttpControllerSelector.
+
+      Version 1.0.4
+      - Hotfix the ConsolidateSeparetorInfo method of NavigationServiceFactory.
+      - Upgrade to HBD.Framework 1.0.10
+      - Fix the dependency packages.
+
+      Version 1.0.3
+      - Support Web Api.
+      - Support to merge the configuration from either the configuration is placed in Areas\[ModuleName]\Web.config or in bin\[ModuleName].config.
+      - Improve the Controllers Exporting and Importing. So no need to marks the Controllers with [Export] and [PartCreationPolicy(CreationPolicy.NonShared)] attributes anymore.
+
+      Version 1.0.2
+      - Hotfix IsActivated of NavigationInfo.
+
+      Version 1.0.1
+      - Add Roles filtering for NavigationIndo.
+
+      Version 1.0.0
+      - Build the Bootstrapper for Mvc.
+      - Add Main Menu Navigation Service.
+      - Support FontAwesome and Glyphicon Icons for Navigation services.
+      - Footer Navigation service.
+      - Area Bundle resource rendering.
+      - Log4Net logging service.
+    </releaseNotes>
+    <summary>
+      The Mef (Dependence injection) for Mvc5 and Mvc6 that support to build the independent Areas for Mvc application.
+      - Allow to register the navigations for an Area at runtime.
+      - Allow to render the Area bundle for separate Areas in order to prevent the resource conflict between the Areas.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/baoduy/HBD.Mef.Mvc</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <copyright>Copyright © 2017</copyright>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.2">
+        <dependency id="Antlr" version="3.5.0.2" />
+        <dependency id="CsvHelper" version="2.16.3.0" />
+        <dependency id="HBD.Framework" version="2.0.0" />
+        <dependency id="HBD.Mef.Logging" version="2.0.0" />
+        <dependency id="HBD.ServiceLocator" version="1.0.0" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.Razor" version="3.2.3" />
+        <dependency id="Microsoft.AspNet.Web.Optimization" version="1.1.3" />
+        <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.WebPages" version="3.2.3" />
+        <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="SharpZipLib" version="0.86.0" />
+        <dependency id="WebActivatorEx" version="2.2.0" />
+        <dependency id="WebGrease" version="1.6.0" />
+      </group>
+      <!--<group targetFramework=".NETStandard1.6">
+        <dependency id="NETStandard.Library" version="1.6.1" />
+        <dependency id="Microsoft.Composition" version="1.0.31"/>
+        <dependency id="System.ComponentModel" version="4.3.0"/>
+      </group>
+      <group targetFramework="NETStandard2.0">
+        <dependency id="NETStandard.Library" version="2.0.0" />
+        <dependency id="Microsoft.Composition" version="1.0.31"/>
+      </group>-->
+    </dependencies>
+    <references></references>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web"  targetFramework="net452"/>
+      <frameworkAssembly assemblyName="System.ComponentModel.Composition" targetFramework="net452" />
+    </frameworkAssemblies>
+    
+    <tags>MVC WebApi DI Dependency-Injection Mef IoC</tags>
+  </metadata>
+  <files>
+    <file src="HBD.Mef.Mvc\bin\Release\HBD.Mef.Mvc.dll" target="lib\net452" />
+  </files>
+</package>

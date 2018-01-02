@@ -1,0 +1,10 @@
+﻿//this file name convention is Module_[Your project Name]
+{
+  "Name": "TestModule1",
+  "Description": "TestModule1 for WindowForms Shell",
+  "Version": "1.0.0",
+  "IsEnabled": true, //or false
+  "AllowToManage": false,
+  //The list of assemblies that you want to be exposed to the EMF.
+  "AssemplyFiles": [ "TestModule1.dll" ]
+}

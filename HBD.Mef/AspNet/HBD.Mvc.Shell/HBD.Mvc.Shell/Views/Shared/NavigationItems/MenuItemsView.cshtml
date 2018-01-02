@@ -1,0 +1,28 @@
+﻿@using HBD.Mef.Mvc.Navigation.NavigateInfo
+@model  System.Collections.ICollection
+@if (Model != null)
+{
+    foreach (var info in Model)
+    {
+        if (info is NavigationInfo)
+        {
+            @Html.Partial("NavigationItems/NavigationInfoView", info as NavigationInfo)
+        }
+        else if (info is MenuInfo)
+        {
+            @Html.Partial("NavigationItems/MenuInfoView", info as MenuInfo)
+        }
+        else if (info is LinkInfo)
+        {
+            @Html.Partial("NavigationItems/LinkInfoView", info as LinkInfo)
+        }
+        else if (info is SeparetorInfo)
+        {
+            @Html.Partial("NavigationItems/SeparetorInfoView", info as SeparetorInfo)
+        }
+        else if (info is ViewInfo)
+        {
+            @Html.Partial("NavigationItems/ViewInfo", info as ViewInfo)
+        }
+    }
+}

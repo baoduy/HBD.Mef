@@ -1,0 +1,30 @@
+﻿@using System.Collections
+@using HBD.Mef.Mvc.Navigation
+<div class="navbar navbar-default navbar-fixed-top">
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home", new {area = ""})">
+            <img src="~/Images/DemoLogo.png" class="brand-img" alt="" />
+        </a>
+    </div>
+    @{
+        var menuFactory = HBD.ServiceLocator.Current.GetInstance<INavigationServiceFactory>();
+
+        var leftMenus = menuFactory.GetLeftMenuFor(User);
+        var rightMenus = menuFactory.GetRightMenuFor(User);
+    }
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            @Html.Partial("NavigationItems/MenuItemsView", (ICollection) leftMenus)
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            @Html.Partial("NavigationItems/MenuItemsView", (ICollection) rightMenus)
+        </ul>
+    </div>
+</div>

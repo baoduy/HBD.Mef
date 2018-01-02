@@ -1,0 +1,16 @@
+﻿@using AzureNoteEntities
+@{
+    ViewBag.Title = "Azure Notes";
+}
+
+@Html.Partial("SideBar", ViewBag.Notes as IList<Note>)
+
+<div id="sidebar-content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+            <h2 class="text-primary">
+                <strong>Welcome To Azure Note</strong>
+            </h2>
+        </div>
+    </div>
+</div>

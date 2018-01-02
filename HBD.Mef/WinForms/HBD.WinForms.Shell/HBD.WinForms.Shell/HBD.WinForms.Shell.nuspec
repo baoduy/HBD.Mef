@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HBD.WinForms.Shell</id>
+    <version>${NugetVersion}</version>
+    <title>HBD.WinForms.Shell</title>
+    <authors>Duy Hoang</authors>
+    <owners>Duy Hoang</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/baoduy/HBD.WinForms.Shell</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Shell Winforms Application that provides a core-foundation to develop a Module-able application.</description>
+    <summary>The Shell Winforms Application that provides a core-foundation to develop a loosely coupled, module-able and maintainable application.</summary>
+    <releaseNotes>
+      Version ${NugetVersion}
+      - Upgrade to .Net Framework 4.6.2
+      - Apply auto export for all UserControls in the application if inheritted from ViewBase.
+
+      Version 1.0.3
+      - Upgrade to HBD.Framework 1.0.12
+      - Hotifix main menu ordering.
+
+      Version 1.0.2
+      - Upgrade to HBD.Framework 1.0.7
+      - Upgrade to HBD.Mef 1.0.6
+    </releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <language>en-US</language>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="HBD.Mef" version="1.1.0" />
+        <dependency id="HBD.Framework" version="1.0.12" />
+        <dependency id="HBD.Mef.Logging" version="1.0.0" />
+      </group>
+    </dependencies>
+    <tags>WindowForm Workspace Modularity Shell Mef DI Dependency-Injection Ioc</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\**" target="tools\WinForms.Shell\" exclude="bin\Release\*.txt" />
+    <file src="..\ReadMe.md" target="tools\ReadMe.md" />
+    <file src="bin\Release\HBD.Mef.WinForms.dll" target="lib\HBD.Mef.WinForms.dll" />
+  </files>
+</package>

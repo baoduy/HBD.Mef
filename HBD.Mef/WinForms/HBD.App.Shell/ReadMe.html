@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Nuget Package:</title>
+</head>
+<body>
+
+    <p><a href="https://ci.appveyor.com/project/baoduy/hbd-app-shell"><img src="https://ci.appveyor.com/api/projects/status/p3htgsp0emq38ixh" alt="Build status" /></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="License" /></a>
+<a href="https://www.nuget.org/packages/HBD.App.Shell/"><img src="https://img.shields.io/nuget/v/HBD.App.Shell.svg?maxAge=2592000" alt="NuGet" /></a></p>
+<h5 id="nuget-package">Nuget Package:</h5>
+<blockquote>
+<p>PM&gt; <em>Install-Package HBD.App.Shell</em></p>
+</blockquote>
+<h1 id="hbd.app.shell"><a href="https://drunkcoding.net/the-workspace-for-console-application/">HBD.App.Shell</a></h1>
+<p>I would like to share the Console Shell application that provides the core foundation for the console application.
+It allows building a loosely coupled, module-able and maintainable application.</p>
+<h1 id="how-does-it-works">How does it works?</h1>
+<p>This Shell application had been developed based on <a href="https://github.com/baoduy/HBD.Mef">HBD.Mef</a> library that will automatic load all modules in the defined folder at run time.
+This application is suitable for those who want to develop a batch job that will be triggered by the scheduler and execute the particular plugin based on the input parameters.</p>
+<h1 id="quick-start">Quick Start</h1>
+<h2 id="add-new-module">1. Add New Module</h2>
+<ul>
+<li>Open Visual Studio and create a new Class Library project example project name is <strong>Job.Module</strong>.</li>
+<li>Install the latest version of <strong>HBD.App.Shell</strong> from Nuget.</li>
+<li>Add a new class named <strong>Job1</strong> and inherited from HBD.Mef.ConsoleApp.<strong>ConsoleModuleBase</strong> and
+then implement 2 abstract methods (<strong>Initialize</strong> and <strong>Run(params string[] args)</strong>) as below.
+Remember to add the <strong>ModuleExport</strong> attribute into your Job1 class.</li>
+</ul>
+<pre><code class="language-csharp">[HBD.Mef.Core.Modularity.ModuleExport(&quot;Job1&quot;, typeof(Job1))]
+[PartCreationPolicy(CreationPolicy.Shared)]
+public class Job1 : HBD.Mef.ConsoleApp.ConsoleModuleBase
+{
+        public override void Initialize()
+        {
+        }
+
+        public override void Run(params string[] args)
+        {
+            Console.WriteLine($&quot;{this.GetType().Name} was ran with parameters '{string.Join(&quot;,&quot;, args)}'&quot;);
+            Console.Read();
+
+            this.Logger.Info(message);
+        }
+}
+</code></pre>
+<p>The function of this job is writing a message to the console and log file.</p>
+<h2 id="setup-publish-shell-folder">2. Setup Publish Shell folder.</h2>
+<ul>
+<li>Copy folder <strong>[Solution Directory]\packages\HBD.App.Shell\tools\App.Shell</strong> to <strong>[Solution Directory]\Publish\App.Shell</strong></li>
+</ul>
+<h2 id="update-projects-properties">3. Update project's properties.</h2>
+<ul>
+<li>Right click to the project select Properties</li>
+<li>Add below code into Post-build event</li>
+</ul>
+<pre><code class="language-batch">if not exist &quot;$(SolutionDir)Publish\App.Shell\Modules\$(ProjectName)&quot; mkdir &quot;$(SolutionDir)Publish\App.Shell\Modules\$(ProjectName)&quot; 
+xcopy &quot;$(TargetDir)*.*&quot; &quot;$(SolutionDir)Publish\App.Shell\Modules\$(ProjectName)&quot; /s /y /r
+</code></pre>
+<ul>
+<li>Set Start external program under Debug to <strong>Publish\App.Shell\HBD.App.Shell.exe</strong></li>
+<li>And set Working directory to <strong>Publish\App.Shell</strong> folder.</li>
+<li>And then set the Commnand line arguments is <strong>-job1 param1 param2 param3</strong>.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.App.Shell/Debug_Setting.PNG" alt="Job Module Debug" /></p>
+<ol start="3">
+<li>Add Module config and Debug your module.</li>
+</ol>
+<ul>
+<li>Add new <strong>Module_Job_Demo.json</strong> file with the following content.</li>
+</ul>
+<pre><code class="language-json">//this file name convention is Module_[Your project Name]
+{
+  &quot;Name&quot;: &quot;Demo Job Module&quot;,
+  &quot;Description&quot;: &quot;This is demo job module for App Shell&quot;,
+  &quot;Version&quot;: &quot;1.0.0-beta1&quot;,
+  &quot;IsEnabled&quot;: true, //or false
+  //The list of assemblies that you want to be exposed to the EMF.
+  &quot;AssemplyFiles&quot;: [ &quot;Job.Module.dll&quot; ]
+}
+</code></pre>
+<ul>
+<li>Set Build action of this config file as below</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.App.Shell/Module_Config_BuildAction.PNG" alt="Job Module Json" /></p>
+<ul>
+<li>Run your module, the Shell application will display as below.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.App.Shell/Run_job1.PNG" alt="App Shell Job1" /></p>
+<h1 id="how-to-run-multi-jobs-with-parameters">How to run multi jobs with parameters</h1>
+<p>As the <strong>Command line arguments</strong> above you will see the first parameter is the JobName and then follow by the parameters for that job.
+If you want to execute multi-job you can pass the <strong>Command line arguments</strong> following this format: <strong>-JobName1 param1 param2 param3 -JobName2 param1 param2 param3</strong></p>
+<p>This is a screenshot when executing multi jobs.
+<img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.App.Shell/Run_job1_job2.PNG" alt="App Shell Job1 Job2" /></p>
+<blockquote>
+<p><span style="color:red"><em>If the Environment is <strong>Debug</strong> the console window will keep open unstil you press a enter key.</em></span></p>
+</blockquote>
+<h1 id="source-code">Source code</h1>
+<p>You can download the <strong>Job.Module</strong> source code here in <a href="https://github.com/baoduy/Job.Module-for-HBD.App.Shell">Github - Job.Module</a>
+And the source code of <strong>HBD.App.Shell</strong> in here <a href="https://github.com/baoduy/HBD.App.Shell">Github - HBD.App.Shell</a></p>
+<blockquote>
+<p><em>Hope, this Shell will help you to develop a plugin-able application faster and easier.
+Your feedback and ideas are much appreciated.
+Please feel free to drop me an email with your opinion.</em></p>
+</blockquote>
+<h1 id="nuget-dependences">Nuget Dependences</h1>
+<ul>
+<li><a href="https://www.nuget.org/packages/CommonServiceLocator/">CommonServiceLocator</a></li>
+<li><a href="https://www.nuget.org/packages/HBD.Framework/">HBD.Framework</a></li>
+<li><a href="https://www.nuget.org/packages/HBD.Mef/">HBD.Mef</a></li>
+<li><a href="https://www.nuget.org/packages/log4net/">log4net</a></li>
+<li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Newtonsoft.Json</a></li>
+<li><a href="https://www.nuget.org/packages/Prism.Core/">Prism.Core</a></li>
+<li><a href="https://www.nuget.org/packages/Prism.Wpf/">Prism.Wpf</a></li>
+</ul>
+<p><em>Thanks for your reading</em></p>
+<ul>
+<li><em><a href="mailto:drunkcoding@outlook">drunkcoding@outlook.com</a></em></li>
+<li><em><a href="https://drunkcoding.net">drunkcoding</a></em></li>
+<li><em><a href="https://github.com/baoduy">github</a></em></li>
+</ul>
+
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Nuget Package:</title>
+</head>
+<body>
+
+    <p><a href="https://ci.appveyor.com/project/baoduy/hbd-winforms-shell"><img src="https://ci.appveyor.com/api/projects/status/6bfl1l110lg794mo" alt="Build status" /></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="License" /></a>
+<a href="https://www.nuget.org/packages/HBD.WinForms.Shell/"><img src="https://img.shields.io/nuget/v/HBD.WinForms.Shell.svg?maxAge=2592000" alt="NuGet" /></a></p>
+<h5 id="nuget-package">Nuget Package:</h5>
+<blockquote>
+<p>PM&gt; <em>Install-Package HBD.WinForms.Shell</em></p>
+</blockquote>
+<h1 id="hbd.winforms.shell"><a href="https://drunkcoding.net/the-workspace-for-windowforms">HBD.WinForms.Shell</a></h1>
+<p>I would like to share the Winforms Shell application, that provides the core foundation for the Winforms application.
+With this foundation, it can be load the external modules from the pre-defined folders when it started. So that you can add-in and maintenance the modules easily.</p>
+<h1 id="how-it-works">How it works?</h1>
+<p>This Shell application had been developed based on <a href="https://github.com/baoduy/HBD.Mef">HBD.Mef</a> library to loading and executing external modules when it starts.
+For more information about <strong>HBD.Mef</strong> you can found in <a href="https://github.com/baoduy/HBD.Mef">here</a>.</p>
+<h1 id="build-in-services">Build-In Services</h1>
+<p>In this Shell there are a few services had been developed and exposed into Mef that helps you to interact with the Shell component.</p>
+<ol>
+<li>The <strong>IMainMenuService</strong> will helps to add Menu Item into the Menu-bar of Main window.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.WinForms.Shell/MenuBar.png" alt="Menu Bar" /></p>
+<ol start="2">
+<li>The <strong>IStatusBarService</strong> will helps to set the status into the Status-Bar of Main window.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.WinForms.Shell/StatusBar.png" alt="Status Bar" /></p>
+<ol start="3">
+<li>The <strong>IMainViewService</strong> will help to interact with Tab Manager of the Main window.
+That allow to add/remove UserControl into TabManager.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.WinForms.Shell/TabManager.png" alt="Tab Manager" /></p>
+<ol start="4">
+<li>The <strong>NavigationManager</strong> will provide the details in the below section.</li>
+</ol>
+<h1 id="quick-start-develop-a-new-module-for-hbd.winforms.shell">Quick Start - Develop a new module for HBD.WinForms.Shell</h1>
+<h3 id="add-new-module">1. Add New Module</h3>
+<ul>
+<li>Open Visual Studio and create a new Class Library project example project name is <strong>Demo.Module</strong>.</li>
+<li>Install the latest version of <strong>HBD.WinForms.Shell</strong> from Nuget.</li>
+<li>Add new class named <strong>StartupDemoModule</strong> and inherited from HBD.Mef.WinForms.Modularity.<strong>WinFormModuleBase</strong> and
+then implement 2 abstract methods (<strong>GetStartUpViewTypes</strong> and <strong>MenuConfiguration(IMainMenuService menuSet)</strong>) as below.
+Remember to add the <strong>ModuleExport</strong> attribute into your StartupDemoModule class.</li>
+</ul>
+<pre><code class="language-csharp">[HBD.Mef.Core.Modularity.ModuleExport(typeof(StartupDemoModule))]
+[PartCreationPolicy(CreationPolicy.Shared)]
+public class StartupDemoModule : HBD.Mef.WinForms.Modularity.WinFormModuleBase
+{
+        protected override IEnumerable&lt;IViewInfo&gt; GetStartUpViewTypes()
+        {
+            //Return the View1 as Startup View.
+            //This view will be loaded automatically when application started.
+            yield return new ViewInfo(typeof(View1));
+        }
+
+        protected override void MenuConfiguration(IMainMenuService menuSet)
+        {
+            //Add Main Menu for this module.
+            menuSet.Menu(&quot;Demo&quot;)
+                .WithIcon(Resources.DemoIcon)
+                .WithToolTip(&quot;This is demo menu.&quot;)
+                .Children
+                    //Add Navigation for View1.
+                    .AddNavigation(&quot;View 1&quot;)
+                        .For(new ViewInfo(typeof(View1)))
+                    //And this navigation for View 2.
+                    .AndNavigation(&quot;View 2&quot;)
+                        .For(new ViewInfo(typeof(View2)));
+        }
+}
+</code></pre>
+<ul>
+<li>Add 2 new User Controls Named <strong>View1</strong> and <strong>View2</strong> as below.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.WinForms.Shell/DemoModule_Views.png" alt="Demo Module Views" /></p>
+<ul>
+<li>On each view overwrite the Text property and return the View Title and add the Export attribute as below.</li>
+</ul>
+<pre><code class="language-csharp">[Export]
+public partial class View1: UserControl
+{
+    public override string Text =&gt; &quot;View 1&quot;;
+
+    ...
+}
+
+[Export]
+public partial class View2: UserControl
+{
+    public override string Text =&gt; &quot;View 2&quot;;
+
+    ...
+}
+</code></pre>
+<h3 id="setup-publish-shell-folder">2. Setup Publish Shell folder.</h3>
+<ul>
+<li>Copy folder <strong>[Solution Directory]\packages\HBD.WinForms.Shell\tools\WinForms.Shell</strong> to <strong>[Solution Directory]\Publish\WinForms.Shell</strong></li>
+</ul>
+<h3 id="update-projects-properties">3. Update project's properties.</h3>
+<ul>
+<li>Right click to the project select Properties</li>
+<li>Add below code into Post-build event</li>
+</ul>
+<pre><code class="language-batch">if not exist &quot;$(SolutionDir)Publish\WinForms.Shell\Modules\$(ProjectName)&quot; mkdir &quot;$(SolutionDir)Publish\WinForms.Shell\Modules\$(ProjectName)&quot; 
+xcopy &quot;$(TargetDir)*.*&quot; &quot;$(SolutionDir)Publish\WinForms.Shell\Modules\$(ProjectName)&quot; /s /y /r
+</code></pre>
+<ul>
+<li>Set Start external program under Debug to <strong>Publish\WinForms.Shell\HBD.WinForms.Shell.exe</strong></li>
+<li>And set Working directory to <strong>Publish\WinForms.Shell</strong> folder.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.WinForms.Shell/DemoModule_Debug.png" alt="Demo Module Debug" /></p>
+<h3 id="add-module-config-and-debug-your-module">4. Add Module config and Debug your module.</h3>
+<ul>
+<li>Add new <strong>Module_Demo.json</strong> file with the following content.</li>
+</ul>
+<pre><code class="language-json">//this file name convention is Module_[Your project Name]
+{
+  &quot;Name&quot;: &quot;Demo Module&quot;,
+  &quot;Description&quot;: &quot;This is demo module for WinForms Shell&quot;,
+  &quot;Version&quot;: &quot;1.0.0-beta1&quot;,
+  &quot;IsEnabled&quot;: true, //or false
+  //The list of assemblies that you want to be exposed to the EMF.
+  &quot;AssemplyFiles&quot;: [ &quot;Demo.Module.dll&quot; ]
+}
+</code></pre>
+<ul>
+<li>Set Build action of this config file as below</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.WinForms.Shell/DemoModule_Json.png" alt="Demo Module Json" /></p>
+<ul>
+<li>Run your module the Shell application will display as below.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.WinForms.Shell/Demo_Shell.png" alt="Demo Shell" /></p>
+<h1 id="navigation-between-the-views">Navigation between the Views.</h1>
+<p>From version 1.0.1 a new interface had been added into <em>HBD.Mef.WinForms.Common</em> to provide the communication channel between the views. So that the view and navigate to the other view with the parameters.</p>
+<h4 id="implementation">1. Implementation.</h4>
+<p>If your view wants to be navigated from the other view you need to implement the <strong>INavigationAware</strong> interface and handle <strong>OnNavigatedTo(WinformNavigationContext navigationContext)</strong> method, This method will be called when navigating from the other view.</p>
+<ul>
+<li>The interface</li>
+</ul>
+<pre><code class="language-csharp">public interface INavigationAware
+{
+    void OnNavigatedTo(WinformNavigationContext navigationContext);
+}
+</code></pre>
+<ul>
+<li>The view implementation</li>
+</ul>
+<pre><code class="language-csharp">[Export]
+public partial class View2 : UserControl, INavigationAware
+{
+    public void OnNavigatedTo(WinformNavigationContext navigationContext)
+    {
+        this.label2.Text = navigationContext.NavigationParameters.First().Value.ToString();
+    }
+}
+</code></pre>
+<h4 id="using-navigationmanager">2. Using NavigationManager</h4>
+<p>The sampble code below will handle the button event and navigate to the other view</p>
+<pre><code class="language-csharp">[Export]
+public partial class View1 : UserControl
+{
+    [Import]
+    public INavigationManager NavigationManager { protected get; set; }
+
+    private void button1_Click(object sender, System.EventArgs e)
+    {
+        this.NavigationManager.NavigateTo(typeof(View2),
+            new Dictionary&lt;string, object&gt; { [&quot;Message&quot;] = &quot;Navigated from View 1&quot; });
+    }
+}
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/baoduy/Images/master/Wordpress/HBD.WinForms.Shell/NavigationManager.PNG" alt="Navigation Manager" />
+When run the application and click the button. View2 will be open and display the message was passed from View1.</p>
+<h4 id="recommendation">3. Recommendation</h4>
+<p>There are 2 base classes had been provided in <em>HBD.Mef.WinForms</em> for your Forms and Views. So that when you create a new Form or View, it can be inherited from this form instead.</p>
+<ul>
+<li>The <strong>FormBase</strong></li>
+</ul>
+<pre><code class="language-csharp">public class FormBase: Form
+{
+    [Import]
+    public IServiceLocator ContainerService { protected get; set; }
+
+    [Import]
+    public ILoggerFacade Logger { protected get; set; }
+
+    [Import]
+    public IMessageBoxService MessageBoxService { protected get; set; }
+}
+</code></pre>
+<ul>
+<li>The <strong>ViewBase</strong></li>
+</ul>
+<pre><code class="language-csharp">public class ViewBase : UserControl, INotifyPropertyChanged, IActiveAware,INavigationAware
+{
+
+    [Import(AllowDefault = true,AllowRecomposition = true)]
+    public IServiceLocator ContainerService { protected get; set; }
+
+    [Import(AllowDefault = true, AllowRecomposition = true)]
+    public ILoggerFacade Logger { protected get; set; }
+
+    [Import(AllowDefault = true, AllowRecomposition = true)]
+    public IShellStatusService StatusService { protected get; set; }
+
+    [Import(AllowDefault = true, AllowRecomposition = true)]
+    public IMessageBoxService MessageBoxService { protected get; set; }
+
+    [Import(AllowDefault = true, AllowRecomposition = true)]
+    public INavigationManager NavigationManager { protected get; set; }
+
+    #region IActiveAware
+        ...
+    #endregion
+
+    #region INotifyPropertyChanged
+        ...
+    #endregion
+
+    #region NavigationAware
+        ...  
+    #endregion
+}
+</code></pre>
+<ul>
+<li>The <strong>Form</strong> implementation</li>
+</ul>
+<pre><code class="language-csharp">public class MainForm : FormBase
+{
+    ...
+}
+</code></pre>
+<ul>
+<li>The <strong>View</strong> implementation</li>
+</ul>
+<pre><code class="language-csharp">[Export]
+public partial class View1: ViewBase
+{
+    public override string Text =&gt; &quot;View 1&quot;;
+    ...   
+}
+</code></pre>
+<h1 id="source-code">Source code</h1>
+<ul>
+<li><a href="https://github.com/baoduy/HBD.WinForms.Shell">HBD.Windows.Shell</a> source code.</li>
+<li><a href="https://github.com/baoduy/Demo.Module-For-WinForm.Shell">Demo.Module</a> source code.</li>
+</ul>
+<blockquote>
+<p><em>Hope, this Shell will help you to develop a plugin-able application faster and easier.
+Your feedback and ideas are much appreciated.
+Please feel free to drop me an email with your opinion.</em></p>
+</blockquote>
+<h1 id="nuget-dependences">Nuget Dependences</h1>
+<ul>
+<li><a href="https://www.nuget.org/packages/CommonServiceLocator/">CommonServiceLocator</a></li>
+<li><a href="https://www.nuget.org/packages/HBD.Framework/">HBD.Framework</a></li>
+<li><a href="https://www.nuget.org/packages/HBD.Mef/">HBD.Mef</a></li>
+<li><a href="https://www.nuget.org/packages/log4net/">log4net</a></li>
+<li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Newtonsoft.Json</a></li>
+<li><a href="https://www.nuget.org/packages/Prism.Core/">Prism.Core</a></li>
+<li><a href="https://www.nuget.org/packages/Prism.Wpf/">Prism.Wpf</a></li>
+</ul>
+<p><em>Thanks for your reading</em></p>
+<ul>
+<li><em><a href="mailto:drunkcoding@outlook">drunkcoding@outlook.com</a></em></li>
+<li><em><a href="https://drunkcoding.net">drunkcoding</a></em></li>
+<li><em><a href="https://github.com/baoduy">github</a></em></li>
+</ul>
+
+
+</body>
+</html>

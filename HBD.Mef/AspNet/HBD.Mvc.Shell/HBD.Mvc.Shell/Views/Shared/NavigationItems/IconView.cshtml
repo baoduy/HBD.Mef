@@ -1,0 +1,29 @@
+﻿@using HBD.Mef.Mvc.Icons
+@model HBD.Mef.Mvc.Core.IConable
+
+@if (Model.Icon != null)
+{
+    if (Model.Icon is Glyphicon)
+    {
+        var icon = Model.Icon.ToString().Replace("_", "-");
+        <span class="glyphicon @icon" aria-hidden="true"></span>
+    }
+    else if (Model.Icon is FontAwesome)
+    {
+        var icon = Model.Icon.ToString().Replace("_", "-");
+        <i class="fa @icon" aria-hidden="true"></i>
+    }
+    else if (Model.Icon is string)
+    {
+        var icon = (string)Model.Icon;
+        if (icon.StartsWith("~"))
+        {
+            icon = VirtualPathUtility.ToAbsolute(icon);
+        }
+        if (!icon.StartsWith("http"))
+        {
+            icon = VirtualPathUtility.ToAbsolute($"~/Areas/{Model.AreaName}/{Model.Icon}");
+        }
+        <img src="@icon" alt="icon" class="main-menu-icon" />
+    }
+}

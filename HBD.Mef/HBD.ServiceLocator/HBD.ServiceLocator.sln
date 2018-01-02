@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26711.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.ServiceLocator.Shared", "HBD.ServiceLocator\HBD.ServiceLocator.Shared.shproj", "{8C37717D-C021-4FDD-A4B7-A6561A5CE5CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Compilation", "2. Compilation", "{AE7AC997-3A4E-45BA-863E-9C4B93DDF968}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.ServiceLocator.Full", "HBD.ServiceLocator.Full\HBD.ServiceLocator.Full.csproj", "{0F785787-922C-4BC8-97D7-527003262851}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.ServiceLocator.St1", "HBD.ServiceLocator.St1\HBD.ServiceLocator.St1.csproj", "{2DD34E40-29C9-4345-845A-B122EFDDC055}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.ServiceLocator.St2", "HBD.ServiceLocator.St2\HBD.ServiceLocator.St2.csproj", "{F2FE0111-674D-4A42-B723-6FFEA97BD6BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D7F6B5D8-5429-405E-B393-3357CB44D61C}"
+	ProjectSection(SolutionItems) = preProject
+		HBD.ServiceLocator.nuspec = HBD.ServiceLocator.nuspec
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Tests", "3. Tests", "{0FF4E639-B0C6-4CB5-A399-7DB6A2EF85B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Shared", "1. Shared", "{92CA77FD-C364-44DC-AAED-AD4FF1E041DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.ServiceLocator.FullTests", "HBD.ServiceLocator.FullTests\HBD.ServiceLocator.FullTests.csproj", "{72F9E802-1E0C-4C83-B7BC-7F16EF554F2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.ServiceLocator.StTests", "HBD.ServiceLocator.StTests\HBD.ServiceLocator.StTests.csproj", "{411F30B6-C4D8-4999-B1FC-676218DBB8FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{F4AE48AA-5B64-4821-A37B-0C3A54AEDAF9}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\HBD.ServiceLocatorCSharp.ruleset = SonarQube\HBD.ServiceLocatorCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HBD.ServiceLocator\HBD.ServiceLocator.projitems*{0f785787-922c-4bc8-97d7-527003262851}*SharedItemsImports = 4
+		HBD.ServiceLocator\HBD.ServiceLocator.projitems*{8c37717d-c021-4fdd-a4b7-a6561a5ce5ce}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F785787-922C-4BC8-97D7-527003262851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F785787-922C-4BC8-97D7-527003262851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F785787-922C-4BC8-97D7-527003262851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F785787-922C-4BC8-97D7-527003262851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD34E40-29C9-4345-845A-B122EFDDC055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD34E40-29C9-4345-845A-B122EFDDC055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD34E40-29C9-4345-845A-B122EFDDC055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD34E40-29C9-4345-845A-B122EFDDC055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2FE0111-674D-4A42-B723-6FFEA97BD6BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2FE0111-674D-4A42-B723-6FFEA97BD6BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2FE0111-674D-4A42-B723-6FFEA97BD6BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2FE0111-674D-4A42-B723-6FFEA97BD6BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F9E802-1E0C-4C83-B7BC-7F16EF554F2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F9E802-1E0C-4C83-B7BC-7F16EF554F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F9E802-1E0C-4C83-B7BC-7F16EF554F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F9E802-1E0C-4C83-B7BC-7F16EF554F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{411F30B6-C4D8-4999-B1FC-676218DBB8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{411F30B6-C4D8-4999-B1FC-676218DBB8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{411F30B6-C4D8-4999-B1FC-676218DBB8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{411F30B6-C4D8-4999-B1FC-676218DBB8FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8C37717D-C021-4FDD-A4B7-A6561A5CE5CE} = {92CA77FD-C364-44DC-AAED-AD4FF1E041DF}
+		{0F785787-922C-4BC8-97D7-527003262851} = {AE7AC997-3A4E-45BA-863E-9C4B93DDF968}
+		{2DD34E40-29C9-4345-845A-B122EFDDC055} = {AE7AC997-3A4E-45BA-863E-9C4B93DDF968}
+		{F2FE0111-674D-4A42-B723-6FFEA97BD6BF} = {AE7AC997-3A4E-45BA-863E-9C4B93DDF968}
+		{72F9E802-1E0C-4C83-B7BC-7F16EF554F2A} = {0FF4E639-B0C6-4CB5-A399-7DB6A2EF85B6}
+		{411F30B6-C4D8-4999-B1FC-676218DBB8FA} = {0FF4E639-B0C6-4CB5-A399-7DB6A2EF85B6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3D95693-08ED-4B65-8A1E-53E9022AE37A}
+	EndGlobalSection
+EndGlobal

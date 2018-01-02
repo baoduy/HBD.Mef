@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>HBD.ServiceLocator</AssemblyName>
+    <RootNamespace>HBD.ServiceLocator</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\HBD.ServiceLocator\HBD.ServiceLocator.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+﻿@using HBD.Mef.Mvc.Core
+@using HBD.Mef.Mvc.Navigation
+@using HBD.Mef.Mvc.Navigation.NavigateInfo
+@{
+    var footerService = HBD.ServiceLocator.Current.GetInstance<IFooterNavigationService>();
+    var items = footerService.GetMenuFor(User);
+    var leftMenus = items.OfType<IDisplayability>().Where(i => i.Alignment == MenuAlignment.Left).ToList();
+    var rightMenus = items.OfType<IDisplayability>().Where(i => i.Alignment == MenuAlignment.Right).ToList();
+}
+<footer class="navbar navbar-default navbar-fixed-bottom">
+    <ul class="nav navbar-nav hidden-xs">
+        @Html.Partial("NavigationItems/MenuItemsView", leftMenus)
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.Partial("NavigationItems/MenuItemsView", rightMenus)
+            <p>
+                &copy; @DateTime.Now.Year - <a href="http://drunkcoding.net/about" target="_blank">Duy Hoang Workspace.</a>
+            </p>
+        </li>
+    </ul>
+</footer>
