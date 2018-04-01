@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System.Web.Mvc;
 
@@ -12,6 +12,8 @@ namespace HBD.Mef.Mvc.Navigation.NavigateInfo
         {
         }
 
+        public string DetailsLink { get; set; }
+
         public override IMenuInfo Clone()
         {
             return new ViewInfo(AreaName)
@@ -23,7 +25,8 @@ namespace HBD.Mef.Mvc.Navigation.NavigateInfo
                 DisplayIndex = DisplayIndex,
                 Alignment = Alignment,
                 InfoGetter = InfoGetter,
-                Title = Title
+                Title = Title,
+                DetailsLink = DetailsLink
             };
         }
     }

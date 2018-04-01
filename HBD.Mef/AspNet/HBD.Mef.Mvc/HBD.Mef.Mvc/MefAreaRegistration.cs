@@ -1,7 +1,11 @@
-﻿using System.Web.Mvc;
+﻿#region
+
+using System.Web.Mvc;
 using System.Web.Optimization;
 using HBD.Mef.Mvc.Core;
 using HBD.Mef.Mvc.Navigation;
+
+#endregion
 
 namespace HBD.Mef.Mvc
 {
@@ -14,8 +18,8 @@ namespace HBD.Mef.Mvc
             context.Routes.MapRoute(
                     PrimaryRouteName,
                     $"{AreaName}/{{controller}}/{{action}}/{{id}}",
-                    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                    new[] { $"{GetType().Namespace}.Controllers" }
+                    new {controller = "Home", action = "Index", id = UrlParameter.Optional},
+                    new[] {$"{GetType().Namespace}.Controllers"}
                 )
                 .DataTokens.Add("area", AreaName);
         }

@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System.Linq;
 using System.Web.Optimization;
@@ -11,11 +11,12 @@ namespace HBD.Mef.Mvc.Optimization
 {
     public sealed class AreaScriptBundle : ScriptBundle, IAreaBundle
     {
-        internal AreaScriptBundle([NotNull] string areaName, string bundleName=null) : this(areaName, bundleName, null)
+        internal AreaScriptBundle([NotNull] string areaName, string bundleName = null) : this(areaName, bundleName,
+            null)
         {
         }
 
-        internal AreaScriptBundle([NotNull] string areaName,string bundleName, string cdnPath) : base(
+        internal AreaScriptBundle([NotNull] string areaName, string bundleName, string cdnPath) : base(
             BundleExtensions.GetBundleName(areaName, bundleName), cdnPath)
         {
             AreaName = areaName;

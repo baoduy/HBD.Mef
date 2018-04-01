@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System;
 using System.Collections;
@@ -112,10 +112,8 @@ namespace HBD.Mef.Mvc
             var action = routeData.Values["action"] as string ?? string.Empty;
 
             if (nav.IsRootLevel)
-            {
                 return nav.AreaName.EqualsIgnoreCase(area)
                        && nav.Controller.EqualsIgnoreCase(controller);
-            }
 
             return nav.AreaName.EqualsIgnoreCase(area)
                    && nav.Controller.EqualsIgnoreCase(controller)

@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System.Linq;
 using System.Web.Optimization;
@@ -11,7 +11,7 @@ namespace HBD.Mef.Mvc.Optimization
 {
     public sealed class AreaStyleBundle : StyleBundle, IAreaBundle
     {
-        internal AreaStyleBundle([NotNull] string areaName,string bundleName=null) : this(areaName, bundleName, null)
+        internal AreaStyleBundle([NotNull] string areaName, string bundleName = null) : this(areaName, bundleName, null)
         {
         }
 

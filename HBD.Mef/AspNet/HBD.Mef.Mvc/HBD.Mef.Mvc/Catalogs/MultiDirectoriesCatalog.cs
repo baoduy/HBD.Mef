@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -24,8 +24,8 @@ namespace HBD.Mef.Mvc.Catalogs
     public sealed class MultiDirectoriesCatalog : ComposablePartCatalog, ICompositionElement
     {
         private const string AppSettingKey = "MultiDirectoriesCatalog:ExcludedBinaries";
-        private readonly object _locker = new object();
         private readonly ReflectionContext _context;
+        private readonly object _locker = new object();
         private readonly string[] _paths;
         private readonly SearchOption _searchOption;
         private bool _isInitialized;
@@ -41,7 +41,7 @@ namespace HBD.Mef.Mvc.Catalogs
             _context = context;
             Catalogs = new List<AssemblyCatalog>();
             //SubAppDomains = new ConcurrentDictionary<string, AppDomain>();
-            ExcludedBinaries = new List<string> { "System", "Microsoft" };
+            ExcludedBinaries = new List<string> {"System", "Microsoft"};
         }
 
         //protected ConcurrentDictionary<string, AppDomain> SubAppDomains { get; }
@@ -84,7 +84,7 @@ namespace HBD.Mef.Mvc.Catalogs
             {
                 var excluedSetting = ConfigurationManager.AppSettings[AppSettingKey];
                 if (excluedSetting.IsNotNullOrEmpty())
-                    ExcludedBinaries.AddRange(excluedSetting.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+                    ExcludedBinaries.AddRange(excluedSetting.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries));
 
                 foreach (var path in _paths)
                 {
@@ -114,6 +114,7 @@ namespace HBD.Mef.Mvc.Catalogs
                         }
                     }
                 }
+
                 _isInitialized = true;
             }
         }

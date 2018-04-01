@@ -1,4 +1,8 @@
-﻿using HBD.Mef.Mvc.Navigation.NavigateInfo;
+﻿#region
+
+using HBD.Mef.Mvc.Navigation.NavigateInfo;
+
+#endregion
 
 namespace HBD.Mef.Mvc.Core
 {

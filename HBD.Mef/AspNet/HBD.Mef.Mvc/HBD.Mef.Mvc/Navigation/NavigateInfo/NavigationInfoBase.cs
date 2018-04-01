@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using HBD.Framework.Core;
 using HBD.Mef.Mvc.Core;
+
+#endregion
 
 namespace HBD.Mef.Mvc.Navigation.NavigateInfo
 {

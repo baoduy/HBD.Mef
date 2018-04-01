@@ -1,7 +1,11 @@
-﻿using HBD.Mef.Mvc;
+﻿#region
+
+using HBD.Mef.Mvc;
 using HBD.Mef.Mvc.Navigation.NavigateInfo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+
+#endregion
 
 namespace HBD.Mef.MvcTests.Navigation
 {

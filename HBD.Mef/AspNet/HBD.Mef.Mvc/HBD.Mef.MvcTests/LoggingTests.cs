@@ -1,6 +1,11 @@
-﻿using HBD.Mef.Logging;
+﻿#region
+
+using System.IO;
+using HBD.Mef.Logging;
 using HBD.Mef.MvcTests.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace HBD.Mef.MvcTests
 {
@@ -14,7 +19,7 @@ namespace HBD.Mef.MvcTests
         {
             Bootatrapper.Logger.Info("Hoang Bao Duy");
 
-            Assert.IsTrue(System.IO.File.Exists("Logs\\Log_Log4NetLogger.log"));
+            Assert.IsTrue(File.Exists("Logs\\Log_Log4NetLogger.log"));
         }
     }
 }

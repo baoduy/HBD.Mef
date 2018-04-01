@@ -44,9 +44,13 @@ namespace HBD.Mef.Logging
             };
 
             roller.ActivateOptions();
-            hierarchy.Root.AddAppender(roller);
-            hierarchy.Root.Level = Level.All;
-            hierarchy.Configured = true;
+
+            if (hierarchy != null)
+            {
+                hierarchy.Root.AddAppender(roller);
+                hierarchy.Root.Level = Level.All;
+                hierarchy.Configured = true;
+            }
 
             _log = LogManager.GetLogger(type.FullName, type.Name);
         }

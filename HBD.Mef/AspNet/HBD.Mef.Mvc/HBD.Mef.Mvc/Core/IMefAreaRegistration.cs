@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -30,13 +30,13 @@ namespace HBD.Mef.Mvc.Core
         void RegisterNavigation(INavigationService navigationService);
 
         /// <summary>
-        /// Register the links that will be display on the footer page.
+        ///     Register the links that will be display on the footer page.
         /// </summary>
         /// <param name="footerNavigationService"></param>
         void RegisterFooterNavigation(IFooterNavigationService footerNavigationService);
 
         /// <summary>
-        /// Register Area bundle resouces after app started.
+        ///     Register Area bundle resouces after app started.
         /// </summary>
         /// <param name="bundles"></param>
         void RegisterBundleResources(BundleCollection bundles);

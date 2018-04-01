@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace HBD.Mef.Mvc.Navigation
 
             if (item == null)
             {
-                var newItem = new MenuInfo(AreaName){Title = title};
+                var newItem = new MenuInfo(AreaName) {Title = title};
                 Items.Add(newItem);
                 return newItem;
             }

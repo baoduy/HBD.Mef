@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -21,10 +21,10 @@ namespace HBD.Mef.Mvc
     {
         private const string AreaPath = "~/Areas";
         private const string Http = "http";
-        private static readonly string AreaVirtualPathFormat = $"{AreaPath}/{{0}}/{{1}}";
         private const string BinConfigFileVirtualPath = "~/bin/{0}.config";
         private const string WebConfig = "Web.config";
         private const string AreaDataToken = "area";
+        private static readonly string AreaVirtualPathFormat = $"{AreaPath}/{{0}}/{{1}}";
 
         internal static VirtualPathProvider VirtualPathProvider => HostingEnvironment.VirtualPathProvider;
 
@@ -35,7 +35,9 @@ namespace HBD.Mef.Mvc
         }
 
         internal static IEnumerable<T> GetBundles<T>() where T : IAreaBundle
-            => BundleTable.Bundles.GetRegisteredBundles().OfType<T>();
+        {
+            return BundleTable.Bundles.GetRegisteredBundles().OfType<T>();
+        }
 
         internal static IEnumerable<T> GetBundlesForCurrentArea<T>() where T : IAreaBundle
         {
@@ -72,7 +74,9 @@ namespace HBD.Mef.Mvc
         /// <param name="areaName"></param>
         /// <returns></returns>
         internal static string GetAreaConfigFile([NotNull] string areaName)
-            => string.Format(AreaVirtualPathFormat, areaName, WebConfig);
+        {
+            return string.Format(AreaVirtualPathFormat, areaName, WebConfig);
+        }
 
         /// <summary>
         ///     Get virtual path of Module config file: ~/bin/ModuleName.config
@@ -80,7 +84,9 @@ namespace HBD.Mef.Mvc
         /// <param name="moduleName"></param>
         /// <returns></returns>
         internal static string GetBinConfigFile([NotNull] string moduleName)
-            => string.Format(BinConfigFileVirtualPath, moduleName);
+        {
+            return string.Format(BinConfigFileVirtualPath, moduleName);
+        }
 
         /// <summary>
         ///     Get the Area virtual path of the file
@@ -100,7 +106,7 @@ namespace HBD.Mef.Mvc
 
 
         /// <summary>
-        /// This bundle will be generated automatically when the MefScripts.RenderAreaBundles() called.
+        ///     This bundle will be generated automatically when the MefScripts.RenderAreaBundles() called.
         /// </summary>
         /// <param name="this"></param>
         /// <param name="areaName"></param>
@@ -122,19 +128,21 @@ namespace HBD.Mef.Mvc
         }
 
         /// <summary>
-        /// The bundle which specified name is not auto generated you need you add to your Page manually.
+        ///     The bundle which specified name is not auto generated you need you add to your Page manually.
         /// </summary>
         /// <param name="this"></param>
         /// <param name="areaName"></param>
         /// <param name="bundleName"></param>
         /// <returns></returns>
-        public static AreaScriptBundle AddAreaScriptBundle(this BundleCollection @this, [NotNull] string areaName, [NotNull]string bundleName)
+        public static AreaScriptBundle AddAreaScriptBundle(this BundleCollection @this, [NotNull] string areaName,
+            [NotNull] string bundleName)
         {
             Guard.ArgumentIsNotNull(areaName, nameof(areaName));
             Guard.ArgumentIsNotNull(bundleName, nameof(bundleName));
 
             var b = @this.OfType<AreaScriptBundle>()
-                .FirstOrDefault(i => i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.EqualsIgnoreCase(bundleName));
+                .FirstOrDefault(i =>
+                    i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.EqualsIgnoreCase(bundleName));
 
             if (b == null)
             {
@@ -146,7 +154,7 @@ namespace HBD.Mef.Mvc
         }
 
         /// <summary>
-        /// This bundle will be generated automatically when the MefStyles.RenderAreaBundles() called.
+        ///     This bundle will be generated automatically when the MefStyles.RenderAreaBundles() called.
         /// </summary>
         /// <param name="this"></param>
         /// <param name="areaName"></param>
@@ -156,29 +164,33 @@ namespace HBD.Mef.Mvc
             Guard.ArgumentIsNotNull(areaName, nameof(areaName));
 
             var b = @this.OfType<AreaStyleBundle>()
-                    .FirstOrDefault(i => i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.IsNullOrEmpty());
+                .FirstOrDefault(i => i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.IsNullOrEmpty());
 
             if (b == null)
             {
                 b = new AreaStyleBundle(areaName);
                 @this.Add(b);
             }
+
             return b;
         }
 
-        public static AreaStyleBundle AddAreaStyleBundle(this BundleCollection @this, [NotNull] string areaName, [NotNull]string bundleName)
+        public static AreaStyleBundle AddAreaStyleBundle(this BundleCollection @this, [NotNull] string areaName,
+            [NotNull] string bundleName)
         {
             Guard.ArgumentIsNotNull(areaName, nameof(areaName));
             Guard.ArgumentIsNotNull(bundleName, nameof(bundleName));
 
             var b = @this.OfType<AreaStyleBundle>()
-                    .FirstOrDefault(i => i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.EqualsIgnoreCase(bundleName));
+                .FirstOrDefault(i =>
+                    i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.EqualsIgnoreCase(bundleName));
 
             if (b == null)
             {
                 b = new AreaStyleBundle(areaName, bundleName);
                 @this.Add(b);
             }
+
             return b;
         }
 
@@ -201,7 +213,8 @@ namespace HBD.Mef.Mvc
         }
 
         /// <summary>
-        /// Register the dedicated script bundles for particular page. Calling this method and register needed bundles on top of page.
+        ///     Register the dedicated script bundles for particular page. Calling this method and register needed bundles on top
+        ///     of page.
         /// </summary>
         /// <param name="this"></param>
         /// <param name="bundleNames"></param>
@@ -215,7 +228,8 @@ namespace HBD.Mef.Mvc
                 if (areaName.IsNotNullOrEmpty())
                 {
                     var areaBundleName = GetBundleName(areaName, b);
-                    if (GetBundles<AreaScriptBundle>().Any(i => i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.EqualsIgnoreCase(b)))
+                    if (GetBundles<AreaScriptBundle>().Any(i =>
+                        i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.EqualsIgnoreCase(b)))
                     {
                         list.Add(areaBundleName);
                         continue;
@@ -229,7 +243,8 @@ namespace HBD.Mef.Mvc
         }
 
         /// <summary>
-        /// Register the dedicated style bundles for particular page. Calling this method and register needed bundles on top of page.
+        ///     Register the dedicated style bundles for particular page. Calling this method and register needed bundles on top of
+        ///     page.
         /// </summary>
         /// <param name="this"></param>
         /// <param name="bundleNames"></param>
@@ -245,7 +260,8 @@ namespace HBD.Mef.Mvc
                 if (areaName.IsNotNullOrEmpty())
                 {
                     var areaBundleName = GetBundleName(areaName, b);
-                    if (GetBundles<AreaStyleBundle>().Any(i =>i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.EqualsIgnoreCase(b)))
+                    if (GetBundles<AreaStyleBundle>().Any(i =>
+                        i.AreaName.EqualsIgnoreCase(areaName) && i.BundleName.EqualsIgnoreCase(b)))
                     {
                         list.Add(areaBundleName);
                         continue;

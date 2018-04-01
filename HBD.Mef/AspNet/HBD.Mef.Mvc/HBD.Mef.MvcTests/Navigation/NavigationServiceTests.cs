@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System.Data;
 using HBD.Mef.Mvc.Navigation.NavigateInfo;
@@ -129,7 +129,7 @@ namespace HBD.Mef.Mvc.Navigation.Tests
                 .For<TestController>(c => nameof(c.Index)));
 
             Assert.IsTrue(((INavigateRole) m.Items[0]).ReguireAuthorized);
-            Assert.IsTrue(((INavigateRole)m.Items[0]).Roles.Contains("Admin"));
+            Assert.IsTrue(((INavigateRole) m.Items[0]).Roles.Contains("Admin"));
         }
 
         [TestMethod]

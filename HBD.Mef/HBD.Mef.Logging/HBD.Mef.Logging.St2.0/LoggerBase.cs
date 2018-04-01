@@ -13,7 +13,7 @@ namespace HBD.Mef.Logging
 
         protected LoggerBase(bool allowDebugLog)
         {
-#if NETSTANDARD2_0 || NETSTANDARD1_6
+#if NETSTANDARD2_0
             DefaultOutFileName = Path.Combine(AppContext.BaseDirectory, $"Logs\\Log_{GetType().Name}.log");
 #else
             DefaultOutFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Logs\\Log_{GetType().Name}.log");

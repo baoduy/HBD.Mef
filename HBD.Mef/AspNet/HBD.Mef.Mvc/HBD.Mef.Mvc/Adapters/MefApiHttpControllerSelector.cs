@@ -1,12 +1,16 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
-using HBD.Mef.Mvc.Core;
 using HBD.Mef.Logging;
+using HBD.Mef.Mvc.Core;
+
+#endregion
 
 namespace HBD.Mef.Mvc.Adapters
 {

@@ -15,19 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBD.Mef.Mvc.St", "HBD.Mef.Mvc.St\HBD.Mef.Mvc.St.csproj", "{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.Mef.Mvc.Share", "HBD.Mef.Mvc.Share\HBD.Mef.Mvc.Share.shproj", "{62A7E5C3-1878-4621-9CFD-5CFFBC715187}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mef", "Mef", "{DF84D78E-28E8-4FF3-B065-6FFF26CC9103}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Navigations", "Navigations", "{C9468454-A8B2-4129-B878-4EDF2340039F}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HBD.Shell.Navigation", "HBD.Shell.Navigation\HBD.Shell.Navigation.shproj", "{8639DD61-CA83-4A24-969B-0DCC95025A4C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Shell.TwoLevelNavigation", "HBD.Shell.TwoLevelNavigation\HBD.Shell.TwoLevelNavigation.csproj", "{9B79DF1C-54BA-42E1-9098-7D3C0EDDAF38}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBD.Shell.MultiLevelNavigation", "HBD.Shell.MultiLevelNavigation\HBD.Shell.MultiLevelNavigation.csproj", "{A71AF8F3-811A-471F-8B83-0820C731962C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{DC7874A6-29DB-4E89-8E66-ED80788E908D}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,13 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		HBD.Mef.Mvc.Share\HBD.Mef.Mvc.Share.projitems*{62a7e5c3-1878-4621-9cfd-5cffbc715187}*SharedItemsImports = 13
-		HBD.Shell.Navigation\HBD.Shell.Navigation.projitems*{8639dd61-ca83-4a24-969b-0dcc95025a4c}*SharedItemsImports = 13
-		HBD.Shell.Navigation\HBD.Shell.Navigation.projitems*{9b79df1c-54ba-42e1-9098-7d3c0eddaf38}*SharedItemsImports = 4
-		HBD.Shell.Navigation\HBD.Shell.Navigation.projitems*{a71af8f3-811a-471f-8b83-0820c731962c}*SharedItemsImports = 4
-		HBD.Mef.Mvc.Share\HBD.Mef.Mvc.Share.projitems*{ccba07d8-2492-4a87-9c98-824c5ffd3d10}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -60,18 +41,6 @@ Global
 		{E3C6F94A-F2BA-454A-826F-F45586FEEEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3C6F94A-F2BA-454A-826F-F45586FEEEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3C6F94A-F2BA-454A-826F-F45586FEEEC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B79DF1C-54BA-42E1-9098-7D3C0EDDAF38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B79DF1C-54BA-42E1-9098-7D3C0EDDAF38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B79DF1C-54BA-42E1-9098-7D3C0EDDAF38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B79DF1C-54BA-42E1-9098-7D3C0EDDAF38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A71AF8F3-811A-471F-8B83-0820C731962C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A71AF8F3-811A-471F-8B83-0820C731962C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A71AF8F3-811A-471F-8B83-0820C731962C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A71AF8F3-811A-471F-8B83-0820C731962C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,15 +48,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CCBA07D8-2492-4A87-9C98-824C5FFD3D10} = {DF84D78E-28E8-4FF3-B065-6FFF26CC9103}
 		{E3C6F94A-F2BA-454A-826F-F45586FEEEC5} = {DF84D78E-28E8-4FF3-B065-6FFF26CC9103}
-		{0C15638A-B0F4-40C4-9F65-C76B7A295E2F} = {DF84D78E-28E8-4FF3-B065-6FFF26CC9103}
-		{62A7E5C3-1878-4621-9CFD-5CFFBC715187} = {DF84D78E-28E8-4FF3-B065-6FFF26CC9103}
-		{8639DD61-CA83-4A24-969B-0DCC95025A4C} = {C9468454-A8B2-4129-B878-4EDF2340039F}
-		{9B79DF1C-54BA-42E1-9098-7D3C0EDDAF38} = {C9468454-A8B2-4129-B878-4EDF2340039F}
-		{A71AF8F3-811A-471F-8B83-0820C731962C} = {C9468454-A8B2-4129-B878-4EDF2340039F}
 		{F0477B9C-D1BF-49B8-BD67-6031FF52C0CB} = {DC7874A6-29DB-4E89-8E66-ED80788E908D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8970F6E1-7839-43ED-9AB7-D54F47364533}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
+		SolutionGuid = {8970F6E1-7839-43ED-9AB7-D54F47364533}
 	EndGlobalSection
 EndGlobal

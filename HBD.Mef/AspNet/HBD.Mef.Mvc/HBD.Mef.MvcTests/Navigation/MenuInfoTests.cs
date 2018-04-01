@@ -1,13 +1,17 @@
-﻿using HBD.Mef.Mvc.Icons;
+﻿#region
+
+using HBD.Mef.Mvc.Icons;
 using HBD.Mef.Mvc.Navigation.NavigateInfo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+#endregion
+
 namespace HBD.Mef.Mvc.Navigation.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class MenuInfoTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void Create_MenuInfo_1()
         {
             var menu = new MenuInfo("Area1")
@@ -18,13 +22,13 @@ namespace HBD.Mef.Mvc.Navigation.Tests
 
             Assert.AreEqual("Area1", menu.AreaName);
             Assert.AreEqual("AAA", menu.Title);
-            Assert.AreEqual((ushort)1, menu.DisplayIndex);
+            Assert.AreEqual((ushort) 1, menu.DisplayIndex);
             Assert.AreEqual(MenuDisplayType.IconOnly, menu.DisplayType);
             Assert.AreEqual(MenuAlignment.Left, menu.Alignment);
             Assert.AreEqual(Glyphicon.glyphicon_adjust, menu.Icon);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void Create_MenuInfo_2()
         {
             var menu = new MenuInfo("Area1")

@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using HBD.Mef.Mvc.Navigation;
 using HBD.Mef.MvcTests.TestClasses;

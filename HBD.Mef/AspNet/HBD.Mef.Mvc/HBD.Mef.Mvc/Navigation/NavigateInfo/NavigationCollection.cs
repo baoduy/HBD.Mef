@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,10 @@ namespace HBD.Mef.Mvc.Navigation.NavigateInfo
             return list;
         }
 
-        object ICloneable.Clone() => Clone();
+        object ICloneable.Clone()
+        {
+            return Clone();
+        }
 
         public MenuInfo Parent { get; }
     }

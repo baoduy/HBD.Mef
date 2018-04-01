@@ -1,4 +1,6 @@
-﻿using System.Security.Principal;
+﻿#region
+
+using System.Security.Principal;
 using Moq;
 
 #region using
@@ -8,6 +10,8 @@ using HBD.Mef.Mvc.Icons;
 using HBD.Mef.Mvc.Navigation.NavigateInfo;
 using HBD.Mef.MvcTests.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 #endregion
 

@@ -3,7 +3,7 @@
     public enum MenuDisplayType
     {
         IconAndText = 1,
-        IconOnly = 2,
+        IconOnly = 2
     }
 
     public enum MenuAlignment

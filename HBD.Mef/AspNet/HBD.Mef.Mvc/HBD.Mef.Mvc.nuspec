@@ -11,6 +11,9 @@
     </description>
     <releaseNotes>
       Version ${NugetVersion}
+      - Update to latest nuget packages.
+
+      Version 1.1.1
       - Add default Router for MefAreaRegistration.
       - Support registering and rendering the bundles for particular page.
       - Add naming bundle for Area that can be in the Page level
@@ -65,33 +68,23 @@
     <dependencies>
       <group targetFramework=".NETFramework4.5.2">
         <dependency id="Antlr" version="3.5.0.2" />
-        <dependency id="CsvHelper" version="2.16.3.0" />
-        <dependency id="HBD.Framework" version="2.0.0" />
+        <dependency id="HBD.Framework" version="2.1.2.1" />
         <dependency id="HBD.Mef.Logging" version="2.0.0" />
         <dependency id="HBD.ServiceLocator" version="1.0.0" />
         <dependency id="log4net" version="2.0.8" />
-        <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
-        <dependency id="Microsoft.AspNet.Razor" version="3.2.3" />
+        <dependency id="Microsoft.AspNet.Mvc" version="5.2.4" />
+        <dependency id="Microsoft.AspNet.Razor" version="3.2.4" />
         <dependency id="Microsoft.AspNet.Web.Optimization" version="1.1.3" />
-        <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
-        <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
-        <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.3" />
-        <dependency id="Microsoft.AspNet.WebPages" version="3.2.3" />
+        <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.4" />
+        <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.4" />
+        <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.4" />
+        <dependency id="Microsoft.AspNet.WebPages" version="3.2.4" />
+        <dependency id="Microsoft.CSharp" version="4.4.1"/>
         <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
-        <dependency id="Newtonsoft.Json" version="10.0.3" />
-        <dependency id="SharpZipLib" version="0.86.0" />
+        <dependency id="Newtonsoft.Json" version="11.0.3" />
         <dependency id="WebActivatorEx" version="2.2.0" />
         <dependency id="WebGrease" version="1.6.0" />
       </group>
-      <!--<group targetFramework=".NETStandard1.6">
-        <dependency id="NETStandard.Library" version="1.6.1" />
-        <dependency id="Microsoft.Composition" version="1.0.31"/>
-        <dependency id="System.ComponentModel" version="4.3.0"/>
-      </group>
-      <group targetFramework="NETStandard2.0">
-        <dependency id="NETStandard.Library" version="2.0.0" />
-        <dependency id="Microsoft.Composition" version="1.0.31"/>
-      </group>-->
     </dependencies>
     <references></references>
     <frameworkAssemblies>

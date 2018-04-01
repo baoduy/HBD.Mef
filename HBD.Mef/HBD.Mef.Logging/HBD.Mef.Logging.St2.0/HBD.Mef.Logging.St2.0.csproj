@@ -1,12 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <AssemblyName>HBD.Mef.Logging</AssemblyName>
     <RootNamespace>HBD.Mef.Logging</RootNamespace>
-  </PropertyGroup>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes>Version 1.0.2
+      - Widely support from .Net 4.5 to .Net 4.7 and .Net Standard 2.0
+      - Update to latest nuget versions.
 
-  <Import Project="..\HBD.Mef.Logging.Share\HBD.Mef.Logging.Share.projitems" Label="Shared" />
+Version 1.0.1
+      - Widely support from .Net 4.5 to .Net 4.7 and .Net Standard 1.6 to .Net Standard 2.0
+      - Updating the Log4NetLogger to compatible with all .Net Framework.
+      - Remove dependent to HBD.Framework.
+      
+      Version 1.0.0
+      - Segregated from HBD.Mef for WindowForms and Console App to separate project to share to all HBD.Mef libraries.</PackageReleaseNotes>
+    <Authors>Duy Hoang</Authors>
+    <Company>HBD</Company>
+    <Description>The logger for HBD projects. All logging instance using in the HBD framework and libraries will be implemented in this project.</Description>
+    <PackageProjectUrl>https://github.com/baoduy/HBD.Mef</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/baoduy/HBD.Mef</RepositoryUrl>
+    <RepositoryType>nuget</RepositoryType>
+    <PackageTags>Logging Logger Log4Net Trace Mef</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/baoduy/Images/master/NugetLogo.PNG</PackageIconUrl>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <Copyright>@2018</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />

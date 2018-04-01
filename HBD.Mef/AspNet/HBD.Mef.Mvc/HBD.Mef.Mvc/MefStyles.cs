@@ -1,11 +1,10 @@
-﻿#region using
+﻿#region
 
 using System.Linq;
 using System.Web;
-using System.Web.Optimization;
-using HBD.Framework;
-using HBD.Mef.Mvc.Optimization;
 using System.Web.Mvc;
+using System.Web.Optimization;
+using HBD.Mef.Mvc.Optimization;
 
 #endregion
 
@@ -14,7 +13,7 @@ namespace HBD.Mef.Mvc
     public static class MefStyles
     {
         /// <summary>
-        /// Render the Script Bundles for an Area. Calling this after all Styles.Render in the _Layout page.
+        ///     Render the Script Bundles for an Area. Calling this after all Styles.Render in the _Layout page.
         /// </summary>
         /// <returns></returns>
         public static IHtmlString RenderAreaBundles()
@@ -25,7 +24,7 @@ namespace HBD.Mef.Mvc
         }
 
         /// <summary>
-        /// Render the script bundles for page. Calling this method in the _Layout page after MefStyles.RenderForArea().
+        ///     Render the script bundles for page. Calling this method in the _Layout page after MefStyles.RenderForArea().
         /// </summary>
         /// <param name="this"></param>
         /// <returns></returns>

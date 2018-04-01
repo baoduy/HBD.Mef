@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
@@ -6,6 +8,8 @@ using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using log4net;
+
+#endregion
 
 namespace HBD.Mef.Mvc.Adapters
 {

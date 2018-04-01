@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
+
+#endregion
 
 namespace HBD.Mef.Mvc.Services
 {
@@ -8,17 +12,29 @@ namespace HBD.Mef.Mvc.Services
     {
         private readonly IServiceLocator _serviceLocator;
 
-        public MefApiDependencyResolver(IServiceLocator serviceLocator) => _serviceLocator = serviceLocator;
+        public MefApiDependencyResolver(IServiceLocator serviceLocator)
+        {
+            _serviceLocator = serviceLocator;
+        }
 
-        public IDependencyScope BeginScope() => this;
+        public IDependencyScope BeginScope()
+        {
+            return this;
+        }
 
         public void Dispose()
         {
             //Ignore
         }
 
-        public object GetService(Type serviceType) => _serviceLocator.GetInstance(serviceType);
+        public object GetService(Type serviceType)
+        {
+            return _serviceLocator.GetInstance(serviceType);
+        }
 
-        public IEnumerable<object> GetServices(Type serviceType) => _serviceLocator.GetAllInstances(serviceType);
+        public IEnumerable<object> GetServices(Type serviceType)
+        {
+            return _serviceLocator.GetAllInstances(serviceType);
+        }
     }
 }

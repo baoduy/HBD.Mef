@@ -1,4 +1,8 @@
-﻿using HBD.Mef.Mvc.Core;
+﻿#region
+
+using HBD.Mef.Mvc.Core;
+
+#endregion
 
 namespace HBD.Mef.Mvc
 {

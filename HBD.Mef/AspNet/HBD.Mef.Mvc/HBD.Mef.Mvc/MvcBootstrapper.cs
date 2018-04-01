@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region
 
 using System;
 using System.ComponentModel.Composition;
@@ -14,12 +14,12 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using HBD.Framework.Configuration;
 using HBD.Framework.Core;
+using HBD.Mef.Logging;
 using HBD.Mef.Mvc.Adapters;
 using HBD.Mef.Mvc.Catalogs;
 using HBD.Mef.Mvc.Core;
 using HBD.Mef.Mvc.Navigation;
 using HBD.Mef.Mvc.Services;
-using HBD.Mef.Logging;
 
 #endregion
 
@@ -37,7 +37,7 @@ namespace HBD.Mef.Mvc
         protected virtual void SetResolver()
         {
             DependencyResolver.SetResolver(Container.GetExportedValue<IServiceLocator>());
-            HBD.ServiceLocator.SetServiceLocator(() => Container);
+            ServiceLocator.SetServiceLocator(() => Container);
 
             if (GlobalConfiguration.Configuration != null)
                 GlobalConfiguration.Configuration.DependencyResolver =
@@ -66,8 +66,8 @@ namespace HBD.Mef.Mvc
         /// <summary>
         ///     This method is dedicated for MVC Shell app to register the Main Menus for the Shell.
         /// </summary>
-        /// <param name="maiNavigationService"></param>
-        protected virtual void RegisterMainNavigation(INavigationService maiNavigationService)
+        /// <param name="navigationService"></param>
+        protected virtual void RegisterMainNavigation(INavigationService navigationService)
         {
         }
 
@@ -106,7 +106,7 @@ namespace HBD.Mef.Mvc
         protected virtual void ConfigureAggregateCatalog()
         {
             AggregateCatalog.Catalogs.Add(new MultiDirectoriesCatalog(
-                new[] { $"{AppDomain.CurrentDomain.BaseDirectory}bin" },
+                new[] {$"{AppDomain.CurrentDomain.BaseDirectory}bin"},
                 SearchOption.TopDirectoryOnly,
                 CreateReflectionContext()
             ));
@@ -143,7 +143,7 @@ namespace HBD.Mef.Mvc
             Container.ComposeExportedValue(Logger);
             Container.ComposeExportedValue(Container);
             Container.ComposeExportedValue<ICompositionService>(Container);
-            Container.ComposeExportedValue<IServiceLocator>(new HBD.MefServiceLocator(Container));
+            Container.ComposeExportedValue<IServiceLocator>(new MefServiceLocator(Container));
             Container.ComposeExportedValue<IHttpControllerSelector>(
                 new MefApiHttpControllerSelector(GlobalConfiguration.Configuration, Logger));
         }
